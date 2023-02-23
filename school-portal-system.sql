@@ -18,7 +18,7 @@ CREATE TABLE students (
     date_of_birth DATE NOT NULL,
     year INTEGER,
     userID INTEGER NOT NULL,
-    courseID integer not null
+    courseID INTEGER NOT NULL
 );
 
 CREATE TABLE units (
@@ -26,22 +26,28 @@ CREATE TABLE units (
     title VARCHAR(50) NOT NULL,
     lecturerID INTEGER NOT NULL,
     year INTEGER,
-    courseID integer not null
+    courseID INTEGER NOT NULL
 );
 
-create table course (
-	courseID integer auto_increment primary key,
-	departmentID integer not null,
-	course_length integer
+CREATE TABLE course (
+    courseID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    departmentID INTEGER NOT NULL,
+    course_length INTEGER
 );
 
 CREATE TABLE lecturers (
     lecturerID INTEGER PRIMARY KEY AUTO_INCREMENT,
     userID INTEGER NOT NULL,
-    departmentID integer not null
+    departmentID INTEGER NOT NULL
 );
 
-create table department (
-	departmentID integer primary key auto_increment,
-    department_name varchar(10) not null    
+CREATE TABLE department (
+    departmentID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    department_name VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE unit_registration (
+    registrationID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    studentID INTEGER NOT NULL,
+    unitID VARCHAR(10) NOT NULL
 );
