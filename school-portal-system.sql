@@ -17,17 +17,31 @@ CREATE TABLE students (
     enrol_date DATE NOT NULL,
     date_of_birth DATE NOT NULL,
     year INTEGER,
-    userID INTEGER NOT NULL
+    userID INTEGER NOT NULL,
+    courseID integer not null
 );
 
 CREATE TABLE units (
     unitID VARCHAR(10) PRIMARY KEY,
     title VARCHAR(50) NOT NULL,
     lecturerID INTEGER NOT NULL,
-    year INTEGER
+    year INTEGER,
+    courseID integer not null
+);
+
+create table course (
+	courseID integer auto_increment primary key,
+	departmentID integer not null,
+	course_length integer
 );
 
 CREATE TABLE lecturers (
     lecturerID INTEGER PRIMARY KEY AUTO_INCREMENT,
-    userID INTEGER NOT NULL
+    userID INTEGER NOT NULL,
+    departmentID integer not null
+);
+
+create table department (
+	departmentID integer primary key auto_increment,
+    department_name varchar(10) not null    
 );
