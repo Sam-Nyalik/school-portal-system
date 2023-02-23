@@ -1,32 +1,33 @@
 create database school_portal_system;
 use school_portal_system;
 
-create table students (
-studentID integer auto_increment primary key,
-first_name varchar(10) not null,
-last_name varchar(10) not null,
-email varchar(50) not null,
-phone_number varchar(50) not null,
-password varchar(50) not null,
-enrol_date date not null,
-date_of_birth date not null,
-gender varchar(6) not null,
-current_year integer
+CREATE TABLE users (
+    userID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(10) NOT NULL,
+    last_name VARCHAR(10) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    gender VARCHAR(6) NOT NULL,
+    is_admin BOOLEAN NOT NULL
 );
 
-create table units (
-unitID varchar(10) primary key,
-unit_title varchar(50) not null,
-lecturerID integer not null
+CREATE TABLE students (
+    studentID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    enrol_date DATE NOT NULL,
+    date_of_birth DATE NOT NULL,
+    year INTEGER,
+    userID INTEGER NOT NULL
 );
 
-create table lecturers (
-lecturerID integer primary key auto_increment,
-first_name varchar(10) not null,
-last_name varchar(10) not null,
-email varchar(50) not null,
-phone_number varchar(50) not null,
-password varchar(50) not null,
-date_of_birth date not null,
-gender varchar(6) not null
+CREATE TABLE units (
+    unitID VARCHAR(10) PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    lecturerID INTEGER NOT NULL,
+    year INTEGER
+);
+
+CREATE TABLE lecturers (
+    lecturerID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    userID INTEGER NOT NULL
 );
