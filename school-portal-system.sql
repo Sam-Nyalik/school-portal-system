@@ -35,14 +35,11 @@ CREATE TABLE course (
     course_length INTEGER
 );
 
-
 CREATE TABLE lecturers (
     lecturerID INTEGER PRIMARY KEY AUTO_INCREMENT,
     userID INTEGER NOT NULL,
     departmentID INTEGER NOT NULL
 );
-
-
 
 CREATE TABLE department (
     departmentID INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -53,6 +50,26 @@ CREATE TABLE unit_registration (
     registrationID INTEGER PRIMARY KEY AUTO_INCREMENT,
     studentID INTEGER NOT NULL,
     unitID VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE classroom (
+    classroomID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    room_name VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE lecture (
+    lectureID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    lecturerID INTEGER NOT NULL,
+    datetime DATETIME NOT NULL,
+    classroomID INTEGER NOT NULL,
+    unitID VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE attended_lecture (
+    attendanceID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    studentID INTEGER NOT NULL,
+    attended BOOLEAN NOT NULL,
+    lectureID INTEGER NOT NULL
 );
 
 alter table students add foreign key (userID) references users(userID);
@@ -68,3 +85,10 @@ alter table lecturers add foreign key (userID) references users(userID);
 
 alter table unit_registration add foreign key (studentID) references students(studentID);
 alter table unit_registration add foreign key (unitID) references units(unitID);
+
+alter table lecture add foreign key (lecturerID) references lecturers(lecturerID);
+alter table lecture add foreign key (classroomID) references classroom(classroomID);
+alter table lecture add foreign key (unitID) references units(unitID);
+
+alter table attended_lecture add foreign key (studentID) references students(studentID);
+alter table attended_lecture add foreign key (lectureID) references lecture(lectureID);
