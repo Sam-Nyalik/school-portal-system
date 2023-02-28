@@ -9,7 +9,12 @@ CREATE TABLE users (
     phone_number VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
     gender VARCHAR(6) NOT NULL,
-    is_admin BOOLEAN NOT NULL
+    roleID INTEGER NOT NULL
+);
+
+CREATE TABLE roles (
+    roleID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    role_name VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE students (
@@ -92,3 +97,5 @@ alter table lecture add foreign key (unitID) references units(unitID);
 
 alter table attended_lecture add foreign key (studentID) references students(studentID);
 alter table attended_lecture add foreign key (lectureID) references lecture(lectureID);
+
+alter table users add foreign key (roleID) references roles(roleID);
