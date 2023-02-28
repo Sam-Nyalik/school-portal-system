@@ -4,11 +4,11 @@
     text-align: center;
   }
   
-  form {
+ /*  form {
     text-align: left;
-    display: inline-block;
+    
     margin-right: 50px;
-  }
+  } */
   
   table {
     width: 100%;
@@ -29,4 +29,24 @@
   tr:hover {
     background-color: #df1a1a;
   }
+
+  .registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
   
+  .registration-form-item {
+    display: flex;
+    
+  }
+
+  .registration-form-btn {
+    align-self: center;
+  }
+
+.registration-form-label {
+  width: 110px;
+}
