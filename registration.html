@@ -4,7 +4,7 @@
 <head>
   <title>User's Registration</title>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="registration.js"></script>
+  <script src="registration.js" defer></script>
 </head>
 
 <body>
@@ -48,15 +48,15 @@
           <option value="lecturer">Lecturer</option>
         </select>
       </div>
-      <div class="registration-form-item hide">
+      <div class="registration-form-item hide dob">
         <label for="dob" class="registration-form-label">Date of Birth:</label>
         <input type="date" id="dob">
       </div>
-      <div class="registration-form-item hide">
+      <div class="registration-form-item hide year">
         <label for="year" class="registration-form-label">Year of study</label>
         <input type="number" max="3" min="1" id="year">
       </div>
-      <div class="registration-form-item hide">
+      <div class="registration-form-item hide course">
         <label for="course" class="registration-form-label">Course</label>
         <select name="course" id="course">
           <option value="">--Select--</option>
@@ -64,7 +64,7 @@
           <option value="Mathematics">Mathematics</option>
         </select>
       </div>
-      <div class="registration-form-item hide">
+      <div class="registration-form-item hide department">
         <label for="department" class="registration-form-label">Department</label>
         <select name="department" id="department">
           <option value="">--Select--</option>

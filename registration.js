@@ -1,20 +1,32 @@
-// Define an array to store the user data
-let userData = [];
+const form = document.querySelector("form");
+const firstName = document.getElementById("firstName");
+const lastName = document.getElementById("lastName");
+const email = document.getElementById("email");
+const phoneNumber = document.getElementById("phoneNumber");
+const password = document.getElementById("password");
+const gender = document.getElementById("gender");
+const role = document.getElementById("role");
+const department = document.querySelector(".department");
+const course = document.querySelector(".course");
+const dob = document.querySelector(".dob");
+const year = document.querySelector(".year");
+const studentsInputs = [course, dob, year];
 
-// Get the form element and add an event listener to handle form submission
-const form = document.querySelector('form');
-form.addEventListener('submit', handleSubmit);
-
-function handleSubmit(event) {
-  // Prevent the form from submitting
-  event.preventDefault();
-
-  // Get the form values
-  const firstName = document.getElementById('firstName').value;
-  const lastName = document.getElementById('lastName').value;
-  const email = document.getElementById('email').value;
-  const phoneNumber = document.getElementById('phoneNumber').value;
-  const password = document.getElementById('password').value;
-  const gender = document.getElementById('gender').value;
-  const isAdmin = document.getElementById('isAdmin').checked
-}
+role.addEventListener("change", (e) => {
+  if (role.value === "lecturer") {
+    department.classList.remove("hide");
+    studentsInputs.forEach((item) => {
+      item.classList.add("hide");
+    });
+  } else if (role.value === "student") {
+    studentsInputs.forEach((item) => {
+      item.classList.remove("hide");
+    });
+    department.classList.add("hide");
+  } else {
+    department.classList.add("hide");
+    studentsInputs.forEach((item) => {
+      item.classList.add("hide");
+    });
+  }
+});
