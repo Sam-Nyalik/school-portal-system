@@ -17,3 +17,4 @@ function handleSubmit(event) {
   const password = document.getElementById('password').value;
   const gender = document.getElementById('gender').value;
   const isAdmin = document.getElementById('isAdmin').checked
+}
