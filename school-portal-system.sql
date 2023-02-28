@@ -37,7 +37,8 @@ CREATE TABLE units (
 CREATE TABLE course (
     courseID INTEGER AUTO_INCREMENT PRIMARY KEY,
     departmentID INTEGER NOT NULL,
-    course_length INTEGER
+    course_length INTEGER,
+    course_name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE lecturers (
@@ -48,7 +49,7 @@ CREATE TABLE lecturers (
 
 CREATE TABLE department (
     departmentID INTEGER PRIMARY KEY AUTO_INCREMENT,
-    department_name VARCHAR(10) NOT NULL
+    department_name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE unit_registration (
