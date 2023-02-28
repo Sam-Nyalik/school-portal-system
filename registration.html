@@ -39,14 +39,43 @@
           <option value="female">Female</option>
         </select>
       </div>
-      <div>
-        <label for="isAdmin" class="registration-form-label">Is Admin:</label>
-      <input type="checkbox" id="isAdmin" name="isAdmin">
+      <div class="registration-form-item">
+        <label for="role" class="registration-form-label">Role:</label>
+        <select name="role" id="role">
+          <option value="">--Select--</option>
+          <option value="admin">Admin</option>
+          <option value="student">Student</option>
+          <option value="lecturer">Lecturer</option>
+        </select>
+      </div>
+      <div class="registration-form-item hide">
+        <label for="dob" class="registration-form-label">Date of Birth:</label>
+        <input type="date" id="dob">
+      </div>
+      <div class="registration-form-item hide">
+        <label for="year" class="registration-form-label">Year of study</label>
+        <input type="number" max="3" min="1" id="year">
+      </div>
+      <div class="registration-form-item hide">
+        <label for="course" class="registration-form-label">Course</label>
+        <select name="course" id="course">
+          <option value="">--Select--</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Mathematics">Mathematics</option>
+        </select>
+      </div>
+      <div class="registration-form-item hide">
+        <label for="department" class="registration-form-label">Department</label>
+        <select name="department" id="department">
+          <option value="">--Select--</option>
+          <option value="Science">Science</option>
+          <option value="Mathematics">Mathematics</option>
+        </select>
       </div>
       <div class="registration-form-item">
         <button type="submit" class="registration-form-btn">Submit</button>
       </div>
-      
+
     </form>
     <br>
     <table>

@@ -41,7 +41,8 @@ tr:hover {
 
 .registration-form-item {
   display: flex;
-
+  gap: 5px;
+  justify-content: space-between;
 }
 
 .registration-form-btn {
@@ -50,4 +51,8 @@ tr:hover {
 
 .registration-form-label {
   width: 110px;
+}
+
+.hide {
+  display: none;
 }
