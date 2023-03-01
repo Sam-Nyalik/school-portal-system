@@ -1,4 +1,20 @@
 <?php
+include_once("connection.php");
+
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    try{
+        $sql = "SELECT FROM users values where email = :email and password = :password";
+        $stmt = $pso->prepare($sql);
+        $stmt->execute(array(
+            ':email' => $_POST['email'],
+            ':password' => $_POST['password']
+        ));
+    } catch(Exception $e) {
+        echo "Can't find value, try again";
+    }
+    
+}
+
 
 ?>
 
@@ -16,7 +32,7 @@
     <form method="post" class="login-form">
         <div class="login-form-item">
             <label for="">Email:</label>
-            <input type="email">
+            <input type="email" id="login-email">
         </div>
         <div class="login-form-item">
             <label for="">Password</label>
