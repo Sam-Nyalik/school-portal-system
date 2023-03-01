@@ -15,7 +15,7 @@ $database_connection = db_connect();
         <div class="row">
             <!-- Admin login link -->
             <div class="col-md-4">
-                <a href="">Admin Login</a>
+                <a href="administrator/admin_login.php">Admin Login</a>
             </div>
 
             <!-- Lecturer login link -->
