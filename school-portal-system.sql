@@ -19,7 +19,7 @@ CREATE TABLE roles (
 
 CREATE TABLE students (
     studentID INTEGER AUTO_INCREMENT PRIMARY KEY,
-    enrol_date DATE NOT NULL,
+    enrol_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
     date_of_birth DATE NOT NULL,
     year INTEGER,
     userID INTEGER NOT NULL,
@@ -100,3 +100,4 @@ alter table attended_lecture add foreign key (studentID) references students(stu
 alter table attended_lecture add foreign key (lectureID) references lecture(lectureID);
 
 alter table users add foreign key (roleID) references roles(roleID);
+
