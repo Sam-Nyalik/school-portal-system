@@ -1,8 +1,6 @@
 <?php
 include_once("pdo.php");
 
-print_r($_POST);
-
 if (isset($_POST['email']) && isset($_POST['password'])) {    
     try{
         $sql = "SELECT * FROM users WHERE email = :email and password = :password";        
@@ -11,14 +9,30 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             ":email" => $_POST['email'],
             ":password" => $_POST['password']
         ));
-                
+        $row = $stmt ->fetch(PDO::FETCH_ASSOC);
+
+        if($row){
+            echo "Welcome " .$row['first_name'];
+
+            if($row["role"] === "1"){
+                // render admin page
+            } elseif($row["role"] === "2"){
+                // render student page
+            } else{
+                // render lecturer page
+            }
+
+        } else {
+            echo "Invalid username or password, try again";
+        }
+
+        
         
     } catch(Exception $e) {
         echo "Can't find value, try again<br>" .$e->getMessage();
     }
     
 }
-
 
 ?>
 
@@ -44,11 +58,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         </div>
         <button class="login-button">Log In</button>
     </form>
-   <!--  <?php
-    $stmt = $pdo->query($sql);
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-            echo($row['first_name']);
-        }
-    ?> -->
+   
 </body>
 </html>
