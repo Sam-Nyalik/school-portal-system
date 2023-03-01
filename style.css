@@ -1,0 +1,14 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-form-item {
+    display: flex;
+    flex-direction: column;
+}
+
+input, .login-button {
+    align-self: flex-start;
+}
