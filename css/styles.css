@@ -1,0 +1,14 @@
+.container .login_link {
+    margin-top: 200px;
+}
+
+.container .login_link a {
+    text-decoration: none;
+    border: none;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 70px;
+    padding-right: 70px;
+    color: #fff;
+    background-color: #000;
+}
