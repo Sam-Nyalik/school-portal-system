@@ -14,16 +14,20 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         if($row){
             echo "Welcome " .$row['first_name'];
 
-            if($row["role"] === "1"){
+            if($row["roleID"] === "1"){
                 // render admin page
-            } elseif($row["role"] === "2"){
+            } elseif($row["roleID"] === "2"){
                 // render student page
             } else{
                 // render lecturer page
             }
 
         } else {
-            echo "Invalid username or password, try again";
+            echo"<script>";
+            echo"   const errorMessage = document.querySelector('.invalid-login')";
+            echo"    errorMessage.textContent = 'Invalid username or password, try again'";
+            echo"</script>";
+             
         }
 
         
@@ -49,6 +53,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 <body>
     <h1>Login Page</h1>
     <form method="post" class="login-form" action="login.php" novalidate>
+        <span class="invalid-login"></span>
         <div class="login-form-item">
             <label for="login-email">Email:</label>
             <input type="email" id="login-email" name="email" required>

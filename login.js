@@ -5,7 +5,7 @@ const passwordError = document.querySelector(".login-password-error")
 const form = document.querySelector(".login-form")
 
 const displayError = (node) => {
-    const nodeName = Object.keys({node})[0]
+    const nodeName = node.name
     const errorNode = eval(nodeName+"Error")
 
     if(node.validity.valueMissing) {
@@ -19,7 +19,7 @@ const displayError = (node) => {
 
 email.addEventListener("input" , ()=> {
     if(email.validity.valid) {
-        emailError.textContent("")
+        emailError.textContent = ""
         emailError.className = "error"
     } else {
         displayError(email)
@@ -28,7 +28,7 @@ email.addEventListener("input" , ()=> {
 
 password.addEventListener("input" , ()=> {
     if(password.validity.valid){
-        passwordError.textContent("")
+        passwordError.textContent = ""
         passwordError.className = "error"
     } else {
         displayError(password)
