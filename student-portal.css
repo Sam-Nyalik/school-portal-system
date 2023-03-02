@@ -25,6 +25,7 @@ nav li {
 nav a {
 	color: #fff;
 	text-decoration: none;
+	text-align: center;
 }
 
 main {
@@ -53,7 +54,7 @@ th, td {
 }
 
 th {
-	background-color: #0072c6;
+	background-color: #eee;
 	color: #333;
 }
 
@@ -63,7 +64,7 @@ th {
 
 footer {
 	background-color: #0072c6;
-	color: #333;
+	color: #fff;
 	padding: 20px;
 	text-align: center;
 }
