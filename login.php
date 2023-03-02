@@ -75,15 +75,17 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             <div class="login-form-item">
                 <button class="login-button">Log In</button>    
             </div>
+            </form>
             <?php
-            echo"<form class='forgot-password-form'>";
-            echo('<input type="hidden" value="'.$row['userID'].'" name="userID"/>');
-            echo"    <button class='forgot-password-btn'>Forgot password?</button>
+            echo"<form class='forgot-password-form' action='forgotPassword.php' method='post'>";
+            //echo('<input type="hidden" value="'.$row['userID'].'" name="userID"/>');
+            echo"    <input class='forgot-password-btn' type='submit' value='Forgot password?'/>
             </form>"
+
             ?>
             
             
-        </form>
+        
     </main>
     
    

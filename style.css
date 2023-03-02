@@ -10,7 +10,7 @@ body {
     align-items: center;
 }
 
-.login-form-item {
+.login-form-item, .forgot-password-form-item {
     display: flex;
     flex-direction: column;
     width: 170px;
@@ -34,7 +34,7 @@ input, .login-button {
     padding: 0.3em;
   }
 
-  .login-main {
+  .login-main , .forgot-password-main {
     display: flex;
     justify-content: flex-start;
     margin-top: 100px;
