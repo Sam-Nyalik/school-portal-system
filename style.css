@@ -43,3 +43,8 @@ input, .login-button {
     height: 100vh - 100px;
 
   }
+  .forgot-password-btn {
+    outline: none;
+    border: none;
+    background-color: white;
+  }

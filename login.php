@@ -3,6 +3,7 @@ include_once("pdo.php");
 $successfulLogin = true;
 $welcomeMessage = "";
 $loginErrorMessage = "Invalid login, please try again";
+$row = ["userID" => ""];
 
 if (isset($_POST['email']) && isset($_POST['password'])) {    
     try{
@@ -62,7 +63,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 ?>
             </span>
             <div class="login-form-item">
-                <label for="login-email">Email:</label>
+                <label for="login-email">Email</label>
                 <input type="email" id="login-email" name="email" required>
                 <span class="login-email-error error"></span>
             </div>
@@ -74,6 +75,13 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             <div class="login-form-item">
                 <button class="login-button">Log In</button>    
             </div>
+            <?php
+            echo"<form class='forgot-password-form'>";
+            echo('<input type="hidden" value="'.$row['userID'].'" name="userID"/>');
+            echo"    <button class='forgot-password-btn'>Forgot password?</button>
+            </form>"
+            ?>
+            
             
         </form>
     </main>
