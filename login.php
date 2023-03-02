@@ -43,18 +43,19 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="login.js" defer></script>
     <title>Login Page</title>
 </head>
 <body>
     <h1>Login Page</h1>
     <form method="post" class="login-form" action="login.php">
         <div class="login-form-item">
-            <label for="">Email:</label>
-            <input type="email" id="login-email" name="email">
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" name="email" required>
         </div>
         <div class="login-form-item">
-            <label for="">Password</label>
-            <input type="text" name="password">
+            <label for="login-password">Password</label>
+            <input type="password" name="password" id="login-password" required>
         </div>
         <button class="login-button">Log In</button>
     </form>
