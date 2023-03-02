@@ -48,14 +48,16 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 </head>
 <body>
     <h1>Login Page</h1>
-    <form method="post" class="login-form" action="login.php">
+    <form method="post" class="login-form" action="login.php" novalidate>
         <div class="login-form-item">
             <label for="login-email">Email:</label>
             <input type="email" id="login-email" name="email" required>
+            <span class="login-email-error error"></span>
         </div>
         <div class="login-form-item">
             <label for="login-password">Password</label>
             <input type="password" name="password" id="login-password" required>
+            <span class="login-password-error error"></span>
         </div>
         <button class="login-button">Log In</button>
     </form>
