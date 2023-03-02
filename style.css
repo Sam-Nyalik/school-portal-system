@@ -27,3 +27,13 @@ input, .login-button {
   .error.active {
     padding: 0.3em;
   }
+
+  .login-main {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 100px;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh - 100px;
+
+  }

@@ -1,6 +1,6 @@
 <?php
 include_once("pdo.php");
-
+$successfulLogin = true;
 if (isset($_POST['email']) && isset($_POST['password'])) {    
     try{
         $sql = "SELECT * FROM users WHERE email = :email and password = :password";        
@@ -23,10 +23,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             }
 
         } else {
-            echo"<script>";
-            echo"   const errorMessage = document.querySelector('.invalid-login')";
-            echo"    errorMessage.textContent = 'Invalid username or password, try again'";
-            echo"</script>";
+            $successfulLogin = false;
              
         }
 
@@ -51,21 +48,28 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     <title>Login Page</title>
 </head>
 <body>
-    <h1>Login Page</h1>
-    <form method="post" class="login-form" action="login.php" novalidate>
-        <span class="invalid-login"></span>
-        <div class="login-form-item">
-            <label for="login-email">Email:</label>
-            <input type="email" id="login-email" name="email" required>
-            <span class="login-email-error error"></span>
-        </div>
-        <div class="login-form-item">
-            <label for="login-password">Password</label>
-            <input type="password" name="password" id="login-password" required>
-            <span class="login-password-error error"></span>
-        </div>
-        <button class="login-button">Log In</button>
-    </form>
+    <main class="login-main">
+        <h1>Login Page</h1>
+        <form method="post" class="login-form" action="login.php" novalidate>
+            <span class="invalid-login">
+                <?php
+                $successfulLogin ? "" : "Invalid Login, please try again";                
+                ?>
+            </span>
+            <div class="login-form-item">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" name="email" required>
+                <span class="login-email-error error"></span>
+            </div>
+            <div class="login-form-item">
+                <label for="login-password">Password</label>
+                <input type="password" name="password" id="login-password" required>
+                <span class="login-password-error error"></span>
+            </div>
+            <button class="login-button">Log In</button>
+        </form>
+    </main>
+    
    
 </body>
 </html>
