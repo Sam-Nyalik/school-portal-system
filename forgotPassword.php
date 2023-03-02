@@ -41,9 +41,8 @@ if (isset($_POST["email"]) && isset($_POST["password"])){
                 <input type="text" name="password" id="forgot-password">
             </div>
             <div class="forgot-password-form-item">
-                <button type="submit">Submit</button>
+                <button type="submit" class="forgot-password-form-button">Submit</button>
             </div>
-
             
         </form>
     </main>
