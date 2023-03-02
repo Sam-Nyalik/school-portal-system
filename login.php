@@ -1,6 +1,9 @@
 <?php
 include_once("pdo.php");
 $successfulLogin = true;
+$welcomeMessage = "";
+$loginErrorMessage = "Invalid login, please try again";
+
 if (isset($_POST['email']) && isset($_POST['password'])) {    
     try{
         $sql = "SELECT * FROM users WHERE email = :email and password = :password";        
@@ -12,8 +15,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         $row = $stmt ->fetch(PDO::FETCH_ASSOC);
 
         if($row){
-            echo "Welcome " .$row['first_name'];
-
+            $welcomeMessage = "Welcome " .$row['first_name'];
             if($row["roleID"] === "1"){
                 // render admin page
             } elseif($row["roleID"] === "2"){
@@ -24,6 +26,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
         } else {
             $successfulLogin = false;
+            $welcomeMessage = "";
              
         }
 
@@ -53,7 +56,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         <form method="post" class="login-form" action="login.php" novalidate>
             <span class="invalid-login">
                 <?php
-                $successfulLogin ? "" : "Invalid Login, please try again";                
+                
+                $successfulLogin ? print($welcomeMessage) : print($loginErrorMessage);
+                                
                 ?>
             </span>
             <div class="login-form-item">
@@ -66,7 +71,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 <input type="password" name="password" id="login-password" required>
                 <span class="login-password-error error"></span>
             </div>
-            <button class="login-button">Log In</button>
+            <div class="login-form-item">
+                <button class="login-button">Log In</button>    
+            </div>
+            
         </form>
     </main>
     
