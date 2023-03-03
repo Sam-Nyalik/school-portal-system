@@ -10,6 +10,7 @@ const lecturerInput = document.querySelector(".lecturerInput");
 const studentsInputs = document.querySelectorAll(".studentsInputs")
 
 role.addEventListener("change", (e) => {
+  console.log("role changed")
   if (role.value === "lecturer") {
     lecturerInput.classList.remove("hide");
     studentsInputs.forEach((item) => {
@@ -27,3 +28,5 @@ role.addEventListener("change", (e) => {
     });
   }
 });
+
+console.log("loaded")

@@ -26,7 +26,9 @@ function header_template($page_title)
         <meta name=\"viewport\" content=\"width=device-width\">
         <meta name=\"author\" content=\"Bryan Kiragu; Joshua obare; Samson Nyalik\">
         <link rel=\"stylesheet\" href=\"css/styles.css\">
+        <link rel=\"stylesheet\" href=\"style.css\">
         <link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">
+        <script src=\"registration.js\" defer></script>
     ";
     
     echo $element;

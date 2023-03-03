@@ -1,18 +1,20 @@
 <?php
 // Importing data  =from the functions page
 require_once "functions/functions.php";
+//require_once "pdo.php";
 
 // Database connection
-$database_connection = db_connect();
+$pdo = db_connect();
 
 // Define variables and assign them empty values
 $firstName = $lastName = $emailAddress = $phoneNumber = $password = $confirmPassword = $gender = $role = $dateOfBirth = $yearOfStudy = $course = $department = "";
 $firstName_error = $lastName_error = $emailAddress_error = $phoneNumber_error = $password_error = $confirmPassword_error = $gender_error = $role_error = $dateOfBirth_error = $yearOfStudy_error = $course_error = $department_error = "";
-
+/*
 // ADMIN REGISTRATION
 // Process form data when the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'admin') {
-
+    // there might be a way to use a loop for this
+    /*
     // Validate firstName
     if (empty(trim($_POST['firstName']))) {
         $firstName_error = "Field is required!";
@@ -67,9 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'admin') {
         $gender_error = "Field is required!";
     } else {
         $gender = trim($_POST['gender']);
-    }
+    } */
 
     // Check for errors before dealing with the database
+    /*
     if (empty($firstName_error) && empty($lastName_error) && empty($emailAddress_error) && empty($phoneNumber_error) && empty($password_error) && empty($confirmPassword_error) && empty($gender_error)) {
         // Prepare an INSERT statement
         $admin_insert = "INSERT INTO users(first_name, last_name, email, phone_number, password, gender, roleID) VALUES(:firstName, :lastName, :emailAddress, :phoneNumber, :password, :gender, :roleId)";
@@ -102,7 +105,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'admin') {
         }
     }
 }
+*/
+if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['emailAddress']) && isset($_POST['phoneNumber']) && isset($_POST['password']) && isset($_POST['confirmPassword']) && isset($_POST['gender']) && isset($_POST['role'])){
+/*
+    $roleID;
+    if($_POST["role"] === "admin"){
+        $roleID = 1;
+    } elseif($_POST["role"] === "admin"){
+        $roleID = 2;
+    }elseif($_POST["role"] === "admin"){
+        $roleID = 3;
+    }*/
+    try {
+    // Prepare an INSERT statement
+    $admin_insert = "INSERT INTO users(first_name, last_name, email, phone_number, password, gender, roleID) VALUES(:firstName, :lastName, :emailAddress, :phoneNumber, :password, :gender, :roleId)";
+    $stmt = $pdo->prepare($admin_insert);
+    $stmt->execute(array(
+        ":firstName" => $_POST['firstName'],
+        ":lastName" => $_POST['lastName'],
+        ":emailAddress" => $_POST['emailAddress'],
+        ":phoneNumber" => $_POST['phoneNumber'],
+        ":password" => password_hash($_POST['password'], PASSWORD_DEFAULT),
+        ":gender" => $_POST['gender'],
+        ":roleId" => $_POST['role']
+    ));
+    $user_id = $pdo->lastInsertId();
+    echo($user_id);
+    } catch (Exception $e){
+        echo "Error<br>" .$e->getMessage();
+    }
 
+}
+/*
 // STUDENT REGISTRATION
 // Process form data when the form has been submitted
 if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
@@ -213,8 +247,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
             $param_roleId = 2;
             $param_dob = $dateOfBirth;
             $param_yearOfStudy = $yearOfStudy;
-            $param_userID = ;
-            $param_courseID = ;
+            $param_userID ="" ;
+            $param_courseID = "";
 
             // Attemept to execute
             if ($stmt->execute()) {
@@ -226,7 +260,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
         }
     }
 }
-
+*/
 ?>
 
 <!-- Header Template -->
@@ -286,9 +320,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
                 <label for="role" class="registration-form-label" name="role">Role:</label>
                 <select name="role" id="role">
                     <option value="" disabled>--Select--</option>
-                    <option value="admin">Admin</option>
-                    <option value="student">Student</option>
-                    <option value="lecturer">Lecturer</option>
+                    <option value=1>Admin</option>
+                    <option value=2>Student</option>
+                    <option value=3>Lecturer</option>
                 </select>
             </div>
 
