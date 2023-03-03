@@ -342,9 +342,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
                 <label for="role" class="registration-form-label" name="role">Role:</label>
                 <select name="role" id="role">
                     <option value="" disabled>--Select--</option>
-                    <option value=1>Admin</option>
-                    <option value=2>Student</option>
-                    <option value=3>Lecturer</option>
+                    <?php
+                    $stmt = $pdo->query("SELECT * FROM ROLES");
+                    while($row = $stmt->fetch((PDO::FETCH_ASSOC))){
+                        echo('<option value=""'.$row['roleID'].'">'.$row['role_name'].'</option>');
+                    }                    
+                    ?>                    
                 </select>
             </div>
 
