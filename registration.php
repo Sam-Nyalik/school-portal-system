@@ -109,7 +109,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
 
             <div class="registration-form-item">
                 <label for="confirmpassword" class="registration-form-label">Confirm Password:</label>
-                <input type="password" name="confirmPassword" id="password">
+                <input type="password" name="confirmPassword" id="confirmPassword">
                 <span class="errors text-danger"><?= $confirmPassword_error; ?></span>
             </div>
 
@@ -143,8 +143,8 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
             </div>
 
             <div class="registration-form-item hide studentsInputs">
-                <label for="year" class="registration-form-label">Year of study</label>
-                <input type="number" max="3" min="1" id="year" name="yearOfStudy">
+                <label for="yearOfStudy" class="registration-form-label">Year of study</label>
+                <input type="number" max="3" min="1" id="yearOfStudy" name="yearOfStudy">
                 <span class="errors text-danger"><?= $yearOfStudy_error; ?></span>
             </div>
 
