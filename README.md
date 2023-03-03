@@ -1,1 +1,0 @@
-This is a school portal system built with PHP, MySQL and Javascript.
