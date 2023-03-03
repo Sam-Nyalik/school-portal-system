@@ -1,7 +1,6 @@
 <?php
 // Importing data  =from the functions page
 require_once "functions/functions.php";
-//require_once "pdo.php";
 
 // Database connection
 $pdo = db_connect();
@@ -107,15 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'admin') {
 }
 */
 if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['emailAddress']) && isset($_POST['phoneNumber']) && isset($_POST['password']) && isset($_POST['confirmPassword']) && isset($_POST['gender']) && isset($_POST['role'])){
-/*
-    $roleID;
-    if($_POST["role"] === "admin"){
-        $roleID = 1;
-    } elseif($_POST["role"] === "admin"){
-        $roleID = 2;
-    }elseif($_POST["role"] === "admin"){
-        $roleID = 3;
-    }*/
+
     try {
     // Prepare an INSERT statement
     $admin_insert = "INSERT INTO users(first_name, last_name, email, phone_number, password, gender, roleID) VALUES(:firstName, :lastName, :emailAddress, :phoneNumber, :password, :gender, :roleId)";
@@ -129,12 +120,29 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
         ":gender" => $_POST['gender'],
         ":roleId" => $_POST['role']
     ));
-    $user_id = $pdo->lastInsertId();
-    echo($user_id);
+    
+    //echo($user_id);
     } catch (Exception $e){
         echo "Error<br>" .$e->getMessage();
     }
+    $user_id = $pdo->lastInsertId();
 
+    if(isset($_POST['dob']) && isset($_POST['yearOfStudy']) && isset($_POST['course']) ){
+        try{
+            $student_insert = "INSERT INTO students(enrol_date, date_of_birth, year, userID, courseID) VALUES(insert_time=now(), :dob, :yearOfStudy, :userID, :courseID)";
+            $stmt = $pdo->prepare($student_insert);
+            $stmt->execute(array(
+               // ":currentDate" => new DateTime(),
+                ":dob" => $_POST['dob'],
+                ":yearOfStudy" => $_POST['yearOfStudy'],
+                ":userID" => $user_id,
+                ":courseID" => $_POST['course']
+            ));
+        
+        }catch(Exception $e){
+            echo "Error<br>" .$e->getMessage();
+        }
+    }
 }
 /*
 // STUDENT REGISTRATION
@@ -327,8 +335,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
             </div>
 
             <div class="registration-form-item hide studentsInputs">
-                <label for="dob" class="registration-form-label" name="dob">Date of Birth:</label>
-                <input type="date" id="dob">
+                <label for="dob" class="registration-form-label" >Date of Birth:</label>
+                <input type="date" id="dob" name="dob">
                 <span class="errors text-danger"><?= $dateOfBirth_error; ?></span>
             </div>
 
@@ -342,8 +350,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
                 <label for="course" class="registration-form-label">Course</label>
                 <select name="course" id="course">
                     <option value="">--Select--</option>
-                    <option value="Computer Science">Computer Science</option>
-                    <option value="Mathematics">Mathematics</option>
+                    <option value=7>BSc. in Computer Science</option>
+                    <option value=10>BSc. in Mathematics</option>
                 </select>
                 <span class="errors text-danger"><?= $course_error; ?></span>
             </div>

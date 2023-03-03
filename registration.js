@@ -11,12 +11,13 @@ const studentsInputs = document.querySelectorAll(".studentsInputs")
 
 role.addEventListener("change", (e) => {
   console.log("role changed")
-  if (role.value === "lecturer") {
+  console.log(role.value)
+  if (role.value === "3") {
     lecturerInput.classList.remove("hide");
     studentsInputs.forEach((item) => {
       item.classList.add("hide");
     });
-  } else if (role.value === "student") {
+  } else if (role.value === "2") {
     studentsInputs.forEach((item) => {
       item.classList.remove("hide");
     });
