@@ -121,37 +121,42 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
         ":roleId" => $_POST['role']
     ));
     
-    //echo($user_id);
+    
     } catch (Exception $e){
         echo "Error<br>" .$e->getMessage();
     }
     $user_id = $pdo->lastInsertId();
 
     if(isset($_POST['dob']) && isset($_POST['yearOfStudy']) && isset($_POST['course']) ){
-        echo "in the second set";
+        
         try{
             $student_insert = "INSERT INTO students(enrol_date, date_of_birth, year, userID, courseID) VALUES(CURRENT_TIMESTAMP(), :dob, :yearOfStudy, :userID, :courseID)";
-            $stmt = $pdo->prepare($student_insert);
-            
-            $stmt->execute(array(
-               // ":currentDate" => new DateTime(),
+            $stmt = $pdo->prepare($student_insert);            
+            $stmt->execute(array(               
                 ":dob" => $_POST['dob'],
                 ":yearOfStudy" => $_POST['yearOfStudy'],
                 ":userID" => $user_id,
                 ":courseID" => $_POST['course']
             ));
-            print_r(array(
-                // ":currentDate" => new DateTime(),
-                 ":dob" => $_POST['dob'],
-                 ":yearOfStudy" => $_POST['yearOfStudy'],
-                 ":userID" => $user_id,
-                 ":courseID" => $_POST['course']
-             ));
-        
+            
         }catch(Exception $e){
             echo "Error<br>" .$e->getMessage();
         }
     }
+
+    if(isset($_POST['department'])) {
+        try{
+            $lecturer_insert = "INSERT INTO lecturers(userID , departmentID) values(:userID , :department)";
+            $stmt = $pdo->prepare($lecturer_insert);
+            $stmt->execute(array(
+                ":userID" => $user_id,
+                ":department" => $_POST['department']
+            ));
+        }catch(Exception $e){
+            echo "Error<br>" .$e->getMessage();
+        }
+    }
+
 }
 /*
 // STUDENT REGISTRATION
@@ -369,8 +374,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
                 <label for="department" class="registration-form-label">Department</label>
                 <select name="department" id="department">
                     <option value="">--Select--</option>
-                    <option value="Science">Science</option>
-                    <option value="Mathematics">Mathematics</option>
+                    <option value=2>Science</option>
+                    <option value=3>Mathematics</option>
                 </select>
                 <span class="errors text-danger"><?=$department_error; ?></span>
             </div>
