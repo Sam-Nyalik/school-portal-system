@@ -128,9 +128,11 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
     $user_id = $pdo->lastInsertId();
 
     if(isset($_POST['dob']) && isset($_POST['yearOfStudy']) && isset($_POST['course']) ){
+        echo "in the second set";
         try{
-            $student_insert = "INSERT INTO students(enrol_date, date_of_birth, year, userID, courseID) VALUES(insert_time=now(), :dob, :yearOfStudy, :userID, :courseID)";
+            $student_insert = "INSERT INTO students(enrol_date, date_of_birth, year, userID, courseID) VALUES(CURRENT_TIMESTAMP(), :dob, :yearOfStudy, :userID, :courseID)";
             $stmt = $pdo->prepare($student_insert);
+            
             $stmt->execute(array(
                // ":currentDate" => new DateTime(),
                 ":dob" => $_POST['dob'],
@@ -138,6 +140,13 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
                 ":userID" => $user_id,
                 ":courseID" => $_POST['course']
             ));
+            print_r(array(
+                // ":currentDate" => new DateTime(),
+                 ":dob" => $_POST['dob'],
+                 ":yearOfStudy" => $_POST['yearOfStudy'],
+                 ":userID" => $user_id,
+                 ":courseID" => $_POST['course']
+             ));
         
         }catch(Exception $e){
             echo "Error<br>" .$e->getMessage();
