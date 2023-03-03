@@ -345,7 +345,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
                     <?php
                     $stmt = $pdo->query("SELECT * FROM ROLES");
                     while($row = $stmt->fetch((PDO::FETCH_ASSOC))){
-                        echo('<option value=""'.$row['roleID'].'">'.$row['role_name'].'</option>');
+                        echo('<option value="'.$row['roleID'].'">'.ucfirst($row['role_name']).'</option>');
                     }                    
                     ?>                    
                 </select>
@@ -367,8 +367,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
                 <label for="course" class="registration-form-label">Course</label>
                 <select name="course" id="course">
                     <option value="">--Select--</option>
-                    <option value=7>BSc. in Computer Science</option>
-                    <option value=10>BSc. in Mathematics</option>
+                    <?php
+                    $stmt = $pdo->query("SELECT * FROM COURSE");
+                    while($row = $stmt->fetch((PDO::FETCH_ASSOC))){
+                        echo('<option value="'.$row['courseID'].'">'.$row['course_name'].'</option>');
+                    }                    
+                    ?>  
+                    
                 </select>
                 <span class="errors text-danger"><?= $course_error; ?></span>
             </div>
@@ -377,8 +382,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['role'] == 'student'){
                 <label for="department" class="registration-form-label">Department</label>
                 <select name="department" id="department">
                     <option value="">--Select--</option>
-                    <option value=2>Science</option>
-                    <option value=3>Mathematics</option>
+                    <?php
+                    $stmt = $pdo->query("SELECT * FROM DEPARTMENT");
+                    while($row = $stmt->fetch((PDO::FETCH_ASSOC))){
+                        echo('<option value="'.$row['departmentID'].'">'.($row['department_name']).'</option>');
+                    }                    
+                    ?>
                 </select>
                 <span class="errors text-danger"><?=$department_error; ?></span>
             </div>
