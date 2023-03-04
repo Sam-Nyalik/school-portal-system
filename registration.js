@@ -109,6 +109,16 @@ yearOfStudy.addEventListener("input", () => {
   }
 })
 
+confirmPassword.addEventListener("input", () => {
+  if(confirmPassword.value !== password.value){
+      confirmPasswordError.textContent = "Passwords do not match"
+      confirmPasswordError.className = "error active text-danger"
+  } else {
+      confirmPasswordError.textContent = ""
+      confirmPasswordError.className = "error"
+  }
+})
+
 registrationForm.addEventListener("submit", event => {
   //const {firstName, lastName, phoneNumber, emailAddress,password, confirmPassword, dob,yearOfStudy } = .validity.valid
   
