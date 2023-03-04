@@ -6,6 +6,8 @@ const phoneNumber = document.getElementById("phoneNumber");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("password");
 const gender = document.getElementById("gender");
+const dob = document.getElementById("dob")
+const yearOfStudy = document.getElementById("yearOfStudy")
 const role = document.getElementById("role");
 const lecturerInput = document.querySelector(".lecturerInput");
 const studentsInputs = document.querySelectorAll(".studentsInputs")
@@ -20,7 +22,7 @@ const passwordError = document.getElementById("passwordError")
 const confirmPasswordError = document.getElementById("confirmPasswordError")
 const genderError = document.getElementById("genderError")
 const departmentError = document.getElementById("departmentError")
-const dateOfBirthError = document.getElementById("dobError")
+const dobError = document.getElementById("dobError")
 const yearOfStudyError = document.getElementById("yearOfStudyError")
 const courseError = document.getElementById("courseError")
 const textInputs = [firstName, lastName, phoneNumber, emailAddress,password,confirmPassword]
@@ -40,6 +42,19 @@ role.addEventListener("change", (e) => {
       item.classList.remove("hide");
     });
     lecturerInput.classList.add("hide");
+
+    if(dob.validity.valid){
+      dobError.textContent = "";
+    } else {
+      displayError(dob)
+    }
+
+    if(yearOfStudy.validity.valid){
+      yearOfStudyError.textContent = "";
+    } else {
+      displayError(yearOfStudy)
+    }
+
 
     // if admin is selected, all the other inputs are hidden
   } else {
@@ -61,18 +76,8 @@ const displayError = (node) => {
       errorNode.textContent = `Please enter a valid ${nodeName}`
   }
 
-  errorNode.className = "error active"
+  errorNode.className = "error active text-danger"
 }
-
-emailAddress.addEventListener("input" , ()=> {
-  if(emailAddress.validity.valid) {
-      emailAddressError.textContent = ""
-      emailAddressError.className = "error"
-  } else {
-      displayError(emailAddress)
-      
-  }
-})
 
 textInputs.forEach(node => {
   const nodeName = node.name
@@ -87,4 +92,20 @@ textInputs.forEach(node => {
         
     }
   })
+})
+
+dob.addEventListener("input", () => {
+  if(dob.validity.valid){
+    dobError.textContent = "";
+  } else {
+    displayError(dob)
+  }
+})
+
+yearOfStudy.addEventListener("input", () => {
+  if(yearOfStudy.validity.valid){
+    yearOfStudyError.textContent = "";
+  } else {
+    displayError(yearOfStudy)
+  }
 })
