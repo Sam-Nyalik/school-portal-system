@@ -76,41 +76,41 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
 <body>
     <div class="container">
         <h1><u>User's registration</u></h1>
-        <form class="registration-form" method="post" action="#">
+        <form class="registration-form" id="registration-form" method="post" action="#" novalidate>
             <div class="registration-form-item">
                 <label for="firstName" class="registration-form-label">First Name:</label>
-                <input type="text" id="firstName" name="firstName">
-                <span class="errors text-danger"><?= $firstName_error; ?></span>
+                <input type="text" id="firstName" name="firstName" required>
+                <span class="errors text-danger" id="firstNameError"><?= $firstName_error; ?></span>
             </div>
 
             <div class="registration-form-item">
                 <label for="lastName" class="registration-form-label">Last Name:</label>
-                <input type="text" id="lastName" name="lastName">
-                <span class="errors text-danger"><?= $lastName_error; ?></span>
+                <input type="text" id="lastName" name="lastName" required>
+                <span class="errors text-danger" id="lastNameError"><?= $lastName_error; ?></span>
             </div>
 
             <div class="registration-form-item">
                 <label for="email" class="registration-form-label">Email:</label>
-                <input type="email" id="email" name="emailAddress">
-                <span class="errors text-danger"><?= $emailAddress_error; ?></span>
+                <input type="email" id="email" name="emailAddress" required>
+                <span class="errors text-danger" id="emailError"><?= $emailAddress_error; ?></span>
             </div>
 
             <div class="registration-form-item">
                 <label for="phoneNumber" class="registration-form-label">Phone Number:</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber">
-                <span class="errors text-danger"><?= $phoneNumber_error; ?></span>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                <span class="errors text-danger" id= "phoneNumberError"><?= $phoneNumber_error; ?></span>
             </div>
 
             <div class="registration-form-item">
                 <label for="password" class="registration-form-label">Password:</label>
-                <input type="password" id="password" name="password">
-                <span class="errors text-danger"><?= $password_error; ?></span>
+                <input type="password" id="password" name="password" required>
+                <span class="errors text-danger" id = "passwordError"><?= $password_error; ?></span>
             </div>
 
             <div class="registration-form-item">
                 <label for="confirmpassword" class="registration-form-label">Confirm Password:</label>
-                <input type="password" name="confirmPassword" id="confirmPassword">
-                <span class="errors text-danger"><?= $confirmPassword_error; ?></span>
+                <input type="password" name="confirmPassword" id="confirmPassword" required>
+                <span class="errors text-danger" id="confirmPasswordError"><?= $confirmPassword_error; ?></span>
             </div>
 
             <div class="registration-form-item">
@@ -120,7 +120,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
-                <span class="errors text-danger"><?= $gender_error; ?></span>
+                <span class="errors text-danger" id ="genderError"><?= $gender_error; ?></span>
             </div>
 
             <div class="registration-form-item">
@@ -138,20 +138,20 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
 
             <div class="registration-form-item hide studentsInputs">
                 <label for="dob" class="registration-form-label" >Date of Birth:</label>
-                <input type="date" id="dob" name="dob">
-                <span class="errors text-danger"><?= $dateOfBirth_error; ?></span>
+                <input type="date" id="dob" name="dob" required>
+                <span class="errors text-danger" id="dobError"><?= $dateOfBirth_error; ?></span>
             </div>
 
             <div class="registration-form-item hide studentsInputs">
                 <label for="yearOfStudy" class="registration-form-label">Year of study</label>
-                <input type="number" max="3" min="1" id="yearOfStudy" name="yearOfStudy">
-                <span class="errors text-danger"><?= $yearOfStudy_error; ?></span>
+                <input type="number" max="3" min="1" id="yearOfStudy" name="yearOfStudy" required>
+                <span class="errors text-danger" id="yearOfStudyError"><?= $yearOfStudy_error; ?></span>
             </div>
 
             <div class="registration-form-item hide studentsInputs">
                 <label for="course" class="registration-form-label">Course</label>
                 <select name="course" id="course">
-                    <option value="">--Select--</option>
+                    <option value="" disabled>--Select--</option>
                     <?php
                     $stmt = $pdo->query("SELECT * FROM COURSE");
                     while($row = $stmt->fetch((PDO::FETCH_ASSOC))){
@@ -160,13 +160,13 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
                     ?>  
                     
                 </select>
-                <span class="errors text-danger"><?= $course_error; ?></span>
+                <span class="errors text-danger" id= "courseError"><?= $course_error; ?></span>
             </div>
 
             <div class="registration-form-item hide lecturerInput">
                 <label for="department" class="registration-form-label">Department</label>
                 <select name="department" id="department">
-                    <option value="">--Select--</option>
+                    <option value="" disabled>--Select--</option>
                     <?php
                     $stmt = $pdo->query("SELECT * FROM DEPARTMENT");
                     while($row = $stmt->fetch((PDO::FETCH_ASSOC))){
@@ -174,7 +174,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
                     }                    
                     ?>
                 </select>
-                <span class="errors text-danger"><?=$department_error; ?></span>
+                <span class="errors text-danger" id="departmentError"><?=$department_error; ?></span>
             </div>
             
             <div class="registration-form-item">
