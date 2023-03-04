@@ -27,6 +27,20 @@ const yearOfStudyError = document.getElementById("yearOfStudyError")
 const courseError = document.getElementById("courseError")
 const textInputs = [firstName, lastName, phoneNumber, emailAddress,password,confirmPassword]
 
+const displayError = (node) => {
+  const nodeName = node.name
+  const errorNode = eval(nodeName+"Error")
+
+ 
+  if(node.validity.valueMissing) {
+      errorNode.textContent = `Field is required!`
+  } else if(node.validity.typeMismatch) {
+      errorNode.textContent = `Please enter a valid ${nodeName}`
+  }
+
+  errorNode.className = "error active text-danger"
+}
+
 // an event listener is added to the role drop down menu
 role.addEventListener("change", (e) => {
   // if lecturer is selected, the students' form inputs are hidden, while the lecturers' is shown
@@ -65,20 +79,6 @@ role.addEventListener("change", (e) => {
   }
 });
 
-const displayError = (node) => {
-  const nodeName = node.name
-  const errorNode = eval(nodeName+"Error")
-
- 
-  if(node.validity.valueMissing) {
-      errorNode.textContent = `Field is required!`
-  } else if(node.validity.typeMismatch) {
-      errorNode.textContent = `Please enter a valid ${nodeName}`
-  }
-
-  errorNode.className = "error active text-danger"
-}
-
 textInputs.forEach(node => {
   const nodeName = node.name
   const errorNode = eval(nodeName+"Error")
@@ -108,4 +108,40 @@ yearOfStudy.addEventListener("input", () => {
   } else {
     displayError(yearOfStudy)
   }
+})
+
+form.addEventListener("submit", (event) => {
+  const {firstName, lastName, phoneNumber, emailAddress,password, confirmPassword, dob,yearOfStudy } = validity.valid
+
+  if(!firstName && !lastName && !phoneNumber && !emailAddress && !password && !confirmPassword){
+    if (role.value === "1"){
+      [firstName, lastName, phoneNumber, emailAddress, password, confirmPassword].forEach(nodeValid => {
+        if(!nodeValid) {
+          displayError(eval(nodeValid))
+        }
+      })
+    }
+    else if (role.value === "2"){
+      [firstName, lastName, phoneNumber, emailAddress, password, confirmPassword, dob, yearOfStudy].forEach(nodeValid => {
+        if(!nodeValid) {
+          displayError(eval(nodeValid))
+          event.preventDefault()
+        }
+      })
+    }
+       
+  
+  event.preventDefault()
+  }
+
+  if (password && confirmPassword){
+    if (eval(password).textContent !== eval(confirmPassword).textContent){
+      console.log(eval(password))
+      confirmPasswordError.textContent = "Passwords do not match"
+    
+    event.preventDefault()
+    }
+  }
+
+  
 })
