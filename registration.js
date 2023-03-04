@@ -1,13 +1,27 @@
 const form = document.querySelector("form");
 const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
-const email = document.getElementById("email");
+const emailAddress = document.getElementById("emailAddress");
 const phoneNumber = document.getElementById("phoneNumber");
 const password = document.getElementById("password");
 const gender = document.getElementById("gender");
 const role = document.getElementById("role");
 const lecturerInput = document.querySelector(".lecturerInput");
 const studentsInputs = document.querySelectorAll(".studentsInputs")
+const registrationForm = document.getElementById("registration-form")
+
+// Error message nodes
+const firstNameError = document.getElementById("firstNameError")
+const lastNameError = document.getElementById("lastNameError")
+const emailAddressError = document.getElementById("emailAddressError")
+const phoneNumberError = document.getElementById("phoneNumberError")
+const passwordError = document.getElementById("passwordError")
+const currentPasswordError = document.getElementById("confirmPasswordError")
+const genderError = document.getElementById("genderError")
+const departmentError = document.getElementById("departmentError")
+const dateOfBirthError = document.getElementById("dobError")
+const yearOfStudyError = document.getElementById("yearOfStudyError")
+const courseError = document.getElementById("courseError")
 
 // an event listener is added to the role drop down menu
 role.addEventListener("change", (e) => {
@@ -33,4 +47,27 @@ role.addEventListener("change", (e) => {
     });
   }
 });
+
+const displayError = (node) => {
+  const nodeName = node.name
+  const errorNode = eval(nodeName+"Error")
+
+  if(node.validity.valueMissing) {
+      errorNode.textContent = `Your ${nodeName} cannot be left blank`
+  } else if(node.validity.typeMismatch) {
+      errorNode.textContent = `Please enter your email address`
+  }
+
+  errorNode.className = "error active"
+}
+
+emailAddress.addEventListener("input" , ()=> {
+  if(emailAddress.validity.valid) {
+      emailAddressError.textContent = ""
+      emailAddressError.className = "error"
+  } else {
+      displayError(emailAddress)
+      console.log("there's an error")
+  }
+})
 

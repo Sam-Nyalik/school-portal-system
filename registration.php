@@ -90,9 +90,9 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
             </div>
 
             <div class="registration-form-item">
-                <label for="email" class="registration-form-label">Email:</label>
-                <input type="email" id="email" name="emailAddress" required>
-                <span class="errors text-danger" id="emailError"><?= $emailAddress_error; ?></span>
+                <label for="emailAddress" class="registration-form-label">Email:</label>
+                <input type="email" id="emailAddress" name="emailAddress" required>
+                <span class=" error" id="emailAddressError"></span>
             </div>
 
             <div class="registration-form-item">
