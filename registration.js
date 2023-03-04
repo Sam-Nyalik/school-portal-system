@@ -47,7 +47,7 @@ const displayError = (node) => {
   if (node.validity.valueMissing) {
     errorNode.textContent = `Field is required!`;
 
-    // only the email address is succeptible to typemismatch so the error message is hardcoded
+    // only the email address is susceptible to typemismatch so the error message is hardcoded
   } else if (node.validity.typeMismatch) {
     errorNode.textContent = `Please enter a valid email address`;
   }
@@ -95,7 +95,7 @@ role.addEventListener("change", (e) => {
 
 // EVENT LISTENERS
 
-// textInputs are similar so their event listeners are added in a loop
+// all ELs are added via a loop
 inputs.forEach((node) => {
   const nodeName = node.name;
 
@@ -103,7 +103,7 @@ inputs.forEach((node) => {
   // corresponding to their names
   const errorNode = eval(nodeName + "Error");
 
-  // forEach node in the textInputs array, its validity is checked, if invalid, displayError is called
+  // forEach node in the inputs array, when input occurs, its validity is checked and if invalid, displayError is called
   node.addEventListener("input", () => {
     if (node.validity.valid) {
       errorNode.textContent = "";
@@ -114,8 +114,7 @@ inputs.forEach((node) => {
   });
 });
 
-/* anytime confirmPassword changes, its value is compared to the password value,
-if they don't match an error message is displayed */
+// anytime confirmPassword changes, its value is compared to the password value, if they don't match an error message is displayed 
 confirmPassword.addEventListener("input", () => {
   if (confirmPassword.value !== password.value) {
     confirmPasswordError.textContent = "Passwords do not match";
