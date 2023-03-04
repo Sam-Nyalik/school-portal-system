@@ -4,6 +4,7 @@ const lastName = document.getElementById("lastName");
 const emailAddress = document.getElementById("emailAddress");
 const phoneNumber = document.getElementById("phoneNumber");
 const password = document.getElementById("password");
+const confirmPassword = document.getElementById("password");
 const gender = document.getElementById("gender");
 const role = document.getElementById("role");
 const lecturerInput = document.querySelector(".lecturerInput");
@@ -16,12 +17,13 @@ const lastNameError = document.getElementById("lastNameError")
 const emailAddressError = document.getElementById("emailAddressError")
 const phoneNumberError = document.getElementById("phoneNumberError")
 const passwordError = document.getElementById("passwordError")
-const currentPasswordError = document.getElementById("confirmPasswordError")
+const confirmPasswordError = document.getElementById("confirmPasswordError")
 const genderError = document.getElementById("genderError")
 const departmentError = document.getElementById("departmentError")
 const dateOfBirthError = document.getElementById("dobError")
 const yearOfStudyError = document.getElementById("yearOfStudyError")
 const courseError = document.getElementById("courseError")
+const textInputs = [firstName, lastName, phoneNumber, emailAddress,password,confirmPassword]
 
 // an event listener is added to the role drop down menu
 role.addEventListener("change", (e) => {
@@ -52,10 +54,11 @@ const displayError = (node) => {
   const nodeName = node.name
   const errorNode = eval(nodeName+"Error")
 
+ 
   if(node.validity.valueMissing) {
-      errorNode.textContent = `Your ${nodeName} cannot be left blank`
+      errorNode.textContent = `Field is required!`
   } else if(node.validity.typeMismatch) {
-      errorNode.textContent = `Please enter your email address`
+      errorNode.textContent = `Please enter a valid ${nodeName}`
   }
 
   errorNode.className = "error active"
@@ -67,7 +70,21 @@ emailAddress.addEventListener("input" , ()=> {
       emailAddressError.className = "error"
   } else {
       displayError(emailAddress)
-      console.log("there's an error")
+      
   }
 })
 
+textInputs.forEach(node => {
+  const nodeName = node.name
+  const errorNode = eval(nodeName+"Error")
+
+  node.addEventListener("input" , ()=> {
+    if(node.validity.valid) {
+      errorNode.textContent = ""
+      errorNode.className = "error"
+    } else {
+        displayError(node)
+        
+    }
+  })
+})
