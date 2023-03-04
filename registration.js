@@ -1,10 +1,9 @@
-const form = document.querySelector("form");
 const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
 const emailAddress = document.getElementById("emailAddress");
 const phoneNumber = document.getElementById("phoneNumber");
 const password = document.getElementById("password");
-const confirmPassword = document.getElementById("password");
+const confirmPassword = document.getElementById("confirmPassword");
 const gender = document.getElementById("gender");
 const dob = document.getElementById("dob")
 const yearOfStudy = document.getElementById("yearOfStudy")
@@ -110,38 +109,48 @@ yearOfStudy.addEventListener("input", () => {
   }
 })
 
-form.addEventListener("submit", (event) => {
-  const {firstName, lastName, phoneNumber, emailAddress,password, confirmPassword, dob,yearOfStudy } = validity.valid
-
-  if(!firstName && !lastName && !phoneNumber && !emailAddress && !password && !confirmPassword){
+registrationForm.addEventListener("submit", event => {
+  //const {firstName, lastName, phoneNumber, emailAddress,password, confirmPassword, dob,yearOfStudy } = .validity.valid
+  
+  textInputs.forEach(node => console.log(node.validity.valid)
+  )
+  
+   if(!firstName.validity.valid || !lastName.validity.valid || !phoneNumber.validity.valid || !emailAddress.validity.valid 
+    || !password.validity.valid || !confirmPassword.validity.valid || !dob.validity.valid || !yearOfStudy.validity.valid){      
     if (role.value === "1"){
-      [firstName, lastName, phoneNumber, emailAddress, password, confirmPassword].forEach(nodeValid => {
-        if(!nodeValid) {
-          displayError(eval(nodeValid))
+      textInputs.forEach(node => {
+        if(!node.validity.valid) {
+          displayError(node)
+          event.preventDefault()
         }
       })
     }
     else if (role.value === "2"){
-      [firstName, lastName, phoneNumber, emailAddress, password, confirmPassword, dob, yearOfStudy].forEach(nodeValid => {
-        if(!nodeValid) {
-          displayError(eval(nodeValid))
+      [...textInputs, dob ,yearOfStudy].forEach(node => {       
+        if(!node.validity.valid) {
+          displayError(node)
           event.preventDefault()
         }
       })
     }
        
   
-  event.preventDefault()
-  }
-
-  if (password && confirmPassword){
-    if (eval(password).textContent !== eval(confirmPassword).textContent){
-      console.log(eval(password))
-      confirmPasswordError.textContent = "Passwords do not match"
-    
-    event.preventDefault()
-    }
-  }
-
   
+  }
+
+  if (password.validity.valid && confirmPassword.validity.valid){
+    
+    if (password.value !== confirmPassword.value){
+      
+      confirmPasswordError.textContent = "Passwords do not match"
+      confirmPasswordError.className = "error active text-danger"
+      event.preventDefault()
+    } else {
+      confirmPasswordError.textContent = ""
+      confirmPasswordError.className = "error"
+    }
+  } 
+
+
+ //event.preventDefault()
 })
