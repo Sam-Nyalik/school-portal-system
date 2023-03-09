@@ -12,3 +12,23 @@
     color: #fff;
     background-color: #000;
 }
+
+.navbar .navbar_brand {
+    font-size: 80px;
+}
+
+#carouselIndicator .carousel-inner .carousel-item img {
+    height: 530px;
+    filter: brightness(50%);
+}
+
+#carouselIndicator .carousel-inner .carousel-item .carousel-caption h5 {
+    font-weight: bold;
+    font-size: 40px;
+    color: #000;
+}
+
+#carouselIndicator .carousel-inner .carousel-item .carousel-caption p {
+    font-weight: 200;
+}
+
