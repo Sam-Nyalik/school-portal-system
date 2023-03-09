@@ -155,7 +155,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
 
             <div class="registration-form-item hide studentsInputs">
                 <label for="course" class="registration-form-label">Course</label>
-                <select name="course" id="course">
+                <select name="course" id="course" required>
                     <option value="">--Select--</option>
                     <?php
                     $stmt = $pdo->query("SELECT * FROM COURSE");
@@ -170,7 +170,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
 
             <div class="registration-form-item hide lecturerInput">
                 <label for="department" class="registration-form-label">Department</label>
-                <select name="department" id="department">
+                <select name="department" id="department" required>
                     <option value="" >--Select--</option>
                     <?php
                     $stmt = $pdo->query("SELECT * FROM DEPARTMENT");

@@ -7,6 +7,8 @@ const confirmPassword = document.getElementById("confirmPassword");
 const gender = document.getElementById("gender");
 const dob = document.getElementById("dob");
 const yearOfStudy = document.getElementById("yearOfStudy");
+const department = document.getElementById("department");
+const course = document.getElementById("course");
 const role = document.getElementById("role");
 const lecturerInput = document.querySelector(".lecturerInput");
 const studentsInputs = document.querySelectorAll(".studentsInputs");
@@ -31,19 +33,13 @@ const inputs = [
   emailAddress,
   password,
   confirmPassword,
-  dob,
-  yearOfStudy,
 ];
 
-const emailAddressFetcher = async () => {
-  
-}
-
-// take a guess what this function does 
+// take a guess what this function does
 const displayError = (node) => {
   const nodeName = node.name;
 
-  // all error message nodes are in the format nodeNameError, e.g firstNameError. We can dynamically create 
+  // all error message nodes are in the format nodeNameError, e.g firstNameError. We can dynamically create
   // these node variables to enhance flexibility
   const errorNode = eval(nodeName + "Error");
 
@@ -75,18 +71,17 @@ role.addEventListener("change", (e) => {
     });
     lecturerInput.classList.add("hide");
 
-    // when role is changed, a validity check is made on the dateOfBirth and yearOfStudy, if it fails displayError is called
-    if (dob.validity.valid) {
-      dobError.textContent = "";
-    } else {
-      displayError(dob);
-    }
+    // when role is changed, a validity check is made on the nodes in the following array, if any one fails displayError is called on that node
+    [dob, yearOfStudy, course, department].forEach((node) => {
+      const nodeName = node.name;
+      const errorNode = eval(nodeName + "Error");
 
-    if (yearOfStudy.validity.valid) {
-      yearOfStudyError.textContent = "";
-    } else {
-      displayError(yearOfStudy);
-    }
+      if (node.validity.valid) {
+        errorNode.textContent = "";
+      } else {
+        displayError(node);
+      }
+    });
 
     // if admin is selected, all the other inputs are hidden
   } else {
@@ -100,7 +95,8 @@ role.addEventListener("change", (e) => {
 // EVENT LISTENERS
 
 // all ELs are added via a loop
-inputs.forEach((node) => {
+// an array with all inputs is built and used
+[...inputs, dob, yearOfStudy, department, course].forEach((node) => {
   const nodeName = node.name;
 
   // all error message nodes are in the format nodeNameError so we can dynamically create variables
@@ -118,7 +114,7 @@ inputs.forEach((node) => {
   });
 });
 
-// anytime confirmPassword changes, its value is compared to the password value, if they don't match an error message is displayed 
+// anytime confirmPassword changes, its value is compared to the password value, if they don't match an error message is displayed
 confirmPassword.addEventListener("input", () => {
   if (confirmPassword.value !== password.value) {
     confirmPasswordError.textContent = "Passwords do not match";
@@ -139,29 +135,36 @@ registrationForm.addEventListener("submit", (event) => {
     !password.validity.valid ||
     !confirmPassword.validity.valid ||
     !dob.validity.valid ||
-    !yearOfStudy.validity.valid
+    !yearOfStudy.validity.valid ||
+    department.value === "" ||
+    course.value === ""
   ) {
-    if (role.value === "1") {
-      textInputs.forEach((node) => {
-        if (!node.validity.valid) {
-          displayError(node);
+    // all roles share nodes in the inputs array, so they are checked first
+    inputs.forEach((node) => {
+      if (!node.validity.valid) {
+        // if one of the nodes has an error submission is blocked and an error message is displayed
+        displayError(node);
+        event.preventDefault();
+      }
+    });
 
-          // if one of the nodes has an error submission is blocked
+    if (role.value === "2") {
+      [dob, yearOfStudy, course].forEach((node) => {
+        if (!node.validity.valid) {
+          // if one of the nodes has an error submission is blocked and an error message is displayed
+          displayError(node);
           event.preventDefault();
         }
       });
-    } else if (role.value === "2") {
-      [...inputs, dob, yearOfStudy].forEach((node) => {
-        if (!node.validity.valid) {
-          displayError(node);
-
-          // if one of the nodes has an error submission is blocked
-          event.preventDefault();
-        }
-      });
+    } else if (role.value === "3") {
+      if (department.value === "") {
+        displayError(department);
+        event.preventDefault();
+      }
     }
   }
 
+  // if both passwords are valid, a check is made for whether they match
   if (password.validity.valid && confirmPassword.validity.valid) {
     if (password.value !== confirmPassword.value) {
       confirmPasswordError.textContent = "Passwords do not match";
