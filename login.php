@@ -7,15 +7,15 @@ $row = ["userID" => ""];
 
 if (isset($_POST['email']) && isset($_POST['password'])) {    
     try{
-        $sql = "SELECT * FROM users WHERE email = :email and password = :password";        
+        $sql = "SELECT * FROM users WHERE email = :email";        
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
-            ":email" => $_POST['email'],
-            ":password" => $_POST['password']
+            ":email" => $_POST['email']
         ));
         $row = $stmt ->fetch(PDO::FETCH_ASSOC);
+        $password_verification = password_verify($_POST['password'] , $row['password']);
 
-        if($row){
+        if($row && $password_verification){
             $welcomeMessage = "Welcome " .$row['first_name'];
             if($row["roleID"] === "1"){
                 // render admin page
