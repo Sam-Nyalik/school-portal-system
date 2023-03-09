@@ -35,6 +35,10 @@ const inputs = [
   yearOfStudy,
 ];
 
+const emailAddressFetcher = async () => {
+  
+}
+
 // take a guess what this function does 
 const displayError = (node) => {
   const nodeName = node.name;

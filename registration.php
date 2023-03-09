@@ -8,7 +8,7 @@ $pdo = db_connect();
 // Define variables and assign them empty values
 $firstName = $lastName = $emailAddress = $phoneNumber = $password = $confirmPassword = $gender = $role = $dateOfBirth = $yearOfStudy = $course = $department = "";
 $firstName_error = $lastName_error = $emailAddress_error = $phoneNumber_error = $password_error = $confirmPassword_error = $gender_error = $role_error = $dateOfBirth_error = $yearOfStudy_error = $course_error = $department_error = "";
-
+$error_message = "";
 // After client-side data validation and form submission, a check is made for whether relevant data exists in the $_POST array 
 if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['emailAddress']) && isset($_POST['phoneNumber']) && isset($_POST['password']) && isset($_POST['confirmPassword']) && isset($_POST['gender']) && isset($_POST['role'])){
 
@@ -29,13 +29,18 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
         ":roleId" => $_POST['role']
     ));    
       // an error message will be echoed
-    } catch (Exception $e){
-        echo "Error<br>" .$e->getMessage();
+    } catch (PDOException $pde){        
+        if($pde->getCode() == 23000){
+            $error_message = "Email already taken. Try a different email";
+        } else {
+            echo "Error<br>" .$pde->getMessage();
+        }
+        
     }
     $user_id = $pdo->lastInsertId();
 
     // This if block is executed if the student role is chosen
-    if(isset($_POST['dob']) && isset($_POST['yearOfStudy']) && isset($_POST['course']) ){
+    if(isset($_POST['dob']) && isset($_POST['yearOfStudy']) && $_POST['course'] !== "" ){
         
         try{
             $student_insert = "INSERT INTO students(enrol_date, date_of_birth, year, userID, courseID) VALUES(CURRENT_TIMESTAMP(), :dob, :yearOfStudy, :userID, :courseID)";
@@ -53,7 +58,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
     }
 
     // This if block is executed if the lecturer role is chosen 
-    if(isset($_POST['department'])) {
+    if($_POST['department'] !== "") {
         try{
             $lecturer_insert = "INSERT INTO lecturers(userID , departmentID) values(:userID , :department)";
             $stmt = $pdo->prepare($lecturer_insert);
@@ -151,7 +156,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
             <div class="registration-form-item hide studentsInputs">
                 <label for="course" class="registration-form-label">Course</label>
                 <select name="course" id="course">
-                    <option value="" disabled>--Select--</option>
+                    <option value="">--Select--</option>
                     <?php
                     $stmt = $pdo->query("SELECT * FROM COURSE");
                     while($row = $stmt->fetch((PDO::FETCH_ASSOC))){
@@ -166,7 +171,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
             <div class="registration-form-item hide lecturerInput">
                 <label for="department" class="registration-form-label">Department</label>
                 <select name="department" id="department">
-                    <option value="" disabled>--Select--</option>
+                    <option value="" >--Select--</option>
                     <?php
                     $stmt = $pdo->query("SELECT * FROM DEPARTMENT");
                     while($row = $stmt->fetch((PDO::FETCH_ASSOC))){
@@ -179,6 +184,9 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
             
             <div class="registration-form-item">
                 <button type="submit" class="registration-form-btn">Submit</button>
+            </div>
+            <div>
+                <?php echo($error_message); ?>
             </div>
 
         </form>

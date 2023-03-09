@@ -7,7 +7,10 @@ function db_connect(){
     $DATABASE_NAME = "school_portal_system";
 
     try {
-        return new PDO("mysql:host=" . $DATABASE_HOST . ";dbname=" . $DATABASE_NAME . ";charset=utf8", $DATABASE_USER, $DATABASE_PASSWORD);
+        $pdo = new PDO("mysql:host=" . $DATABASE_HOST . ";dbname=" . $DATABASE_NAME . ";charset=utf8", $DATABASE_USER, $DATABASE_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
+         
     } catch (PDOException $exception){
         // Stop the script and generate an error incase there's a problem 
         exit("Connection to the database was unsuccessful" . $exception->getMessage());
