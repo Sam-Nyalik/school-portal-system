@@ -16,12 +16,15 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         $password_verification = password_verify($_POST['password'] , $row['password']);
 
         if($row && $password_verification){
+            $id = $row['userID'];
             $welcomeMessage = "Welcome " .$row['first_name'];
             if($row["roleID"] === "1"){
                 // render admin page
             } elseif($row["roleID"] === "2"){
                 // render student page
-                try{
+                
+                header("Location: ../student-portal/student-portal.html?id=$id");
+                /* try{
                     $sql = "SELECT * FROM STUDENTS WHERE USERID = :userID";
                     $stmt= $pdo->prepare($sql);
                     $stmt->execute(array(
@@ -30,8 +33,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                     $student_row = $stmt->fetch(PDO::FETCH_ASSOC);
                     header('Location: ../student-portal/student-portal.html');
                 }catch(Exception $e){
-                    echo "Can't find value, try again<br>" .$e->getMessage();
-                }
+                    echo "Can't find student, try again<br>" .$e->getMessage();
+                } */
             } else{
                 // render lecturer page
             }
