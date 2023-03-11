@@ -1,19 +1,21 @@
 <?php
 include_once("../pdo.php");
 
+$row = array();
+
 if (isset($_GET["id"])) {
 	try{
-		$sql = "SELECT USERS.*,STUDENTS.* 
+		$sql = "SELECT USERS.*,STUDENTS.* , COURSE.*
 				FROM USERS 
 				INNER JOIN STUDENTS ON USERS.USERID = STUDENTS.USERID
+				INNER JOIN COURSE ON STUDENTS.COURSEID = COURSE.COURSEID
 				WHERE USERS.USERID = :userID";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array(
 			":userID" => $_GET["id"]
 		));
 		$row=$stmt->fetch(PDO::FETCH_ASSOC);
-		print_r($row);
-
+		
 	} catch(Exception $e){
 		echo "Can't find value, try again<br>" .$e->getMessage();
 	}
@@ -42,12 +44,12 @@ if (isset($_GET["id"])) {
 	<main>
 		<section id="personal-info">
 			<h2>Personal Information</h2>
-			<p>Name: <span id="name"></span></p>
-			<p>Enrollment Date: <span id="enrollment-date"></span></p>
-			<p>Date of Birth: <span id="date-of-birth"></span></p>
-			<p>Year of Study: <span id="year-of-study"></span></p>
-			<p>User ID: <span id="user-id"></span></p>
-			<p>Course ID: <span id="course-id"></span></p>
+			<p>Name: <span id="name"><?= $row['first_name']." ".$row['last_name'] ?></span></p>
+			<p>Enrollment Date: <span id="enrollment-date"><?= $row["enrol_date"]  ?></span></p>
+			<p>Date of Birth: <span id="date-of-birth"><?= $row["date_of_birth"] ?></span></p>
+			<p>Year of Study: <span id="year-of-study"><?= $row["year"] ?></span></p>
+			<p>Student ID: <span id="user-id"></span><?= "ST0".$row["studentID"] ?></p>
+			<p>Course: <span id="course-id"><?= $row["course_name"] ?></span></p>
 		</section>
 		<section id="units">
 			<h2>Units</h2>
