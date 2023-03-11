@@ -1,5 +1,5 @@
 <?php
-include_once("pdo.php");
+include_once("../pdo.php");
 $successfulLogin = true;
 $welcomeMessage = "";
 $loginErrorMessage = "Invalid login, please try again";
@@ -23,7 +23,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             } elseif($row["roleID"] === "2"){
                 // render student page
                 
-                header("Location: ../student-portal/student-portal.html?id=$id");
+                header("Location: ../student-portal/student-portal.php?id=$id");
                 /* try{
                     $sql = "SELECT * FROM STUDENTS WHERE USERID = :userID";
                     $stmt= $pdo->prepare($sql);

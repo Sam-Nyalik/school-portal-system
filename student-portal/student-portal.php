@@ -1,3 +1,19 @@
+<?php
+include_once("../pdo.php");
+
+if (isset($_GET["id"])) {
+	try{
+		$sql = "SELECT * FROM USERS WHERE USERID = :userID";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array(
+			"userID" => $_GET["id"]
+	));
+	} catch(Exception $e){
+		echo "Can't find value, try again<br>" .$e->getMessage();
+	}
+	
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
