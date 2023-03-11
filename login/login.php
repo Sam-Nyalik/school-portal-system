@@ -12,7 +12,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         $stmt->execute(array(
             ":email" => $_POST['email']
         ));
-        $row = $stmt ->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $password_verification = password_verify($_POST['password'] , $row['password']);
 
         if($row && $password_verification){
@@ -21,6 +21,17 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 // render admin page
             } elseif($row["roleID"] === "2"){
                 // render student page
+                try{
+                    $sql = "SELECT * FROM STUDENTS WHERE USERID = :userID";
+                    $stmt= $pdo->prepare($sql);
+                    $stmt->execute(array(
+                        ":userID" => $row['userID']
+                    ));
+                    $student_row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    header('Location: ../student-portal/student-portal.html');
+                }catch(Exception $e){
+                    echo "Can't find value, try again<br>" .$e->getMessage();
+                }
             } else{
                 // render lecturer page
             }
