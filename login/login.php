@@ -21,22 +21,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             if($row["roleID"] === "1"){
                 // render admin page
             } elseif($row["roleID"] === "2"){
-                // render student page
-                
+                                
                 header("Location: ../student-portal/student-portal.php?id=$id");
-                /* try{
-                    $sql = "SELECT * FROM STUDENTS WHERE USERID = :userID";
-                    $stmt= $pdo->prepare($sql);
-                    $stmt->execute(array(
-                        ":userID" => $row['userID']
-                    ));
-                    $student_row = $stmt->fetch(PDO::FETCH_ASSOC);
-                    header('Location: ../student-portal/student-portal.html');
-                }catch(Exception $e){
-                    echo "Can't find student, try again<br>" .$e->getMessage();
-                } */
-            } else{
-                // render lecturer page
+               
+            } else{                
+                header("Location: ../lecturer-portal/lecturer-portal.php?id=$id");
             }
 
         } else {

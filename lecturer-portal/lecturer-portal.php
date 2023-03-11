@@ -1,3 +1,29 @@
+<?php
+include_once("../pdo.php");
+
+$row = array();
+
+if (isset($_GET["id"])) {
+	try{
+		$sql = "SELECT USERS.*,LECTURERS.* , DEPARTMENT.*
+				FROM USERS 
+				INNER JOIN LECTURERS ON USERS.USERID = LECTURERS.USERID
+				INNER JOIN DEPARTMENT ON LECTURERS.DEPARTMENTID = DEPARTMENT.DEPARTMENTID
+				WHERE USERS.USERID = :userID";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array(
+			":userID" => $_GET["id"]
+		));
+		$row=$stmt->fetch(PDO::FETCH_ASSOC);
+		
+	} catch(Exception $e){
+		echo "Can't find value, try again<br>" .$e->getMessage();
+	}
+	
+}
+?>
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,27 +51,27 @@
 			<table>
 				<tr>
 					<th>First Name:</th>
-					<td>John</td>
+					<td><?= $row["first_name"] ?></td>
 				</tr>
 				<tr>
 					<th>Last Name:</th>
-					<td>Doe</td>
+					<td><?= $row["last_name"] ?></td>
 				</tr>
 				<tr>
 					<th>Email:</th>
-					<td>johndoe@university.edu</td>
+					<td><?= $row["email"] ?></td>
 				</tr>
 				<tr>
 					<th>Phone:</th>
-					<td>123-456-7890</td>
+					<td><?= $row["phone_number"] ?></td>
 				</tr>
 				<tr>
 					<th>Gender:</th>
-					<td>Male</td>
+					<td><?= $row["gender"] ?></td>
 				</tr>
 				<tr>
 					<th>Department:</th>
-					<td>Computer Science</td>
+					<td><?= $row["department_name"] ?></td>
 				</tr>
 			</table>
 		</section>
