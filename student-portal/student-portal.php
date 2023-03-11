@@ -3,11 +3,17 @@ include_once("../pdo.php");
 
 if (isset($_GET["id"])) {
 	try{
-		$sql = "SELECT * FROM USERS WHERE USERID = :userID";
+		$sql = "SELECT USERS.*,STUDENTS.* 
+				FROM USERS 
+				INNER JOIN STUDENTS ON USERS.USERID = STUDENTS.USERID
+				WHERE USERS.USERID = :userID";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array(
-			"userID" => $_GET["id"]
-	));
+			":userID" => $_GET["id"]
+		));
+		$row=$stmt->fetch(PDO::FETCH_ASSOC);
+		print_r($row);
+
 	} catch(Exception $e){
 		echo "Can't find value, try again<br>" .$e->getMessage();
 	}
