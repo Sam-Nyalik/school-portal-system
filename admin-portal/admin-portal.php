@@ -5,7 +5,7 @@
     <title>School Admin Dashboard</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="lecturer-portal.css">
-    <link rel="stylesheet" type="text/css" href="sch-admin.css">
+    <link rel="stylesheet" type="text/css" href="admin-portal.css">
   </head>
   <body>
     <header>

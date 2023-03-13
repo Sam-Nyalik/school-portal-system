@@ -19,7 +19,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             $id = $row['userID'];
             $welcomeMessage = "Welcome " .$row['first_name'];
             if($row["roleID"] === "1"){
-                // render admin page
+               
+                header("Location: ../admin-portal/admin-portal.php?id=$id");
             } elseif($row["roleID"] === "2"){
                                 
                 header("Location: ../student-portal/student-portal.php?id=$id");
