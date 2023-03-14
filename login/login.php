@@ -25,7 +25,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                                 
                 header("Location: ../student-portal/student-portal.php?id=$id");
                
-            } else{                
+            } elseif($row["roleID"] === "3"){                
                 header("Location: ../lecturer-portal/lecturer-portal.php?id=$id");
             }
 
