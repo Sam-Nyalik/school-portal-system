@@ -35,3 +35,10 @@ body {
     text-decoration: underline;
   }
   
+  table,td,tr,th {
+    border: 2px solid black;
+    border-collapse: collapse;
+  }
+  td,th {
+    padding: 2px;
+  }

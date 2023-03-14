@@ -1,3 +1,7 @@
+<?php
+include_once("../pdo.php");
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -29,32 +33,37 @@
               <th>Student ID</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Department</th>
+              <th>Course</th>
+              <th>Phone Number</th>
+              <th>Gender</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <!-- Iterate over the students data from the database and populate the table rows -->
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
+            <?php 
+              $sql = "SELECT USERS.*,STUDENTS.* , COURSE.*
+                      FROM USERS 
+                      INNER JOIN STUDENTS ON USERS.USERID = STUDENTS.USERID
+                      INNER JOIN COURSE ON STUDENTS.COURSEID = COURSE.COURSEID
+                      ";
+              $stmt=$pdo->query($sql);
+              while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                echo("<tr>");
+                echo('<td>ST00'.$row['studentID'].'</td>');
+                echo('<td>'.$row['first_name'].' '.$row['last_name'].'</td>');
+                echo('<td>'.$row['email'].'</td>');
+                echo('<td>'.$row['course_name'].'</td>');
+                echo('<td>'.$row['phone_number'].'</td>');
+                echo('<td>'.ucfirst($row['gender']).'</td>');
+                echo("<td>
                 <button>Edit</button>
                 <button>Delete</button>
               </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <button>Edit</button>
-                <button>Delete</button>
-              </td>
-            </tr>
+            </tr>");
+              };
+            ?>
+                        
           </tbody>
         </table>
       </section>
