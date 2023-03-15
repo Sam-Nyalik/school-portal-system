@@ -1,5 +1,5 @@
 <?php
-include_once('pdo.php');
+include_once("../pdo.php");
 
 if (isset($_POST["email"]) && isset($_POST["password"])){
     try{
