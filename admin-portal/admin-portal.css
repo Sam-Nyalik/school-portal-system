@@ -42,3 +42,9 @@ body {
   td,th {
     padding: 2px;
   }
+footer {
+  background-color: #0072c6;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
