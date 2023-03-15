@@ -110,6 +110,9 @@ include_once("../pdo.php");
       </table>
     </section>
   </main>
+  <footer>
+      <p>&copy; Student Portal 2023</p>
+  </footer>
 </body>
 
 </html>
