@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2023 at 04:51 PM
+-- Generation Time: Mar 16, 2023 at 10:14 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -63,21 +63,21 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`courseID`, `departmentID`, `course_length`, `course_name`) VALUES
-(1, 1, 2, 'Diploma in Community Health and Development'),
-(2, 1, 4, 'BSc. in Community Health and Development'),
-(3, 1, 4, 'BSc. In Sport Science'),
-(4, 2, 2, 'Diploma in Information Technology'),
-(5, 2, 2, 'Diploma in Library and Information Science'),
-(6, 2, 2, 'Diploma in Archives and Records Management'),
-(7, 2, 4, 'BSc. in Computer Science'),
-(8, 2, 4, 'BSc. in Library and Information Science'),
-(9, 3, 4, 'BSc. in Actuarial Science'),
-(10, 3, 4, 'BSc. In Mathematics'),
-(11, 3, 1, 'MSc. in Mathematics'),
-(12, 3, 3, 'PhD in Mathematics'),
-(13, 4, 4, 'BSc. In Biology'),
-(14, 4, 4, 'BSc. In Chemistry'),
-(15, 4, 4, 'BSc. In Physics');
+(1, 1, 2, '	Diploma in Community Health and Development'),
+(2, 1, 4, '	BSc. in Community Health and Development'),
+(3, 1, 4, '	BSc. In Sport Science'),
+(4, 2, 2, '	Diploma in Information Technology'),
+(5, 2, 2, '	Diploma in Library and Information Science'),
+(6, 2, 2, '	Diploma in Archives and Records Management'),
+(7, 2, 4, '	BSc. in Computer Science'),
+(8, 2, 4, '	BSc. in Library and Information Science'),
+(9, 3, 4, '	BSc. in Actuarial Science'),
+(10, 3, 4, '	BSc. In Mathematics'),
+(11, 3, 1, '	MSc. in Mathematics'),
+(12, 3, 3, '	PhD in Mathematics'),
+(13, 4, 4, '	BSc. In Biology'),
+(14, 4, 4, '	BSc. In Chemistry'),
+(15, 4, 4, '	BSc. In Physics');
 
 -- --------------------------------------------------------
 
@@ -131,6 +131,12 @@ CREATE TABLE `lecturers` (
 --
 
 INSERT INTO `lecturers` (`lecturerID`, `userID`, `departmentID`) VALUES
+(1, 1, 3),
+(2, 2, 3),
+(3, 3, 2),
+(4, 4, 2),
+(5, 5, 4),
+(6, 6, 4),
 (15, 39, 1);
 
 -- --------------------------------------------------------
@@ -173,7 +179,13 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`studentID`, `enrol_date`, `date_of_birth`, `year`, `userID`, `courseID`) VALUES
-(17, '2023-03-11 13:41:15', '2023-03-01', 1, 38, 12);
+(1, '2023-01-06 12:11:36', '1974-03-01', 1, 7, 10),
+(2, '2020-01-01 12:10:11', '2001-03-01', 4, 8, 10),
+(3, '2023-01-06 12:11:36', '2003-02-11', 1, 9, 7),
+(4, '2021-01-01 12:10:11', '2003-12-11', 3, 10, 7),
+(5, '2023-01-06 12:11:36', '1999-03-01', 1, 11, 13),
+(6, '2020-01-01 12:10:11', '2003-11-17', 4, 12, 13),
+(17, '2023-01-06 12:11:36', '2005-01-23', 1, 38, 10);
 
 -- --------------------------------------------------------
 
@@ -188,6 +200,57 @@ CREATE TABLE `units` (
   `year` int(11) DEFAULT NULL,
   `courseID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `units`
+--
+
+INSERT INTO `units` (`unitID`, `title`, `lecturerID`, `year`, `courseID`) VALUES
+('1', 'Calculus 1', 1, 1, 10),
+('10', 'Numerical Analysis', 2, 3, 10),
+('11', 'Analysis 2', 2, 4, 10),
+('12', 'Differential Equations', 2, 4, 10),
+('13', 'Combinatorics', 2, 4, 10),
+('14', 'Applied Mathematics', 2, 4, 10),
+('15', 'Algebraic Structures', 2, 4, 10),
+('16', 'Introduction to Programming', 3, 1, 7),
+('17', 'Discrete Mathematics', 3, 1, 7),
+('18', 'Database Systems', 3, 1, 7),
+('19', 'Computer Organization and Architecture', 3, 1, 7),
+('2', 'Linear Algebra', 1, 1, 10),
+('20', 'Web Development', 3, 2, 7),
+('21', 'Data Structures and Algorithms', 3, 2, 7),
+('22', 'Operating Systems', 3, 2, 7),
+('23', 'Computer Networks', 3, 2, 7),
+('24', 'Software Engineering', 4, 3, 7),
+('25', 'Artificial Intelligence', 4, 3, 7),
+('26', 'Advanced Programming', 4, 3, 7),
+('27', 'Database Administration', 4, 3, 7),
+('28', 'Computer Security', 4, 4, 7),
+('29', 'Distributed Systems', 4, 4, 7),
+('3', 'Statistics 1', 1, 1, 10),
+('30', 'Mobile App Development', 4, 4, 7),
+('31', 'Introduction to Biology', 5, 1, 13),
+('32', 'General Chemistry', 5, 1, 13),
+('33', 'Introduction to Biotechnology', 5, 1, 13),
+('34', 'Cell Biology', 5, 1, 13),
+('35', 'Principles of Genetics', 5, 2, 13),
+('36', 'Principles of Biochemistry', 5, 2, 13),
+('37', 'Evolutionary Biology', 5, 2, 13),
+('38', 'Environmental Science', 6, 3, 13),
+('39', 'Animal Physiology', 6, 3, 13),
+('4', 'Discrete Mathematics', 1, 1, 10),
+('40', 'Immunology', 6, 3, 13),
+('41', 'Neurobiology', 6, 3, 13),
+('42', 'Human Anatomy', 6, 4, 13),
+('43', 'Molecular Biology', 6, 4, 13),
+('44', 'Medical Microbiology', 6, 4, 13),
+('45', 'Pharmacology', 6, 4, 13),
+('5', 'Calculus 2', 1, 2, 10),
+('6', 'Mathematical Modelling', 1, 2, 10),
+('7', 'Probability Theory', 1, 2, 10),
+('8', 'Analysis 1', 1, 3, 10),
+('9', 'Geometry and Topology', 2, 3, 10);
 
 -- --------------------------------------------------------
 
@@ -223,9 +286,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `first_name`, `last_name`, `email`, `phone_number`, `password`, `gender`, `roleID`) VALUES
-(37, 'Admin', 'admin', 'admin@gmail.com', '0722733456', '$2y$10$8hfHc.9W8AMvNl3/LjKtX.PQbCi9oY7dI/d/GPyS3RQSTkUeCMsTq', 'male', 1),
-(38, 'Student', 'Student', 'student@gmail.com', '0702926976', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'male', 2),
-(39, 'Lec', 'Lec', 'lec@gmail.com', '0745637465', '$2y$10$j.Unry0e4LnPjGLUaxnEE.Ixp2l7.2PRA.2jgx.PZJYZJTXK94fsq', 'male', 3);
+(1, 'Juma', 'Hassan', 'jh@gmail.com', '702874369', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'male', 3),
+(2, 'Beatrice', 'Maina', 'bmaina@gmail.com', '702874369', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'female', 3),
+(3, 'Tom ', 'Omollo', 'tm@gmail.com', '722789654', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'male', 3),
+(4, 'Catherine', 'Nafula', 'cnafs@gmail.com', '789654214', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'female', 3),
+(5, 'Jackie', 'Moraa', 'jmoraa@gmail.com', '726987254', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'female', 3),
+(6, 'Phillip', 'Kibet', 'pkibet@gmail.com', '720877254', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'male', 3),
+(7, 'Andrew', 'Barasa', 'adb@gmail.com', '203698129', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'male', 2),
+(8, 'Rachel', 'Kamau', 'rchk@gmail.com', '516936578', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'female', 2),
+(9, 'Mercy', 'Mueni', 'mm@gmail.com', '789542411', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'female', 2),
+(10, 'John ', 'Kyalo', 'jkyalo@gmail.com', '754136941', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'male', 2),
+(11, 'Georgina', 'Aketch', 'gaketch@gmail.com', '874632569', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'female', 2),
+(12, 'Dennis', 'Ian', 'dian@gmail.com', '234567123', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'male', 2),
+(37, 'Admin', 'admin', 'admin@gmail.com', '722733456', '$2y$10$8hfHc.9W8AMvNl3/LjKtX.PQbCi9oY7dI/d/GPyS3RQSTkUeCMsTq', 'male', 1),
+(38, 'Student', 'Student', 'student@gmail.com', '702926976', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'male', 2),
+(39, 'Lec', 'Lec', 'lec@gmail.com', '745637465', '$2y$10$j.Unry0e4LnPjGLUaxnEE.Ixp2l7.2PRA.2jgx.PZJYZJTXK94fsq', 'male', 3);
 
 --
 -- Indexes for dumped tables
