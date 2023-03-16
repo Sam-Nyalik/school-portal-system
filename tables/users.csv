@@ -8,3 +8,9 @@ userID,first_name,last_name,email,phone_number,password,gender,roleID
 4,Catherine,Nafula,cnafs@gmail.com,789654214,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,female,3
 5,Jackie,Moraa,jmoraa@gmail.com,726987254,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,female,3
 6,Phillip,Kibet,pkibet@gmail.com,720877254,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,male,3
+7,Andrew,Barasa,adb@gmail.com,203698129,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,male,2
+8,Rachel,Kamau,rchk@gmail.com,516936578,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,female,2
+9,Mercy,Mueni,mm@gmail.com,789542411,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,female,2
+10,John ,Kyalo,jkyalo@gmail.com,754136941,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,male,2
+11,Georgina,Aketch,gaketch@gmail.com,874632569,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,female,2
+12,Dennis,Ian,dian@gmail.com,234567123,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,male,2
