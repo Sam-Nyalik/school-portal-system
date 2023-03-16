@@ -44,11 +44,11 @@ if (isset($_GET["id"])) {
 	<main>
 		<section id="personal-info">
 			<h2>Personal Information</h2>
-			<p>Name: <span id="name"><?= $row['first_name']." ".$row['last_name'] ?></span></p>
-			<p>Enrollment Date: <span id="enrollment-date"><?= $row["enrol_date"]  ?></span></p>
-			<p>Date of Birth: <span id="date-of-birth"><?= $row["date_of_birth"] ?></span></p>
-			<p>Year of Study: <span id="year-of-study"><?= $row["year"] ?></span></p>
+			<p>Name: <span id="name"><?= $row['first_name']." ".$row['last_name'] ?></span></p>			
 			<p>Student ID: <span id="user-id"></span><?= "ST00".$row["studentID"] ?></p>
+			<p>Enrollment Date: <span id="enrollment-date"><?= date("D d F Y",strtotime($row["enrol_date"]))  ?></span></p>
+			<p>Date of Birth: <span id="date-of-birth"><?= date("D d F Y",strtotime($row["date_of_birth"])) ?></span></p>
+			<p>Year of Study: <span id="year-of-study"><?= $row["year"] ?></span></p>
 			<p>Course: <span id="course-id"><?= $row["course_name"] ?></span></p>
 		</section>
 		<section id="units">

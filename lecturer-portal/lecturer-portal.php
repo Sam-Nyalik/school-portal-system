@@ -29,7 +29,7 @@ if (isset($_GET["id"])) {
 <head>
 	<title>Lecturer Portal</title>
 	<link rel="stylesheet" type="text/css" href="lecturer-portal.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="../style.css">
 	<script src="lecturer-portal.js"></script>
 </head>
 <body>
