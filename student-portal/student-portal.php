@@ -55,10 +55,18 @@ if (isset($_GET["id"])) {
 		<section id="units">
 			<h2>Units</h2>
 			<?php
-				$sql = "SELECT UNITS.*, UNIT_REGISTRATION.*
+				$sql = "SELECT UNITS.*, UNIT_REGISTRATION.*, LECTURERS.*, USERS.*
 						FROM UNIT_REGISTRATION
-						INNER JOIN UNITS ON UNITS.UNITID = UNIT_REGISTRATION.UNITID";
-				$stmt = $pdo->query($sql);
+						INNER JOIN UNITS ON UNITS.UNITID = UNIT_REGISTRATION.UNITID
+						INNER JOIN UNITS ON UNITS.LECTURERID = UNIT_REGISTRATION.LECTURERID
+						INNER JOIN LECTURERS ON LECTURERS.LECTURERID = UNITS.LECTURERID
+						INNER JOIN USERS ON USERS.USERID = LECTURERS.USERID
+						WHERE UNIT_REGISTRATION.USERID = :USERID";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(array( 
+					":USERID" => $id 
+
+				));
 				$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 				if(!$row){
@@ -72,7 +80,13 @@ if (isset($_GET["id"])) {
 								<th>Unit Title</th>
 								<th>Lecturer Name</th>						
 							</tr>");
-					
+					while($row){
+						echo("<tr>
+						<td>".$row['unitID']."</td>
+						<td>".$row['title']."</td>
+						<td>".$row['first_name'].' '.$row['last_name']."</td>
+						<tr>");
+					}		
 					echo("	</thead>
 					<tbody id='units-table'>
 					</tbody>
