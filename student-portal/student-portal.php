@@ -2,6 +2,7 @@
 include_once("../pdo.php");
 
 $row = array();
+$id = $_GET['id'];
 
 if (isset($_GET["id"])) {
 	try{
@@ -53,17 +54,36 @@ if (isset($_GET["id"])) {
 		</section>
 		<section id="units">
 			<h2>Units</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Unit Code</th>
-						<th>Lecturer</th>
-						<th>Year</th>
-					</tr>
-				</thead>
-				<tbody id="units-table">
-				</tbody>
-			</table>
+			<?php
+				$sql = "SELECT UNITS.*, UNIT_REGISTRATION.*
+						FROM UNIT_REGISTRATION
+						INNER JOIN UNITS ON UNITS.UNITID = UNIT_REGISTRATION.UNITID";
+				$stmt = $pdo->query($sql);
+				$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+				if(!$row){
+					echo "<div>You aren't registered in any units</div>";
+				} else {
+					echo("
+					<table>
+						<thead>
+							<tr>
+								<th>Unit Code</th>
+								<th>Unit Title</th>
+								<th>Lecturer Name</th>						
+							</tr>");
+					
+					echo("	</thead>
+					<tbody id='units-table'>
+					</tbody>
+					</table>
+					
+					");
+				}						
+						
+			
+			
+			?>
 		</section>
         <section id="grades">
 			<h2>Grades</h2>
