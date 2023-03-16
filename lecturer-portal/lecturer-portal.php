@@ -22,7 +22,6 @@ if (isset($_GET["id"])) {
 	
 }
 ?>
-?>
 
 <!DOCTYPE html>
 <html>
@@ -63,11 +62,11 @@ if (isset($_GET["id"])) {
 				</tr>
 				<tr>
 					<th>Phone:</th>
-					<td><?= $row["phone_number"] ?></td>
+					<td><?= "+254".$row["phone_number"] ?></td>
 				</tr>
 				<tr>
 					<th>Gender:</th>
-					<td><?= $row["gender"] ?></td>
+					<td><?= ucfirst($row["gender"]) ?></td>
 				</tr>
 				<tr>
 					<th>Department:</th>
