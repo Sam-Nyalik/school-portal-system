@@ -29,3 +29,18 @@ unitID,title,lecturerID,year,courseID
 28,Computer Security,4,4,7
 29,Distributed Systems,4,4,7
 30,Mobile App Development,4,4,7
+31,Introduction to Biology,5,1,13
+32,General Chemistry,5,1,13
+33,Introduction to Biotechnology,5,1,13
+34,Cell Biology,5,1,13
+35,Principles of Genetics,5,2,13
+36,Principles of Biochemistry,5,2,13
+37,Evolutionary Biology,5,2,13
+38,Environmental Science,6,3,13
+39,Animal Physiology,6,3,13
+40,Immunology,6,3,13
+41,Neurobiology,6,3,13
+42,Human Anatomy,6,4,13
+43,Molecular Biology,6,4,13
+44,Medical Microbiology,6,4,13
+45,Pharmacology,6,4,13

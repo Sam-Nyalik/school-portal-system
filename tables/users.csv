@@ -4,3 +4,7 @@ userID,first_name,last_name,email,phone_number,password,gender,roleID
 39,Lec,Lec,lec@gmail.com,745637465,$2y$10$j.Unry0e4LnPjGLUaxnEE.Ixp2l7.2PRA.2jgx.PZJYZJTXK94fsq,male,3
 1,Juma,Hassan,jh@gmail.com,702874369,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,male,3
 2,Beatrice,Maina,bmaina@gmail.com,702874369,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,female,3
+3,Tom ,Omollo,tm@gmail.com,722789654,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,male,3
+4,Catherine,Nafula,cnafs@gmail.com,789654214,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,female,3
+5,Jackie,Moraa,jmoraa@gmail.com,726987254,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,female,3
+6,Phillip,Kibet,pkibet@gmail.com,720877254,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,male,3
