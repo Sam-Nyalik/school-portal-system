@@ -1,16 +1,16 @@
-courseID	departmentID	course_length	course_name
-1	1	2	Diploma in Community Health and Development
-2	1	4	BSc. in Community Health and Development
-3	1	4	BSc. In Sport Science
-4	2	2	Diploma in Information Technology
-5	2	2	Diploma in Library and Information Science
-6	2	2	Diploma in Archives and Records Management
-7	2	4	BSc. in Computer Science
-8	2	4	BSc. in Library and Information Science
-9	3	4	BSc. in Actuarial Science
-10	3	4	BSc. In Mathematics
-11	3	1	MSc. in Mathematics
-12	3	3	PhD in Mathematics
-13	4	4	BSc. In Biology
-14	4	4	BSc. In Chemistry
-15	4	4	BSc. In Physics
+courseID,	departmentID,	course_length,	course_name
+1,	1,	2,	Diploma in Community Health and Development
+2,	1,	4,	BSc. in Community Health and Development
+3,	1,	4,	BSc. In Sport Science
+4,	2,	2,	Diploma in Information Technology
+5,	2,	2,	Diploma in Library and Information Science
+6,	2,	2,	Diploma in Archives and Records Management
+7,	2,	4,	BSc. in Computer Science
+8,	2,	4,	BSc. in Library and Information Science
+9,	3,	4,	BSc. in Actuarial Science
+10,	3,	4,	BSc. In Mathematics
+11,	3,	1,	MSc. in Mathematics
+12,	3,	3,	PhD in Mathematics
+13,	4,	4,	BSc. In Biology
+14,	4,	4,	BSc. In Chemistry
+15,	4,	4,	BSc. In Physics

@@ -1,0 +1,6 @@
+userID,first_name,last_name,email,phone_number,password,gender,roleID
+37,Admin,admin,admin@gmail.com,722733456,$2y$10$8hfHc.9W8AMvNl3/LjKtX.PQbCi9oY7dI/d/GPyS3RQSTkUeCMsTq,male,1
+38,Student,Student,student@gmail.com,702926976,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,male,2
+39,Lec,Lec,lec@gmail.com,745637465,$2y$10$j.Unry0e4LnPjGLUaxnEE.Ixp2l7.2PRA.2jgx.PZJYZJTXK94fsq,male,3
+1,Juma,Hassan,jh@gmail.com,702874369,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,male,3
+2,Beatrice,Maina,bmaina@gmail.com,702874369,$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC,female,3
