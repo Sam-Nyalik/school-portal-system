@@ -14,3 +14,18 @@ unitID,title,lecturerID,year,courseID
 13,Combinatorics,2,4,10
 14,Applied Mathematics,2,4,10
 15,Algebraic Structures,2,4,10
+16,Introduction to Programming,3,1,7
+17,Discrete Mathematics,3,1,7
+18,Database Systems,3,1,7
+19,Computer Organization and Architecture,3,1,7
+20,Web Development,3,2,7
+21,Data Structures and Algorithms,3,2,7
+22,Operating Systems,3,2,7
+23,Computer Networks,3,2,7
+24,Software Engineering,4,3,7
+25,Artificial Intelligence,4,3,7
+26,Advanced Programming,4,3,7
+27,Database Administration,4,3,7
+28,Computer Security,4,4,7
+29,Distributed Systems,4,4,7
+30,Mobile App Development,4,4,7
