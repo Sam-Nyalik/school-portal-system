@@ -8,7 +8,7 @@ include_once("../pdo.php");
 <head>
   <meta charset="UTF-8">
   <title>School Admin Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="../style.css">
   <link rel="stylesheet" type="text/css" href="../lecturer-portal/lecturer-portal.css">
   <link rel="stylesheet" type="text/css" href="admin-portal.css">
 </head>
