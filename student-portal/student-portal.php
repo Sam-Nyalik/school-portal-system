@@ -27,18 +27,23 @@ if (isset($_GET["id"])) {
 
 if (isset($_POST['studentID']) && isset($_POST['unitID'])){
 	print_r($_POST['unitID']);
-	try{
-		$sql = "INSERT INTO UNIT_REGISTRATION (studentID , unitID) VALUES (:studentID , :unitID)";
-		$stmt = $pdo->prepare($sql);
-		$stmt->execute(array(
-			":studentID" => $_POST['studentID'],
-			":unitID" => $_POST['unitID']
-		));
-
-
-	}catch(Exception $e){
-
+	$unitIDs = unserialize($_POST['unitID']);
+	
+	foreach ($unitIDs as $unitID) {
+		try{
+			$sql = "INSERT INTO UNIT_REGISTRATION (studentID , unitID) VALUES (:studentID , :unitID)";
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(array(
+				":studentID" => $_POST['studentID'],
+				":unitID" => $unitID
+			));
+	
+	
+		}catch(Exception $e){
+	
+		}
 	}
+	
 
 }
 ?>
@@ -134,7 +139,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])){
 							<td>" . $units_row['title'] . "</td>					
 						</tr>");
 					}
-
+					$unitIDs = serialize($unitIDs);
 					echo "
 					<input type= 'hidden' value='" . $unitIDs . "' name='unitID'/>
 					</table>
