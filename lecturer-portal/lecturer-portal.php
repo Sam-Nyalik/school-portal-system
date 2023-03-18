@@ -39,7 +39,7 @@ if (isset($_GET["id"])) {
 				<li><a href="#">Home</a></li>
 				<li><a href="#">My Units</a></li>
 				<li><a href="#">Attendance</a></li>
-				<li><a href="#">Profile</a></li>
+				<li><a href="lecturer-profile.html">Profile</a></li>
 				<li><a href="#">Logout</a></li>
 			</ul>
 		</nav>
