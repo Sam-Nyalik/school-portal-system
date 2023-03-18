@@ -117,6 +117,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])){
 				$units_row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 				if ($units_row) {
+					$unitIDs = array();
 					echo "
 					<form method='post' action='#'>
 					<table>
@@ -127,14 +128,16 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])){
 							</tr>
 							<input type='hidden' value='".$student_row['studentID']."' name='studentID' />";
 					while ($units_row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+						array_push($unitIDs,$units_row['unitID']);
 						echo ("<tr>							
-							<input type= 'hidden' value='" . $units_row['unitID'] . "' name='unitID'/>
 							<td>" . $units_row['unitID'] . "</td>
 							<td>" . $units_row['title'] . "</td>					
 						</tr>");
 					}
 
-					echo "</table>
+					echo "
+					<input type= 'hidden' value='" . $unitIDs . "' name='unitID'/>
+					</table>
 					<button type='submit'>Submit</button>
 					</form>";
 				}
