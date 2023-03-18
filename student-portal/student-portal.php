@@ -108,6 +108,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])){
 				)
 			);
 			$registration_row = $stmt->fetch(PDO::FETCH_ASSOC);			
+			
 
 			if (!$registration_row) {
 				echo "<div>You aren't registered in any units</div>";
@@ -156,16 +157,19 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])){
 								<th>Unit Code</th>
 								<th>Unit Title</th>
 								<th>Lecturer Name</th>						
-							</tr>");
-				while ($registration_row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+							</tr>
+							</thead>
+							<tbody id='units-table'>");
+				 do {
+					
 					echo ("<tr>
 						<td>" . $registration_row['unitID'] . "</td>
 						<td>" . $registration_row['title'] . "</td>
 						<td>" . $registration_row['first_name'] . ' ' . $registration_row['last_name'] . "</td>
-						<tr>");
-				}
-				echo ("	</thead>
-					<tbody id='units-table'>
+						</tr>");
+				}while ($registration_row = $stmt->fetch(PDO::FETCH_ASSOC));
+				echo ("	
+					
 					</tbody>
 					</table>
 					
