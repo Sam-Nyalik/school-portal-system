@@ -26,9 +26,10 @@ if (isset($_GET["id"])) {
 }
 
 if (isset($_POST['studentID']) && isset($_POST['unitID'])){
-	print_r($_POST['unitID']);
+	
 	$unitIDs = unserialize($_POST['unitID']);
 	
+
 	foreach ($unitIDs as $unitID) {
 		try{
 			$sql = "INSERT INTO UNIT_REGISTRATION (studentID , unitID) VALUES (:studentID , :unitID)";
@@ -102,11 +103,11 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])){
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(
 				array(
-					":USERID" => $id
+					":USERID" => $student_row["studentID"]
 
 				)
 			);
-			$registration_row = $stmt->fetch(PDO::FETCH_ASSOC);
+			$registration_row = $stmt->fetch(PDO::FETCH_ASSOC);			
 
 			if (!$registration_row) {
 				echo "<div>You aren't registered in any units</div>";
