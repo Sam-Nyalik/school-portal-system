@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2023 at 10:14 AM
+-- Generation Time: Mar 18, 2023 at 07:14 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -264,6 +264,19 @@ CREATE TABLE `unit_registration` (
   `unitID` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `unit_registration`
+--
+
+INSERT INTO `unit_registration` (`registrationID`, `studentID`, `unitID`) VALUES
+(22, 17, '2'),
+(23, 17, '3'),
+(24, 17, '4'),
+(25, 2, '12'),
+(26, 2, '13'),
+(27, 2, '14'),
+(28, 2, '15');
+
 -- --------------------------------------------------------
 
 --
@@ -444,7 +457,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `unit_registration`
 --
 ALTER TABLE `unit_registration`
-  MODIFY `registrationID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `registrationID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`

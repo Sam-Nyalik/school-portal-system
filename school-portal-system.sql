@@ -60,13 +60,13 @@ CREATE TABLE unit_registration (
 
 CREATE TABLE classroom (
     classroomID INTEGER PRIMARY KEY AUTO_INCREMENT,
-    room_name VARCHAR(10) NOT NULL
+    classroom_name VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE lecture (
     lectureID INTEGER PRIMARY KEY AUTO_INCREMENT,
-    lecturerID INTEGER NOT NULL,
-    datetime DATETIME NOT NULL,
+    day VARCHAR(20) NOT NULL,
+    time TIME NOT NULL,
     classroomID INTEGER NOT NULL,
     unitID VARCHAR(10) NOT NULL
 );
@@ -100,4 +100,3 @@ alter table attended_lecture add foreign key (studentID) references students(stu
 alter table attended_lecture add foreign key (lectureID) references lecture(lectureID);
 
 alter table users add foreign key (roleID) references roles(roleID);
-
