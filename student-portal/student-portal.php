@@ -100,7 +100,9 @@ if (isset($_GET["id"])) {
 				$units_row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 				if ($units_row) {
-					echo "<table>
+					echo "
+					<form method='post' action='#'>
+					<table>
 						<tr>
 								<th>Unit Code</th>
 								<th>Unit Title</th>
@@ -108,12 +110,16 @@ if (isset($_GET["id"])) {
 							</tr>";
 					while ($units_row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 						echo ("<tr>
-							<td>" . $units_row['unitID'] . "</th>
+							<input type='hidden' value='".$student_row['studentID']."' name='studentID' />
+							<input type= 'hidden' value='" . $units_row['unitID'] . "' name='unitID'/>
+							<td>" . $units_row['unitID'] . "</td>
 							<td>" . $units_row['title'] . "</td>					
 						</tr>");
 					}
 
-					echo "</table>";
+					echo "</table>
+					<button type='submit'>Submit</button>
+					</form>";
 				}
 
 			} else {
