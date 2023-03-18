@@ -25,26 +25,28 @@ if (isset($_GET["id"])) {
 
 }
 
-if (isset($_POST['studentID']) && isset($_POST['unitID'])){
-	
+if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
+
 	$unitIDs = unserialize($_POST['unitID']);
-	
+
 
 	foreach ($unitIDs as $unitID) {
-		try{
+		try {
 			$sql = "INSERT INTO UNIT_REGISTRATION (studentID , unitID) VALUES (:studentID , :unitID)";
 			$stmt = $pdo->prepare($sql);
-			$stmt->execute(array(
-				":studentID" => $_POST['studentID'],
-				":unitID" => $unitID
-			));
-	
-	
-		}catch(Exception $e){
-	
+			$stmt->execute(
+				array(
+					":studentID" => $_POST['studentID'],
+					":unitID" => $unitID
+				)
+			);
+
+
+		} catch (Exception $e) {
+
 		}
 	}
-	
+
 
 }
 ?>
@@ -107,8 +109,8 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])){
 
 				)
 			);
-			$registration_row = $stmt->fetch(PDO::FETCH_ASSOC);			
-			
+			$registration_row = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
 			if (!$registration_row) {
 				echo "<div>You aren't registered in any units</div>";
@@ -133,9 +135,9 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])){
 								<th>Unit Title</th>
 														
 							</tr>
-							<input type='hidden' value='".$student_row['studentID']."' name='studentID' />";
+							<input type='hidden' value='" . $student_row['studentID'] . "' name='studentID' />";
 					while ($units_row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-						array_push($unitIDs,$units_row['unitID']);
+						array_push($unitIDs, $units_row['unitID']);
 						echo ("<tr>							
 							<td>" . $units_row['unitID'] . "</td>
 							<td>" . $units_row['title'] . "</td>					
@@ -160,14 +162,13 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])){
 							</tr>
 							</thead>
 							<tbody id='units-table'>");
-				 do {
-					
+				do {
 					echo ("<tr>
 						<td>" . $registration_row['unitID'] . "</td>
 						<td>" . $registration_row['title'] . "</td>
 						<td>" . $registration_row['first_name'] . ' ' . $registration_row['last_name'] . "</td>
 						</tr>");
-				}while ($registration_row = $stmt->fetch(PDO::FETCH_ASSOC));
+				} while ($registration_row = $stmt->fetch(PDO::FETCH_ASSOC));
 				echo ("	
 					
 					</tbody>

@@ -86,7 +86,7 @@ if (isset($_GET["id"])) {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+				<!-- 	<tr>
 						<td>CSCI101</td>
 						<td>Introduction to Computer Science</td>
 						<td>1</td>
@@ -103,7 +103,31 @@ if (isset($_GET["id"])) {
 						<td>Advanced Topics in Computer Science</td>
 						<td>3</td>
 						<td>20</td>
-					</tr>
+					</tr> -->
+					<?php 
+					$sql = "SELECT * FROM UNITS WHERE LECTURERID = :lecturerID";
+					$stmt= $pdo->prepare($sql);
+					$stmt->execute(array(
+						":lecturerID" => $row['lecturerID']
+					));
+					$units_row = $stmt->fetch(PDO::FETCH_ASSOC);
+					
+					if($units_row){
+						do{
+							echo(
+								"<tr>
+									<td>".$units_row['unitID']."</td>
+									<td>".$units_row['title']."</td>
+									<td>".$units_row['year']."</td>
+									<td>30</td>
+								</tr>"
+							);
+						}while($units_row = $stmt->fetch(PDO::FETCH_ASSOC));
+					}else{
+						echo "<div>You have no units to teach currently</div>";
+					}
+					
+					?>
 				</tbody>
 			</table>
 		</section>
