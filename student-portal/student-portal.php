@@ -24,6 +24,23 @@ if (isset($_GET["id"])) {
 	}
 
 }
+
+if (isset($_POST['studentID']) && isset($_POST['unitID'])){
+	print_r($_POST['unitID']);
+	try{
+		$sql = "INSERT INTO UNIT_REGISTRATION (studentID , unitID) VALUES (:studentID , :unitID)";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array(
+			":studentID" => $_POST['studentID'],
+			":unitID" => $_POST['unitID']
+		));
+
+
+	}catch(Exception $e){
+
+	}
+
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -107,10 +124,10 @@ if (isset($_GET["id"])) {
 								<th>Unit Code</th>
 								<th>Unit Title</th>
 														
-							</tr>";
+							</tr>
+							<input type='hidden' value='".$student_row['studentID']."' name='studentID' />";
 					while ($units_row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-						echo ("<tr>
-							<input type='hidden' value='".$student_row['studentID']."' name='studentID' />
+						echo ("<tr>							
 							<input type= 'hidden' value='" . $units_row['unitID'] . "' name='unitID'/>
 							<td>" . $units_row['unitID'] . "</td>
 							<td>" . $units_row['title'] . "</td>					
