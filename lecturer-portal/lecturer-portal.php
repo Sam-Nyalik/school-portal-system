@@ -131,22 +131,6 @@ if (isset($_GET["id"])) {
 		</section>
 	</form>
 </section>
-<section>
-  <h2><u>Profile</u></h2>
-  <form>
-	<label for="name-input">Name:</label>
-	<input type="text" id="name-input" name="name" value="John Smith">
-	<label for="email-input">Email:</label>
-	<input type="email" id="email-input" name="email" value="jsmith@university.edu">
-	<label for="phone-input">Phone:</label>
-	<input type="tel" id="phone-input" name="phone" value="123-456-7890">
-	<label for="department-input">Department:</label>
-	<input type="text" id="department-input" name="department" value="Computer Science">
-	<label for="office-input">Office:</label>
-	<input type="text" id="office-input" name="office" value="CS Building Room 123">
-	<button type="submit">Save Changes</button>
-  </form>
-</section>
 </main>
 <footer>
 <p>&copy; Lecturer Portal 2023</p>
