@@ -85,25 +85,7 @@ if (isset($_GET["id"])) {
 						<th>Registered Students</th>
 					</tr>
 				</thead>
-				<tbody>
-				<!-- 	<tr>
-						<td>CSCI101</td>
-						<td>Introduction to Computer Science</td>
-						<td>1</td>
-						<td>50</td>
-					</tr>
-					<tr>
-						<td>CSCI202</td>
-						<td>Data Structures and Algorithms</td>
-						<td>2</td>
-						<td>30</td>
-					</tr>
-					<tr>
-						<td>CSCI303</td>
-						<td>Advanced Topics in Computer Science</td>
-						<td>3</td>
-						<td>20</td>
-					</tr> -->
+				<tbody>				
 					<?php 
 					$sql = "SELECT UNITS.* , count(UNIT_REGISTRATION.UNITID) AS registration_count 
 							FROM UNITS 
@@ -116,7 +98,7 @@ if (isset($_GET["id"])) {
 						":lecturerID" => $row['lecturerID']
 					));
 					$units_row = $stmt->fetch(PDO::FETCH_ASSOC);
-					print_r($units_row);
+					
 					if($units_row){
 						do{
 							echo(
@@ -129,7 +111,7 @@ if (isset($_GET["id"])) {
 							);
 						}while($units_row = $stmt->fetch(PDO::FETCH_ASSOC));
 					}else{
-						echo "<div>You have no units to teach currently</div>";
+						echo "<tr><td colspan=4>You have no units to teach currently</td></tr>";
 					}
 					
 					?>
