@@ -82,7 +82,7 @@ if (isset($_GET["id"])) {
 						<th>Unit Code</th>
 						<th>Unit Title</th>
 						<th>Year</th>
-						<th>Number of Students</th>
+						<th>Registered Students</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -105,13 +105,18 @@ if (isset($_GET["id"])) {
 						<td>20</td>
 					</tr> -->
 					<?php 
-					$sql = "SELECT * FROM UNITS WHERE LECTURERID = :lecturerID";
+					$sql = "SELECT UNITS.* , count(UNIT_REGISTRATION.UNITID) AS registration_count 
+							FROM UNITS 
+							LEFT JOIN UNIT_REGISTRATION  ON UNIT_REGISTRATION.unitID = UNITS.unitID  
+							WHERE LECTURERID = :lecturerID
+							GROUP BY UNITS.UNITID";
+
 					$stmt= $pdo->prepare($sql);
 					$stmt->execute(array(
 						":lecturerID" => $row['lecturerID']
 					));
 					$units_row = $stmt->fetch(PDO::FETCH_ASSOC);
-					
+					print_r($units_row);
 					if($units_row){
 						do{
 							echo(
@@ -119,7 +124,7 @@ if (isset($_GET["id"])) {
 									<td>".$units_row['unitID']."</td>
 									<td>".$units_row['title']."</td>
 									<td>".$units_row['year']."</td>
-									<td>30</td>
+									<td>".$units_row['registration_count']."</td>
 								</tr>"
 							);
 						}while($units_row = $stmt->fetch(PDO::FETCH_ASSOC));
