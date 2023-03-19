@@ -54,7 +54,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["lectureID"])) {
 	try{
 		$sql = "INSERT INTO ATTENDED_LECTURE (studentID, attended, lectureID, lectureDate) 
-			VALUES(:studentID, :attended, :lectureID, :lectureDate)";
+				VALUES(:studentID, :attended, :lectureID, :lectureDate)";
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute(array(
 			":studentID" => $student_row['studentID'],
@@ -230,11 +230,13 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 							
 							/* if($row['day'] === date("l")){
 								$lectures_today = true;*/
-								echo" 
+							$lectureDate = date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']));
+							
+							echo" 
 							<tr>
 							<td>".$row['unitID']."</td>
 							<td>".$row['title']."</td>
-							<td>".date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']))."</td>							
+							<td>".$lectureDate."</td>							
 							<td>".$row['classroom_name']."</td>
 							<td>
 							<div>
@@ -244,7 +246,7 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 							<div>
 							<label for='didnt-attend'>No</label>
 							<input type='radio' value=0 id='didnt-attend' name='attendance' checked />
-							<input type='hidden' value =".date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']))." name='lectureDate'/>
+							<input type='hidden' value ='".$lectureDate."' name='lectureDate'/>
 							<input type='hidden' value =".$row['lectureID']." name='lectureID'/>
 							</div>
 							</td>
