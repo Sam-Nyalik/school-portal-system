@@ -44,15 +44,29 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 
 
 		} catch (Exception $e) {
-
+			echo "Error". $e->getMessage();
 		}
 	}
 
 
 }
 
-if(isset($_POST["attendance"]) && isset($_POST["attendanceDate"])) {
+if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["lectureID"])) {
+	try{
+		$sql = "INSERT INTO ATTENDED_LECTURE (studentID, attended, lectureID, lectureDate) 
+			VALUES(:studentID, :attended, :lectureID, :lectureDate)";
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute(array(
+			":studentID" => $student_row['studentID'],
+			":attended" => $_POST["attendance"],
+			":lectureID" => $_POST["lectureID"] ,
+			":lectureDate" => $_POST["lectureDate"] 
+		));
+	}catch(Exception $e){
+		echo "Error". $e->getMessage();
+	} 
 	
+
 }
 
 ?>
@@ -197,7 +211,7 @@ if(isset($_POST["attendance"]) && isset($_POST["attendanceDate"])) {
 					</tr>
 				</thead>
 				<tbody id="lectures-table">
-					<form>
+					<form action="#" method="post"> 
 					<?php 
 					//$lectures_today = false;
 					foreach($unitIDs as $unitID){
@@ -230,7 +244,8 @@ if(isset($_POST["attendance"]) && isset($_POST["attendanceDate"])) {
 							<div>
 							<label for='didnt-attend'>No</label>
 							<input type='radio' value=0 id='didnt-attend' name='attendance' checked />
-							<input type='hidden' value =".date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']))." name='attendanceDate'/>
+							<input type='hidden' value =".date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']))." name='lectureDate'/>
+							<input type='hidden' value =".$row['lectureID']." name='lectureID'/>
 							</div>
 							</td>
 							</tr>
