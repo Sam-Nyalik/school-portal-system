@@ -3,6 +3,7 @@ include_once("../pdo.php");
 
 $student_row = array();
 $id = $_GET['id'];
+$unitIDs = array();
 
 if (isset($_GET["id"])) {
 	try {
@@ -111,7 +112,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 			);
 			$registration_row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
+			
 			if (!$registration_row) {
 				echo "<div>You aren't registered in any units</div>";
 				echo "<h4>Eligible Units</h4>";
@@ -125,8 +126,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 				);
 				$units_row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-				if ($units_row) {
-					$unitIDs = array();
+				if ($units_row) {					
 					echo "
 					<form method='post' action='#'>
 					<table>
@@ -168,6 +168,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 						<td>" . $registration_row['title'] . "</td>
 						<td>" . $registration_row['first_name'] . ' ' . $registration_row['last_name'] . "</td>
 						</tr>");
+						array_push($unitIDs, $registration_row['unitID']);
 				} while ($registration_row = $stmt->fetch(PDO::FETCH_ASSOC));
 				echo ("	
 					
@@ -177,6 +178,44 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 					");
 			}
 			?>
+		</section>
+		<section id="student-attendance">
+			<h2>Upcoming Lectures</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Unit Code</th>
+						<th>Unit Title</th>
+						<th>Year</th>
+						<th>Grade</th>
+					</tr>
+				</thead>
+				<tbody id="lectures-table">
+					<?php 
+					
+					foreach($unitIDs as $unitID){
+						$sql = "SELECT * FROM LECTURE WHERE UNITID = :unitID";
+						$stmt = $pdo->prepare($sql);
+						$stmt->execute(array(
+							"unitID" => $unitID
+						));
+						
+						while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+							echo"
+							<tr>
+							<td>".$row['day']."</td>
+							<td>".$row['time']."</td>
+							<td>".$row['unitID']."</td>
+							<td>".$row['classroomID']."</td>
+							</tr>
+							";
+						}
+					}
+					
+					
+					?>
+				</tbody>
+			</table>
 		</section>
 		<section id="grades">
 			<h2>Grades</h2>
