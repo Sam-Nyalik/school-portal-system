@@ -213,7 +213,7 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 				<tbody id="lectures-table">
 					<form action="#" method="post"> 
 					<?php 
-					//$lectures_today = false;
+					$lectures_today = false;
 					foreach($unitIDs as $unitID){
 						$sql = "SELECT UNITS.* , LECTURE.* , CLASSROOM.*
 								FROM LECTURE
@@ -228,8 +228,8 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 
 						while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 							
-							/* if($row['day'] === date("l")){
-								$lectures_today = true;*/
+							 if($row['day'] === date("l")){
+								$lectures_today = true;
 							$lectureDate = date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']));
 							
 							echo" 
@@ -257,11 +257,11 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 						}
 						
 					
-					/*if(!$lectures_today){
+					}if(!$lectures_today){
 						echo "<tr><td colspan=5>You have no lectures today</td></tr>";
-					} else{ */
+					} else{ 
 						echo"<tr><td colspan=5><button>Submit</button></td></tr>";
-					//}
+					}
 					
 					
 					?>
