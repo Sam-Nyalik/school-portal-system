@@ -75,7 +75,8 @@ CREATE TABLE attended_lecture (
     attendanceID INTEGER PRIMARY KEY AUTO_INCREMENT,
     studentID INTEGER NOT NULL,
     attended BOOLEAN NOT NULL,
-    lectureID INTEGER NOT NULL
+    lectureID INTEGER NOT NULL,
+    lectureDate varchar(50) not null
 );
 
 alter table students add foreign key (userID) references users(userID);
@@ -92,7 +93,6 @@ alter table lecturers add foreign key (userID) references users(userID);
 alter table unit_registration add foreign key (studentID) references students(studentID);
 alter table unit_registration add foreign key (unitID) references units(unitID);
 
-alter table lecture add foreign key (lecturerID) references lecturers(lecturerID);
 alter table lecture add foreign key (classroomID) references classroom(classroomID);
 alter table lecture add foreign key (unitID) references units(unitID);
 
@@ -100,6 +100,3 @@ alter table attended_lecture add foreign key (studentID) references students(stu
 alter table attended_lecture add foreign key (lectureID) references lecture(lectureID);
 
 alter table users add foreign key (roleID) references roles(roleID);
-SET FOREIGN_KEY_CHECKS=1;
-drop table lecture;
-alter table lecture add foreign key (classroomID) references classroom(classroomID);
