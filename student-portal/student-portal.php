@@ -191,8 +191,9 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 					</tr>
 				</thead>
 				<tbody id="lectures-table">
+					<form>
 					<?php 
-					
+					$lectures_today = false;
 					foreach($unitIDs as $unitID){
 						$sql = "SELECT UNITS.* , LECTURE.* , CLASSROOM.*
 								FROM LECTURE
@@ -204,9 +205,11 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 							":unitID" => $unitID
 						));
 						
+
 						while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 							
 							if($row['day'] === date("l")){
+								$lectures_today = true;
 								echo"
 							<tr>
 							<td>".$row['unitID']."</td>
@@ -215,13 +218,21 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 							<td>".$row['classroom_name']."</td>
 							</tr>
 							";
-							}
+							} 
 							
 						}
+						
+					}
+					if(!$lectures_today){
+						echo "<tr><td colspan=4>You have no lectures today</td></tr>";
+					} else{
+						echo"<button>Submit</button>";
 					}
 					
 					
 					?>
+					
+					</form>
 				</tbody>
 			</table>
 		</section>
