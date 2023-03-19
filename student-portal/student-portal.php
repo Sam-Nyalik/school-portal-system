@@ -50,6 +50,11 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 
 
 }
+
+if(isset($_POST["attendance"]) && isset($_POST["attendanceDate"])) {
+	
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -194,7 +199,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 				<tbody id="lectures-table">
 					<form>
 					<?php 
-					$lectures_today = false;
+					//$lectures_today = false;
 					foreach($unitIDs as $unitID){
 						$sql = "SELECT UNITS.* , LECTURE.* , CLASSROOM.*
 								FROM LECTURE
@@ -209,9 +214,9 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 
 						while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 							
-							if($row['day'] === date("l")){
-								$lectures_today = true;
-								echo"
+							/* if($row['day'] === date("l")){
+								$lectures_today = true;*/
+								echo" 
 							<tr>
 							<td>".$row['unitID']."</td>
 							<td>".$row['title']."</td>
@@ -224,7 +229,8 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 							</div>
 							<div>
 							<label for='didnt-attend'>No</label>
-							<input type='radio' value=0 id='didnt-attend' name='attendance' />
+							<input type='radio' value=0 id='didnt-attend' name='attendance' checked />
+							<input type='hidden' value =".date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']))." name='attendanceDate'/>
 							</div>
 							</td>
 							</tr>
@@ -233,12 +239,12 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 							
 						}
 						
-					}
-					if(!$lectures_today){
+					
+					/*if(!$lectures_today){
 						echo "<tr><td colspan=5>You have no lectures today</td></tr>";
-					} else{
-						echo"<button>Submit</button>";
-					}
+					} else{ */
+						echo"<tr><td colspan=5><button>Submit</button></td></tr>";
+					//}
 					
 					
 					?>
