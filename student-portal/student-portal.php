@@ -186,27 +186,34 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 					<tr>
 						<th>Unit Code</th>
 						<th>Unit Title</th>
-						<th>Year</th>
-						<th>Grade</th>
+						<th>Day</th>
+						<th>Time</th>
+						<th>Room Name</th>
 					</tr>
 				</thead>
 				<tbody id="lectures-table">
 					<?php 
 					
 					foreach($unitIDs as $unitID){
-						$sql = "SELECT * FROM LECTURE WHERE UNITID = :unitID";
+						$sql = "SELECT UNITS.* , LECTURE.* , CLASSROOM.*
+								FROM LECTURE
+								INNER JOIN UNITS ON UNITS.UNITID = LECTURE.UNITID 
+								INNER JOIN CLASSROOM ON CLASSROOM.CLASSROOMID = LECTURE.CLASSROOMID
+								WHERE LECTURE.UNITID = :unitID";
 						$stmt = $pdo->prepare($sql);
 						$stmt->execute(array(
-							"unitID" => $unitID
+							":unitID" => $unitID
 						));
 						
 						while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 							echo"
 							<tr>
+							<td>".$row['unitID']."</td>
+							<td>".$row['title']."</td>
 							<td>".$row['day']."</td>
 							<td>".$row['time']."</td>
-							<td>".$row['unitID']."</td>
-							<td>".$row['classroomID']."</td>
+							
+							<td>".$row['classroom_name']."</td>
 							</tr>
 							";
 						}
