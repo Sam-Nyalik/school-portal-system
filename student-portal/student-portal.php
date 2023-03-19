@@ -188,6 +188,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 						<th>Unit Title</th>
 						<th>Date</th>						
 						<th>Room Name</th>
+						<th>Attended</th>
 					</tr>
 				</thead>
 				<tbody id="lectures-table">
@@ -216,6 +217,16 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 							<td>".$row['title']."</td>
 							<td>".date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']))."</td>							
 							<td>".$row['classroom_name']."</td>
+							<td>
+							<div>
+							<label for='attended' >Yes</label>
+							<input type='radio' value=1 id='attended' name='attendance' />
+							</div>
+							<div>
+							<label for='didnt-attend'>No</label>
+							<input type='radio' value=0 id='didnt-attend' name='attendance' />
+							</div>
+							</td>
 							</tr>
 							";
 							} 
@@ -224,7 +235,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 						
 					}
 					if(!$lectures_today){
-						echo "<tr><td colspan=4>You have no lectures today</td></tr>";
+						echo "<tr><td colspan=5>You have no lectures today</td></tr>";
 					} else{
 						echo"<button>Submit</button>";
 					}
