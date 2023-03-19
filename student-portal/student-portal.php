@@ -180,7 +180,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 			?>
 		</section>
 		<section id="student-attendance">
-			<h2>Upcoming Lectures</h2>
+			<h2>Today's Lectures</h2>
 			<table>
 				<thead>
 					<tr>
@@ -205,7 +205,9 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 						));
 						
 						while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-							echo"
+							
+							if($row['day'] === date("l")){
+								echo"
 							<tr>
 							<td>".$row['unitID']."</td>
 							<td>".$row['title']."</td>
@@ -213,6 +215,8 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 							<td>".$row['classroom_name']."</td>
 							</tr>
 							";
+							}
+							
 						}
 					}
 					
