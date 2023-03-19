@@ -186,8 +186,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 					<tr>
 						<th>Unit Code</th>
 						<th>Unit Title</th>
-						<th>Day</th>
-						<th>Time</th>
+						<th>Date</th>						
 						<th>Room Name</th>
 					</tr>
 				</thead>
@@ -210,9 +209,7 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 							<tr>
 							<td>".$row['unitID']."</td>
 							<td>".$row['title']."</td>
-							<td>".$row['day']."</td>
-							<td>".$row['time']."</td>
-							
+							<td>".date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']))."</td>							
 							<td>".$row['classroom_name']."</td>
 							</tr>
 							";
