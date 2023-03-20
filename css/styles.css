@@ -13,10 +13,33 @@
     background-color: #000;
 }
 
+.container .login_link a:hover {
+    text-decoration: none;
+}
+
 .navbar .navbar_brand {
     font-size: 80px;
 }
 
+/* Homepage Navbar */
+.navbar .container-fluid .navbar-brand {
+    font-size: 35px;
+    font-weight: bold;
+    color: #000;
+}
+
+.navbar .container-fluid .navbar-nav .nav-item a{
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.navbar .container-fluid .navbar-nav .nav-item a:hover {
+    border-bottom: 2px solid blue;
+    border-radius: 3px;
+}
+
+/* Carousel Section */
 #carouselIndicator .carousel-inner .carousel-item img {
     height: 530px;
     filter: brightness(50%);
@@ -30,5 +53,58 @@
 
 #carouselIndicator .carousel-inner .carousel-item .carousel-caption p {
     font-weight: 200;
+}
+
+/* Subsection 1 */
+#subsection1 {
+    margin-top: 60px;
+    margin-bottom: 80px;
+}
+
+#subsection1 .col-md-4 {
+    border: 1px solid #000;
+    padding: 60px;
+}
+
+#subsection1 .col-md-4 .subsection {
+    text-align: center;
+}
+
+#subsection1 .col-md-4 .subsection h1 {
+    font-weight: bold;
+}
+
+#subsection1 .col-md-4 .subsection p {
+    font-weight: lighter;
+    font-size: 13px;
+}
+
+/* Subsection-2 */
+#subsection2 {
+    margin-bottom: 80px;
+}
+
+#subsection2 .col-md-6:nth-child(1) .subsection a {
+    border: 1px solid #000;
+    background: #000;
+    padding: 15px 20px;
+    float: right;
+    color: #fff;
+    text-decoration: none;
+
+}
+
+#subsection2 .col-md-6:nth-child(2) .subsection a {
+        border: 1px solid #000;
+        background: #000;
+        padding: 15px 20px;
+        float: right;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 200;
+}
+
+#subsection2 .col-md-6:nth-child(2) .subsection img{
+    height: 500px;
 }
 
