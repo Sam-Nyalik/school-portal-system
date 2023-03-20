@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2023 at 07:14 PM
+-- Generation Time: Mar 20, 2023 at 11:47 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -31,8 +31,18 @@ CREATE TABLE `attended_lecture` (
   `attendanceID` int(11) NOT NULL,
   `studentID` int(11) NOT NULL,
   `attended` tinyint(1) NOT NULL,
-  `lectureID` int(11) NOT NULL
+  `lectureID` int(11) NOT NULL,
+  `lectureDate` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `attended_lecture`
+--
+
+INSERT INTO `attended_lecture` (`attendanceID`, `studentID`, `attended`, `lectureID`, `lectureDate`) VALUES
+(2, 17, 1, 4, 'Thu'),
+(3, 17, 1, 4, 'Thu'),
+(4, 17, 0, 4, 'Thu Mar 23 8:00');
 
 -- --------------------------------------------------------
 
@@ -41,9 +51,25 @@ CREATE TABLE `attended_lecture` (
 --
 
 CREATE TABLE `classroom` (
-  `classroomID` int(11) NOT NULL,
-  `room_name` varchar(10) NOT NULL
+  `classroomID` varchar(10) NOT NULL,
+  `classroom_name` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `classroom`
+--
+
+INSERT INTO `classroom` (`classroomID`, `classroom_name`) VALUES
+('CR101', '	CR101'),
+('GC401', '	GC401'),
+('LC201', '	LC201'),
+('LR202', '	LR202'),
+('LT001', '	LT001'),
+('PC101', '	PC101'),
+('RM303', '	RM303'),
+('SC001', '	SC001'),
+('SM205', '	SM205'),
+('TC102', '	TC102');
 
 -- --------------------------------------------------------
 
@@ -108,11 +134,62 @@ INSERT INTO `department` (`departmentID`, `department_name`) VALUES
 
 CREATE TABLE `lecture` (
   `lectureID` int(11) NOT NULL,
-  `lecturerID` int(11) NOT NULL,
-  `datetime` datetime NOT NULL,
-  `classroomID` int(11) NOT NULL,
+  `day` varchar(20) NOT NULL,
+  `time` time NOT NULL,
+  `classroomID` varchar(10) NOT NULL,
   `unitID` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `lecture`
+--
+
+INSERT INTO `lecture` (`lectureID`, `day`, `time`, `classroomID`, `unitID`) VALUES
+(1, 'Monday', '08:00:00', 'CR101', '1'),
+(2, 'Tuesday', '08:00:00', 'CR101', '2'),
+(3, 'Wednesday', '08:00:00', 'CR101', '3'),
+(4, 'Thursday', '08:00:00', 'CR101', '4'),
+(5, 'Friday', '08:00:00', 'CR101', '5'),
+(6, ' Monday', '11:00:00', 'LR202', '6'),
+(7, 'Tuesday', '11:00:00', 'LR202', '7'),
+(8, 'Wednesday', '11:00:00', 'LR202', '8'),
+(9, 'Thursday', '11:00:00', 'LR202', '9'),
+(10, 'Friday', '11:00:00', 'LR202', '10'),
+(11, 'Monday', '14:00:00', 'LT001', '11'),
+(12, 'Tuesday', '14:00:00', 'LT001', '12'),
+(13, 'Wednesday', '14:00:00', 'LT001', '13'),
+(14, 'Thursday', '14:00:00', 'LT001', '14'),
+(15, 'Friday', '14:00:00', 'LT001', '15'),
+(16, 'Monday', '08:00:00', 'RM303', '16'),
+(17, 'Tuesday', '08:00:00', 'RM303', '17'),
+(18, 'Wednesday', '08:00:00', 'RM303', '18'),
+(19, 'Thursday', '08:00:00', 'RM303', '19'),
+(20, 'Friday', '08:00:00', 'RM303', '20'),
+(21, 'Monday', '11:00:00', 'TC102', '21'),
+(22, 'Tuesday', '11:00:00', 'TC102', '22'),
+(23, 'Wednesday', '11:00:00', 'TC102', '23'),
+(24, 'Thursday', '11:00:00', 'TC102', '24'),
+(25, 'Friday', '11:00:00', 'TC102', '25'),
+(26, 'Monday', '14:00:00', 'PC101', '26'),
+(27, 'Tuesday', '14:00:00', 'PC101', '27'),
+(28, 'Wednesday', '14:00:00', 'PC101', '28'),
+(29, 'Thursday', '14:00:00', 'PC101', '29'),
+(30, 'Friday', '14:00:00', 'PC101', '30'),
+(31, 'Monday', '08:00:00', 'SC001', '31'),
+(32, 'Tuesday', '08:00:00', 'SC001', '32'),
+(33, 'Wednesday', '08:00:00', 'SC001', '33'),
+(34, 'Monday', '08:00:00', 'SC001', '34'),
+(35, 'Tuesday', '08:00:00', 'SC001', '35'),
+(36, 'Wednesday', '11:00:00', 'SM205', '36'),
+(37, 'Thursday', '11:00:00', 'SM205', '37'),
+(38, 'Friday', '11:00:00', 'SM205', '38'),
+(39, 'Monday', '11:00:00', 'SM205', '39'),
+(40, 'Tuesday', '11:00:00', 'SM205', '40'),
+(41, 'Wednesday', '14:00:00', 'LC201', '41'),
+(42, '	Thursday', '14:00:00', 'LC201', '42'),
+(43, '	Friday', '14:00:00', 'LC201', '43'),
+(44, '	Monday', '14:00:00', 'LC201', '44'),
+(45, '	Tuesday', '14:00:00', 'LC201', '45');
 
 -- --------------------------------------------------------
 
@@ -351,7 +428,6 @@ ALTER TABLE `department`
 --
 ALTER TABLE `lecture`
   ADD PRIMARY KEY (`lectureID`),
-  ADD KEY `lecturerID` (`lecturerID`),
   ADD KEY `classroomID` (`classroomID`),
   ADD KEY `unitID` (`unitID`);
 
@@ -409,13 +485,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attended_lecture`
 --
 ALTER TABLE `attended_lecture`
-  MODIFY `attendanceID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `classroom`
---
-ALTER TABLE `classroom`
-  MODIFY `classroomID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `attendanceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `course`
@@ -433,7 +503,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `lecture`
 --
 ALTER TABLE `lecture`
-  MODIFY `lectureID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `lectureID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `lecturers`
@@ -486,9 +556,8 @@ ALTER TABLE `course`
 -- Constraints for table `lecture`
 --
 ALTER TABLE `lecture`
-  ADD CONSTRAINT `lecture_ibfk_1` FOREIGN KEY (`lecturerID`) REFERENCES `lecturers` (`lecturerID`),
-  ADD CONSTRAINT `lecture_ibfk_2` FOREIGN KEY (`classroomID`) REFERENCES `classroom` (`classroomID`),
-  ADD CONSTRAINT `lecture_ibfk_3` FOREIGN KEY (`unitID`) REFERENCES `units` (`unitID`);
+  ADD CONSTRAINT `lecture_ibfk_1` FOREIGN KEY (`classroomID`) REFERENCES `classroom` (`classroomID`),
+  ADD CONSTRAINT `lecture_ibfk_2` FOREIGN KEY (`unitID`) REFERENCES `units` (`unitID`);
 
 --
 -- Constraints for table `lecturers`
