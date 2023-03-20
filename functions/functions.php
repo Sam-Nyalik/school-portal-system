@@ -28,6 +28,7 @@ function header_template($page_title)
         <link rel=\"stylesheet\" href=\"css/styles.css\">
         <link rel=\"stylesheet\" href=\"css/bootstrap.min.css\">
         <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">
+        <link rel=\"stylesheet\" type=\"text/css\" href=\"about-us/about-contact-us.css\">
         <script src=\"registration.js\" defer></script>
     ";
     
