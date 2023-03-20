@@ -1,11 +1,18 @@
 <?php
 include_once("../pdo.php");
 
+// student_row will store data on the current student, and is populated when the page is opened intially
 $student_row = array();
+
+// the student's ID will be stored in $id
 $id = $_GET['id'];
+
+// the student's units' IDs are stored in the $unitIDs and this is populated when the student's units are rendered
 $unitIDs = array();
 
+// $_GET['id'] is set when the page is rendered after redirection from login. This is the student's userID 
 if (isset($_GET["id"])) {
+	// to retrieve complete student data, an SQL join on the course, students and users table is used
 	try {
 		$sql = "SELECT USERS.*,STUDENTS.* , COURSE.*
 				FROM USERS 
@@ -18,6 +25,7 @@ if (isset($_GET["id"])) {
 				":userID" => $_GET["id"]
 			)
 		);
+		// this data is stored in $students_row, a global variable
 		$student_row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 	} catch (Exception $e) {
@@ -26,11 +34,14 @@ if (isset($_GET["id"])) {
 
 }
 
+// the following condition is true when the student registers their units
 if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 
+	// $_POST['unitID'] is serialized before the registration form is submitted, 
+	// therefore it must be unserialized before it can be used
 	$unitIDs = unserialize($_POST['unitID']);
 
-
+	// the unitIDs are looped through, and for each ID, the unit_registration table is populated 
 	foreach ($unitIDs as $unitID) {
 		try {
 			$sql = "INSERT INTO UNIT_REGISTRATION (studentID , unitID) VALUES (:studentID , :unitID)";
@@ -47,11 +58,12 @@ if (isset($_POST['studentID']) && isset($_POST['unitID'])) {
 			echo "Error". $e->getMessage();
 		}
 	}
-
-
 }
 
+// this condition is true when the student registers their attendance
 if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["lectureID"])) {
+
+	// the attended_lecture table is populated
 	try{
 		$sql = "INSERT INTO ATTENDED_LECTURE (studentID, attended, lectureID, lectureDate) 
 				VALUES(:studentID, :attended, :lectureID, :lectureDate)";
@@ -94,6 +106,7 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 	<main>
 		<section id="personal-info">
 			<h2>Personal Information</h2>
+			<!-- student data is populated from the students_row array-->
 			<p>Name: <span id="name">
 					<?= $student_row['first_name'] . " " . $student_row['last_name'] ?>
 				</span></p>
@@ -116,25 +129,31 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 		<section id="units">
 			<h2>Units</h2>
 			<?php
+
+			// to retrieve and display the student's units, a check is made for whether the student's 
+			// units appear in the unit_registration table along with that student's studentID
 			$sql = "SELECT UNITS.*, UNIT_REGISTRATION.*, LECTURERS.*, USERS.*
 						FROM UNIT_REGISTRATION
 						INNER JOIN UNITS ON UNITS.UNITID = UNIT_REGISTRATION.UNITID					
 						INNER JOIN LECTURERS ON LECTURERS.LECTURERID = UNITS.LECTURERID
 						INNER JOIN USERS ON USERS.USERID = LECTURERS.USERID
-						WHERE UNIT_REGISTRATION.STUDENTID = :USERID";
+						WHERE UNIT_REGISTRATION.STUDENTID = :STUDENTID";
 			$stmt = $pdo->prepare($sql);
 			$stmt->execute(
 				array(
-					":USERID" => $student_row["studentID"]
+					":STUDENTID" => $student_row["studentID"]
 
 				)
 			);
 			$registration_row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-			
+			// if $registration_row is empty, the student hasn't registered for any units
 			if (!$registration_row) {
 				echo "<div>You aren't registered in any units</div>";
 				echo "<h4>Eligible Units</h4>";
+
+				// since the student hasn't registered for any units, we render any units they might be
+				// eligible for using their courseID and year of study
 				$sql = "SELECT * FROM UNITS WHERE COURSEID = :COURSEID AND YEAR = :YEAR";
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute(
@@ -155,13 +174,13 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 														
 							</tr>
 							<input type='hidden' value='" . $student_row['studentID'] . "' name='studentID' />";
-					while ($units_row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+					 do {
 						array_push($unitIDs, $units_row['unitID']);
 						echo ("<tr>							
 							<td>" . $units_row['unitID'] . "</td>
 							<td>" . $units_row['title'] . "</td>					
 						</tr>");
-					}
+					} while ($units_row = $stmt->fetch(PDO::FETCH_ASSOC));
 					$unitIDs = serialize($unitIDs);
 					echo "
 					<input type= 'hidden' value='" . $unitIDs . "' name='unitID'/>
@@ -214,50 +233,60 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 					<form action="#" method="post"> 
 					<?php 
 					$lectures_today = false;
-					foreach($unitIDs as $unitID){
-						$sql = "SELECT UNITS.* , LECTURE.* , CLASSROOM.*
-								FROM LECTURE
-								INNER JOIN UNITS ON UNITS.UNITID = LECTURE.UNITID 
-								INNER JOIN CLASSROOM ON CLASSROOM.CLASSROOMID = LECTURE.CLASSROOMID
-								WHERE LECTURE.UNITID = :unitID";
-						$stmt = $pdo->prepare($sql);
-						$stmt->execute(array(
-							":unitID" => $unitID
-						));
-						
-
-						while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-							
-							 if($row['day'] === date("l")){
-								$lectures_today = true;
-							$lectureDate = date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']));
-							
-							echo" 
-							<tr>
-							<td>".$row['unitID']."</td>
-							<td>".$row['title']."</td>
-							<td>".$lectureDate."</td>							
-							<td>".$row['classroom_name']."</td>
-							<td>
-							<div>
-							<label for='attended' >Yes</label>
-							<input type='radio' value=1 id='attended' name='attendance' />
-							</div>
-							<div>
-							<label for='didnt-attend'>No</label>
-							<input type='radio' value=0 id='didnt-attend' name='attendance' checked />
-							<input type='hidden' value ='".$lectureDate."' name='lectureDate'/>
-							<input type='hidden' value =".$row['lectureID']." name='lectureID'/>
-							</div>
-							</td>
-							</tr>
-							";
-							} 
-							
-						}
-						
 					
-					}if(!$lectures_today){
+					if(!empty($unitIDs)){
+						foreach((array) $unitIDs as $unitID){
+							$sql = "SELECT UNITS.* , LECTURE.* , CLASSROOM.*
+									FROM LECTURE
+									INNER JOIN UNITS ON UNITS.UNITID = LECTURE.UNITID 
+									INNER JOIN CLASSROOM ON CLASSROOM.CLASSROOMID = LECTURE.CLASSROOMID
+									WHERE LECTURE.UNITID = :unitID";
+							$stmt = $pdo->prepare($sql);
+							$stmt->execute(array(
+								":unitID" => $unitID
+							));
+							
+							
+	
+							while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+								
+								 if($row['day'] === date("l")){
+									$lectures_today = true;
+								$lectureDate = date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']));
+								
+								echo" 
+								<tr>
+								<td>".$row['unitID']."</td>
+								<td>".$row['title']."</td>
+								<td>".$lectureDate."</td>							
+								<td>".$row['classroom_name']."</td>
+								<td>
+								<div>
+								<label for='attended' >Yes</label>
+								<input type='radio' value=1 id='attended' name='attendance' />
+								</div>
+								<div>
+								<label for='didnt-attend'>No</label>
+								<input type='radio' value=0 id='didnt-attend' name='attendance' checked />
+								<input type='hidden' value ='".$lectureDate."' name='lectureDate'/>
+								<input type='hidden' value =".$row['lectureID']." name='lectureID'/>
+								</div>
+								</td>
+								</tr>
+								";
+								} 
+								
+							}
+							
+						
+						}
+					} else{
+						$lectures_today = false;
+					}
+					
+					
+					
+					if(!$lectures_today){
 						echo "<tr><td colspan=5>You have no lectures today</td></tr>";
 					} else{ 
 						echo"<tr><td colspan=5><button>Submit</button></td></tr>";
