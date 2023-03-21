@@ -2,6 +2,7 @@
 include_once("../pdo.php");
 
 $lecturer_row = array();
+$student_count = array();
 
 if (isset($_GET["id"])) {
 	try{
@@ -100,6 +101,7 @@ if (isset($_GET["id"])) {
 					$units_row = $stmt->fetch(PDO::FETCH_ASSOC);
 					
 					if($units_row){
+						$student_count[$units_row['unitID']] = $units_row['registration_count'];
 						do{
 							echo(
 								"<tr>
@@ -122,7 +124,7 @@ if (isset($_GET["id"])) {
 			<h2><u>Attendance</u></h2>
 			<p>Select a lecture to view attendance:</p>
 			<form action="#" method="post">
-			<select id="lectureSelect">
+			<select id="lectureSelect" name="attendance">
 				<?php 
 				$sql = "SELECT UNITS.*, LECTURE.*
 						FROM LECTURE
@@ -135,17 +137,22 @@ if (isset($_GET["id"])) {
 				));
 				
 				while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-					echo("<option>".$row['title']."</option>");
-				}
-				
+					echo("<option value='".$row['lectureID']."'>".$row['title']."</option>");
+				}	
 				
 				
 				?>
 			</select>
+			<?php 
+				$student_count_serialized = serialize($student_count);
+				echo("<input type='hidden' value='".$student_count_serialized."' name='studentCount' />")
+			?>
 			<button id="viewAttendanceButton">View Attendance</button>
 			</form>
 			
-			<div id="attendanceTable"></div>
+			<div id="attendanceTable">
+				
+			</div>
 		</section>
 	</form>
 </section>
