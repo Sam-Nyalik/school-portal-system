@@ -105,4 +105,12 @@ footer {
   padding: 20px;
   text-align: center;
 }
+
+.attendance-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 50px;
+}
   

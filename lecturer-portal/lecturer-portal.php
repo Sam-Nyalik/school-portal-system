@@ -133,7 +133,7 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 		<section  id="Attendance">
 			<h2><u>Attendance</u></h2>
 			<p>Select a lecture to view attendance:</p>
-			<form action="#" method="post">
+			<form action="#Attendance" method="post">
 			<select id="lectureSelect" name="attendance">
 				<?php 
 				$sql = "SELECT UNITS.*, LECTURE.*
@@ -180,7 +180,16 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 						echo "<h3>".$row['title']."</h3>
 							  <div>No students are registered in this unit</div>";
 					} else{
-
+						echo "<div class='attendance-container'>";
+						echo 
+						"<div>
+						<h4>Students who attended</h4>
+						</div>";
+						echo 
+						"<div>
+						<h4>Students who didn't attend</h4>
+						</div>";
+						echo "</div>";
 					}
 				
 				
