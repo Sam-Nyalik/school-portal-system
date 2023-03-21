@@ -50,7 +50,7 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 				<li><a href="#">Home</a></li>
 				<li><a href="#My Units">My Units</a></li>
 				<li><a href="#Attendance">Attendance</a></li>
-				<li><a href="lecturer-profile.html">Profile</a></li>
+				<li><a href="lecturer-profile.php">Profile</a></li>
 				<li><a href="#">Logout</a></li>
 			</ul>
 		</nav>
