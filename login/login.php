@@ -13,21 +13,29 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             ":email" => $_POST['email']
         ));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $password_verification = password_verify($_POST['password'] , $row['password']);
+        
 
-        if($row && $password_verification){
-            $id = $row['userID'];
-            $welcomeMessage = "Welcome " .$row['first_name'];
-            if($row["roleID"] === "1"){
-               
-                header("Location: ../admin-portal/admin-portal.php?id=$id");
-            } elseif($row["roleID"] === "2"){
-                                
-                header("Location: ../student-portal/student-portal.php?id=$id");
-               
-            } elseif($row["roleID"] === "3"){                
-                header("Location: ../lecturer-portal/lecturer-portal.php?id=$id");
+        if($row){
+            $password_verification = password_verify($_POST['password'] , $row['password']);
+            
+            if($password_verification){
+                $id = $row['userID'];
+                $welcomeMessage = "Welcome " .$row['first_name'];
+                if($row["roleID"] === "1"){
+                
+                    header("Location: ../admin-portal/admin-portal.php?id=$id");
+                } elseif($row["roleID"] === "2"){
+                                    
+                    header("Location: ../student-portal/student-portal.php?id=$id");
+                
+                } elseif($row["roleID"] === "3"){                
+                    header("Location: ../lecturer-portal/lecturer-portal.php?id=$id");
+                }
+            } else {
+                $successfulLogin = false;
+                $welcomeMessage = "";
             }
+            
 
         } else {
             $successfulLogin = false;
@@ -82,7 +90,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             </form>
             <?php
             echo"<form class='forgot-password-form' action='forgotPassword.php' method='post'>";
-            //echo('<input type="hidden" value="'.$row['userID'].'" name="userID"/>');
             echo"    <input class='forgot-password-btn' type='submit' value='Forgot password?'/>
             </form>"
 
