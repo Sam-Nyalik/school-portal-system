@@ -3,6 +3,7 @@ include_once("../pdo.php");
 
 $lecturer_row = array();
 $student_count = array();
+$attendance_lectureid = "";
 
 if (isset($_GET["id"])) {
 	try{
@@ -22,6 +23,14 @@ if (isset($_GET["id"])) {
 	}
 	
 }
+
+if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
+					
+	$student_count = unserialize($_POST['studentCount']);
+	$attendance_lectureid = $_POST['attendance'];
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +110,7 @@ if (isset($_GET["id"])) {
 					$units_row = $stmt->fetch(PDO::FETCH_ASSOC);
 					
 					if($units_row){
-						$student_count[$units_row['unitID']] = $units_row['registration_count'];
+						
 						do{
 							echo(
 								"<tr>
@@ -111,6 +120,7 @@ if (isset($_GET["id"])) {
 									<td>".$units_row['registration_count']."</td>
 								</tr>"
 							);
+							$student_count[$units_row['unitID']] = $units_row['registration_count'];
 						}while($units_row = $stmt->fetch(PDO::FETCH_ASSOC));
 					}else{
 						echo "<tr><td colspan=4>You have no units to teach currently</td></tr>";
@@ -151,7 +161,26 @@ if (isset($_GET["id"])) {
 			</form>
 			
 			<div id="attendanceTable">
+				<?php 
+				if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
+					$sql = "SELECT * FROM LECTURE WHERE LECTUREID = :lectureID";
+					$stmt = $pdo->prepare($sql);
+					$stmt->execute(array(
+						":lectureID" => $attendance_lectureid
+					));
+
+					$row = $stmt->fetch(PDO::FETCH_ASSOC);
+					$unit_student_count = $student_count[$row['unitID']];
+					
+					if($unit_student_count === "0"){
+						echo "<div>No students are registered in this unit</div>";
+					}
 				
+				
+				}
+				
+				
+				?>
 			</div>
 		</section>
 	</form>
