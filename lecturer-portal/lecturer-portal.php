@@ -161,9 +161,13 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 			</form>
 			
 			<div id="attendanceTable">
+				
 				<?php 
 				if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
-					$sql = "SELECT * FROM LECTURE WHERE LECTUREID = :lectureID";
+					$sql = "SELECT UNITS.* , LECTURE.* 
+							FROM LECTURE 
+							INNER JOIN UNITS ON UNITS.UNITID = LECTURE.UNITID
+							WHERE LECTURE.LECTUREID = :lectureID";
 					$stmt = $pdo->prepare($sql);
 					$stmt->execute(array(
 						":lectureID" => $attendance_lectureid
@@ -173,7 +177,10 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 					$unit_student_count = $student_count[$row['unitID']];
 					
 					if($unit_student_count === "0"){
-						echo "<div>No students are registered in this unit</div>";
+						echo "<h3>".$row['title']."</h3>
+							  <div>No students are registered in this unit</div>";
+					} else{
+
 					}
 				
 				
