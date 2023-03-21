@@ -1,6 +1,7 @@
 <?php
 include_once("../pdo.php");
 
+$lec_id = $_GET['id'];
 $lecturer_row = array();
 $student_count = array();
 $attendance_lectureid = "";
@@ -81,6 +82,14 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 				<tr>
 					<th>Department:</th>
 					<td><?= $lecturer_row["department_name"] ?></td>
+				</tr>
+				<tr>
+					<form action="lecturer-profile.php" method='post'>
+						<?php
+						echo" <input type='hidden' value='".$lec_id."' />";
+						?>
+						<button>Edit Profile</button>
+					</form>
 				</tr>
 			</table>
 		</section>
