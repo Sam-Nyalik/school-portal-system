@@ -97,7 +97,7 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 		<nav>
 			<ul>
 				<li><a href="#">Home</a></li>
-				<li><a href="#">Units</a></li>
+				<li><a href="#units">Units</a></li>
 				<li><a href="#">Profile</a></li>
 				<li><a href="#">Logout</a></li>
 			</ul>
