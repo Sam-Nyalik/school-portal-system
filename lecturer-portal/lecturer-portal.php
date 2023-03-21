@@ -225,9 +225,11 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 							}
 						}
 
+						echo "<div class='attendance-section'>";
+						echo "<h3>".$row['title']."</h3>";
 						echo "<div class='attendance-container'>";
 						echo 
-						"<div>
+						"<div >
 						<h4>Students who attended</h4>";
 						foreach($present_students as $student){
 							echo "<div>".$student."</div>";
@@ -240,8 +242,8 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 						}
 						echo "</div>";
 						echo "</div>";
-					}
-				
+						echo "</div>";
+					}				
 				
 				}
 				
