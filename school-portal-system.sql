@@ -76,7 +76,14 @@ CREATE TABLE attended_lecture (
     studentID INTEGER NOT NULL,
     attended BOOLEAN NOT NULL,
     lectureID INTEGER NOT NULL,
-    lectureDate varchar(50) not null
+    lectureDate VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE customer_contacts (
+    contactID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    message TEXT NOT NULL
 );
 
 alter table students add foreign key (userID) references users(userID);
