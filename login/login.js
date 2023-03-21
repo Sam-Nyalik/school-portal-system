@@ -35,8 +35,8 @@ password.addEventListener("input" , ()=> {
     }
 })
 
-form.addEventListener("submit", (event) => {
-    if(!password.validity.valid && !email.validity.valid){
+form.addEventListener("submit", event => {
+    if(!password.validity.valid || !email.validity.valid){
         if(!password.validity.valid) {
             displayError(password)
         }

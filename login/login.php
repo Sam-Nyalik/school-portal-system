@@ -59,7 +59,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     <main class="login-main">
         <h1>Login Page</h1>
         <form method="post" class="login-form" action="login.php" novalidate>
-            <span class="invalid-login">
+            <span class="invalid-login error">
                 <?php
                 
                 $successfulLogin ? print($welcomeMessage) : print($loginErrorMessage);
