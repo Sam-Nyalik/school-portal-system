@@ -1,7 +1,7 @@
 <?php
 include_once("../pdo.php");
 
-$row = array();
+$lecturer_row = array();
 
 if (isset($_GET["id"])) {
 	try{
@@ -14,7 +14,7 @@ if (isset($_GET["id"])) {
 		$stmt->execute(array(
 			":userID" => $_GET["id"]
 		));
-		$row=$stmt->fetch(PDO::FETCH_ASSOC);
+		$lecturer_row=$stmt->fetch(PDO::FETCH_ASSOC);
 		
 	} catch(Exception $e){
 		echo "Can't find value, try again<br>" .$e->getMessage();
@@ -50,27 +50,27 @@ if (isset($_GET["id"])) {
 			<table>
 				<tr>
 					<th>First Name:</th>
-					<td><?= $row["first_name"] ?></td>
+					<td><?= $lecturer_row["first_name"] ?></td>
 				</tr>
 				<tr>
 					<th>Last Name:</th>
-					<td><?= $row["last_name"] ?></td>
+					<td><?= $lecturer_row["last_name"] ?></td>
 				</tr>
 				<tr>
 					<th>Email:</th>
-					<td><?= $row["email"] ?></td>
+					<td><?= $lecturer_row["email"] ?></td>
 				</tr>
 				<tr>
 					<th>Phone:</th>
-					<td><?= "+254".$row["phone_number"] ?></td>
+					<td><?= "+254".$lecturer_row["phone_number"] ?></td>
 				</tr>
 				<tr>
 					<th>Gender:</th>
-					<td><?= ucfirst($row["gender"]) ?></td>
+					<td><?= ucfirst($lecturer_row["gender"]) ?></td>
 				</tr>
 				<tr>
 					<th>Department:</th>
-					<td><?= $row["department_name"] ?></td>
+					<td><?= $lecturer_row["department_name"] ?></td>
 				</tr>
 			</table>
 		</section>
@@ -95,7 +95,7 @@ if (isset($_GET["id"])) {
 
 					$stmt= $pdo->prepare($sql);
 					$stmt->execute(array(
-						":lecturerID" => $row['lecturerID']
+						":lecturerID" => $lecturer_row['lecturerID']
 					));
 					$units_row = $stmt->fetch(PDO::FETCH_ASSOC);
 					
@@ -121,12 +121,30 @@ if (isset($_GET["id"])) {
 		<section>
 			<h2><u>Attendance</u></h2>
 			<p>Select a lecture to view attendance:</p>
+			<form action="#" method="post">
 			<select id="lectureSelect">
-				<option value="1">CSCI101 - Introduction to Computer Science (1)</option>
-				<option value="2">CSCI202 - Data Structures and Algorithms (2)</option>
-				<option value="3">CSCI303 - Advanced Topics in Computer Science (3)</option>
+				<?php 
+				$sql = "SELECT UNITS.*, LECTURE.*
+						FROM LECTURE
+						INNER JOIN UNITS ON UNITS.UNITID = LECTURE.UNITID
+						WHERE UNITS.LECTURERID = :lecturerID
+						";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(array(
+					":lecturerID" => $lecturer_row['lecturerID']
+				));
+				
+				while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+					echo("<option>".$row['title']."</option>");
+				}
+				
+				
+				
+				?>
 			</select>
 			<button id="viewAttendanceButton">View Attendance</button>
+			</form>
+			
 			<div id="attendanceTable"></div>
 		</section>
 	</form>
