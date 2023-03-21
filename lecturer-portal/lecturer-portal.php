@@ -37,8 +37,8 @@ if (isset($_GET["id"])) {
 		<nav>
 			<ul>
 				<li><a href="#">Home</a></li>
-				<li><a href="#">My Units</a></li>
-				<li><a href="#">Attendance</a></li>
+				<li><a href="#My Units">My Units</a></li>
+				<li><a href="#Attendance">Attendance</a></li>
 				<li><a href="lecturer-profile.html">Profile</a></li>
 				<li><a href="#">Logout</a></li>
 			</ul>
@@ -74,7 +74,7 @@ if (isset($_GET["id"])) {
 				</tr>
 			</table>
 		</section>
-		<section>
+		<section id="My Units">
 			<h2><u>My Units</u></h2>
 			<table>
 				<thead>
@@ -118,7 +118,7 @@ if (isset($_GET["id"])) {
 				</tbody>
 			</table>
 		</section>
-		<section>
+		<section  id="Attendance">
 			<h2><u>Attendance</u></h2>
 			<p>Select a lecture to view attendance:</p>
 			<select id="lectureSelect">
