@@ -180,15 +180,57 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 						echo "<h3>".$row['title']."</h3>
 							  <div>No students are registered in this unit</div>";
 					} else{
+						$sql = "SELECT STUDENTS.* ,  USERS.* , ATTENDED_LECTURE.*
+								FROM ATTENDED_LECTURE
+								INNER JOIN STUDENTS ON STUDENTS.STUDENTID = ATTENDED_LECTURE.STUDENTID 
+								INNER JOIN USERS ON STUDENTS.USERID = USERS.USERID 
+								WHERE ATTENDED = 1 AND LECTUREID = :LECTUREID";
+						
+						$stmt = $pdo->prepare($sql);
+						$stmt->execute(array(
+							":LECTUREID" => $attendance_lectureid
+						));
+
+						$present_students = array();
+						$absent_students = array();
+
+						while($attendance_row = $stmt->fetch(PDO::FETCH_ASSOC)){
+							array_push($present_students, $attendance_row['first_name']." ".$attendance_row['last_name']);
+						}
+
+						$sql = "SELECT UNIT_REGISTRATION.* , LECTURE.*, STUDENTS.*, USERS.*
+								FROM UNIT_REGISTRATION
+								INNER JOIN LECTURE ON LECTURE.UNITID = UNIT_REGISTRATION.UNITID
+								INNER JOIN STUDENTS ON UNIT_REGISTRATION.STUDENTID = STUDENTS.STUDENTID
+								INNER JOIN USERS ON STUDENTS.USERID = USERS.USERID								
+								WHERE LECTURE.LECTUREID = :LECTUREID";
+						
+						$stmt = $pdo->prepare($sql);
+						$stmt->execute(array(
+							":LECTUREID" => $attendance_lectureid
+						));
+
+						while($registered_students = $stmt->fetch(PDO::FETCH_ASSOC)){
+							$student_name = $registered_students['first_name']." ".$registered_students['last_name'];
+							if(!in_array($student_name, $present_students)){
+								array_push($absent_students , $student_name );
+							}
+						}
+
 						echo "<div class='attendance-container'>";
 						echo 
 						"<div>
-						<h4>Students who attended</h4>
-						</div>";
-						echo 
-						"<div>
-						<h4>Students who didn't attend</h4>
-						</div>";
+						<h4>Students who attended</h4>";
+						foreach($present_students as $student){
+							echo "<div>".$student."</div>";
+						}
+						echo"</div>						 
+						<div>
+						<h4>Students who didn't attend</h4>";
+						foreach($absent_students as $student){
+							echo "<div>".$student."</div>";
+						}
+						echo "</div>";
 						echo "</div>";
 					}
 				
