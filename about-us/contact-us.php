@@ -1,3 +1,33 @@
+<?php
+
+// Importing data  =from the functions page
+require_once "../functions/functions.php";
+
+// Database connection
+$pdo = db_connect();
+
+if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message'])){
+  try{
+    $sql = "INSERT INTO CUSTOMER_CONTACTS (name, email,message) VALUES (:name , :email, :message)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(
+      ":name" => $_POST['name'],
+      ":email" => $_POST['email'],
+      ":message" => $_POST['message']
+    ));
+
+  } catch(Exception $e){
+    echo "Error: " . $e->getMessage();
+  }
+
+
+}
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
