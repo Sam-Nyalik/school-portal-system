@@ -1,3 +1,31 @@
+<?php
+include_once("../pdo.php");
+
+
+
+if(isset($_POST['lecID'])){
+    
+    try{
+        $sql = "SELECT LECTURERS.* , USERS.*
+                FROM USERS 
+                INNER JOIN LECTURERS ON LECTURERS.USERID = USERS.USERID
+                WHERE USERS.USERID = :userID";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            ":userID" => $_POST['lecID']
+        ));
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+    }catch(Exception $e){
+
+    }
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,19 +40,21 @@
     <h1>Profile</h1>
     <nav>
         <ul>
-                       <li><a href="lecturer-portal.php">Dashboard</a></li>
+            <li><a href="lecturer-portal.php">Dashboard</a></li>
         </ul>
     </nav>
 </header>
 <br>
 <section>
-    <form>
-        <label for="name-input">Name:</label>
-        <input type="text" id="name-input" name="name" value="John Smith">
+    <form action='#' method='post'>
+        <label for="name-input">First Name:</label>
+        <input type="text" id="name-input" name="firstName" value=<?= $row['first_name'] ?>>
+        <label for="name-input">Last Name:</label>
+        <input type="text" id="name-input" name="lastName" value=<?= $row['last_name'] ?>>
         <label for="email-input">Email:</label>
-        <input type="email" id="email-input" name="email" value="jsmith@university.edu">
+        <input type="email" id="email-input" name="email" value=<?= $row['email'] ?>>
         <label for="phone-input">Phone:</label>
-        <input type="tel" id="phone-input" name="phone" value="123-456-7890">
+        <input type="tel" id="phone-input" name="phone" value=<?= $row['phone_number'] ?>>
         <label for="department-input">Department:</label>
         <input type="text" id="department-input" name="department" value="Computer Science">
         <label for="office-input">Office:</label>

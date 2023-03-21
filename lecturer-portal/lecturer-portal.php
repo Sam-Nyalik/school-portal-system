@@ -84,12 +84,14 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 					<td><?= $lecturer_row["department_name"] ?></td>
 				</tr>
 				<tr>
+					<td colspan=2>
 					<form action="lecturer-profile.php" method='post'>
 						<?php
-						echo" <input type='hidden' value='".$lec_id."' />";
+						echo" <input type='hidden' value='".$lec_id."' name='lecID'/>";
 						?>
 						<button>Edit Profile</button>
 					</form>
+					</td>
 				</tr>
 			</table>
 		</section>
