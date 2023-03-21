@@ -195,7 +195,15 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 						$absent_students = array();
 
 						while($attendance_row = $stmt->fetch(PDO::FETCH_ASSOC)){
-							array_push($present_students, $attendance_row['first_name']." ".$attendance_row['last_name']);
+							// the lecture date must be within the last week, for the attendance to be valid 
+							$first_day = date("Y-m-d" , strtotime("sunday last week"));
+							$last_day = date("Y-m-d", strtotime("sunday this week"));  
+							$lecture_date = date("Y-m-d",strtotime($attendance_row['lectureDate']));						
+
+							if($lecture_date > $first_day && $lecture_date < $last_day) {
+								array_push($present_students, $attendance_row['first_name']." ".$attendance_row['last_name']);
+							 } 
+							
 						}
 
 						$sql = "SELECT UNIT_REGISTRATION.* , LECTURE.*, STUDENTS.*, USERS.*
