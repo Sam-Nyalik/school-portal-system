@@ -27,7 +27,7 @@ include_once "functions/functions.php";
                         <a class="nav-link" href="about-us/contact-us.php">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="./login/login.php">
                             Logins
                         </a>
                     </li>
