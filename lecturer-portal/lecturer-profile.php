@@ -1,3 +1,51 @@
+<?php
+
+include_once("../pdo.php");
+
+if(isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['lecID'])){
+    try{
+        $sql = "UPDATE USERS
+                SET FIRST_NAME = :firstName, LAST_NAME = :lastName, EMAIL = :email, PHONE_NUMBER = :phone
+                WHERE USERID = :userID";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            ":firstName" => $_POST['firstName'],
+            ":lastName" => $_POST['lastName'],
+            ":email" => $_POST['email'],
+            ":userID" => $_POST['lecID'],
+            ":phone" => $_POST['phone']
+        ));
+
+    }catch(Exception $e){
+
+    }
+}
+
+if(isset($_POST['lecID'])){    
+    
+    try{
+        $sql = "SELECT LECTURERS.* , USERS.*, DEPARTMENT.*
+                FROM USERS 
+                INNER JOIN LECTURERS ON LECTURERS.USERID = USERS.USERID
+                INNER JOIN DEPARTMENT ON DEPARTMENT.DEPARTMENTID = LECTURERS.DEPARTMENTID
+                WHERE USERS.USERID = :userID";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(
+            ":userID" => $_POST['lecID']
+        ));
+        $lecturer_row = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+    }catch(Exception $e){
+
+    }
+}
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $phoneErr = "Invalid phone format";
         }
     }
-
+/*
     if (empty($_POST["department"])) {
         $departmentErr = "department is required";
     } else {
@@ -64,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!preg_match("/^[a-zA-Z-' ]*$/",$department)) {
             $departmentErr = "Only letters and white space allowed";
         }
-    }
+    }*/
 
 
 }
@@ -79,7 +127,7 @@ function test_input($data) {
 
 <br>
 <section>
-    <p><span class="error">* required field</span></p>
+    <!-- <p><span class="error">* required field</span></p>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
     <label for="name-input">Name:</label>
     <input type="text" id="name-input" name="name" value="<?php echo $name;?>">
@@ -94,12 +142,33 @@ function test_input($data) {
     <span class="error">* <?php echo $phoneErr;?></span>
     <br><br>
     <label for="department-input">Department:</label>
-    <input type="text" id="department-input" name="department" value="<?php echo $department;?>">
+    <input type="text" id="department-input" name="department" value="<?php echo $department;?> disabled">
     <span class="error">* <?php echo $departmentErr;?></span>
     <br><br>
 
     <button type="submit">Save Changes</button>
+    </form> -->
+    <form action='#' method='post'>
+        <label for="name-input">First Name:</label>
+        <input type="text" id="name-input" name="firstName" value=<?= $lecturer_row['first_name'] ?>>
+        <span class="error">* <?php echo $nameErr;?></span>
+        <label for="name-input">Last Name:</label>
+        <input type="text" id="name-input" name="lastName" value=<?= $lecturer_row['last_name'] ?>>
+        <span class="error">* <?php echo $nameErr;?></span>
+        <label for="email-input">Email:</label>
+        <input type="email" id="email-input" name="email" value=<?= $lecturer_row['email'] ?>>
+        <span class="error">* <?php echo $emailErr;?></span>
+        <label for="phone-input">Phone:</label>
+        <input type="tel" id="phone-input" name="phone" value=<?= $lecturer_row['phone_number'] ?>>
+        <span class="error">* <?php echo $phoneErr;?></span>
+        <label for="department-input">Department:</label>
+        <input type="text" id="department-input" name="department" value=<?= $lecturer_row['department_name'] ?> disabled>
+        <input type="hidden" value=<?= $_POST['lecID']?> name='lecID'>
+        
+        
+        <button type="submit">Save Changes</button>
     </form>
+
 
 </section>
 <footer>
