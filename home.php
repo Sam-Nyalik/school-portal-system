@@ -24,7 +24,7 @@ include_once "functions/functions.php";
                         <a class="nav-link" href="about-us/about-us.html">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about-us/contact-us.html">Contact Us</a>
+                        <a class="nav-link" href="about-us/contact-us.php">Contact Us</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,21 +53,40 @@ include_once "functions/functions.php";
                 <img src="images/image1.jpg" class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Student Management</h5>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel voluptates nihil enim pariatur hic eum tenetur voluptatibus nam ut necessitatibus.</p>
+                    <p>
+                        The school portal system provides :
+                    </p>
+                    <p>
+                        A centralized platform for students' data and academic records, including enrolment details, class schedules, grades and attendance records. Through the school portal system, administrators can monitor and manage student performance, as well as communicate with students and faculty.
+                    </p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="images/image2.jpg" class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Lecturer Management</h5>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel voluptates nihil enim pariatur hic eum tenetur voluptatibus nam ut necessitatibus.</p>
+                    <p>
+                        The school portal system enables the lecturers as well as the school administration to:
+                    </p>
+                    <p>
+                        1.Monitor grades and attendance tracking: The school portal system enables lecturers as well as administrators to track student grades and attendance, allowing them to identify students who may be struggling and provide necessary support.  <br>
+                    </p>
+                    <p>
+                        2.Resource management: The school portal system enables administrators to manage academic resources such as textbooks, course materials, and other educational resources.
+
+                    </p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="images/image3.jpg" class="d-block w-100">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>See what's new</h5>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel voluptates nihil enim pariatur hic eum tenetur voluptatibus nam ut necessitatibus.</p>
+                    <p>
+                        The school portal system provides :
+                    </p>
+                    <p>
+                        Communication tools: Such as this section page and emails, allowing administrators to communicate easily with students and faculty.
+                    </p>
                 </div>
             </div>
         </div>
@@ -87,20 +106,26 @@ include_once "functions/functions.php";
             <div class="row">
                 <div class="col-md-4">
                     <div class="subsection">
-                        <h1>Title</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nisi suscipit eum similique? Iure, impedit iste corporis atque praesentium alias.</p>
+                        <h1>Academics</h1>
+                        <p>
+                            /"school name"/ is a premier private international university whose mission is to produce authentic leaders and upright members of the Society capable of contributing to sustainable Development to the rest of the world.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="subsection">
-                        <h1>Title</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nisi suscipit eum similique? Iure, impedit iste corporis atque praesentium alias.</p>
+                        <h1>Students</h1>
+                        <p>
+                            Our mission is to promote excellence in research, teaching and community service by preparing morally upright and Outstanding leaders.
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="subsection">
-                        <h1>Title</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore nisi suscipit eum similique? Iure, impedit iste corporis atque praesentium alias.</p>
+                        <h1>Admission Process</h1>
+                        <p>
+                            /"School name"/ accepts qualified applicants from all over the world.The application forms are available for download. Email admissions@schools.edu or Call 008909691000/111
+                        </p>
                     </div>
                 </div>
             </div>
