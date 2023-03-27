@@ -22,8 +22,8 @@
 
 <?php
 // define variables and set to empty values
-$nameErr = $emailErr = $phoneErr = $departmentErr = $officeErr = "";
-$name = $email = $phone  =  $department =$office ="";
+$nameErr = $emailErr = $phoneErr = $departmentErr = "";
+$name = $email = $phone  =  $department ="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
@@ -66,14 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    if (empty($_POST["office"])) {
-        $officeErr = "Office is required";
-    } else {
-        $office = test_input($_POST["office"]);
-        if (!preg_match("/^[a-zA-Z]*$/",$office)) {
-            $officeErr = "Only letters are allowed";
-        }
-    }
+
 }
 
 function test_input($data) {
@@ -104,10 +97,7 @@ function test_input($data) {
     <input type="text" id="department-input" name="department" value="<?php echo $department;?>">
     <span class="error">* <?php echo $departmentErr;?></span>
     <br><br>
-    <label for="office-input">Office:</label>
-    <input type="text" id="office-input" name="office" value="<?php echo $office;?>">
-    <span class="error">* <?php echo $officeErr;?></span>
-    <br><br>
+
     <button type="submit">Save Changes</button>
     </form>
 
