@@ -24,7 +24,7 @@ include_once "functions/functions.php";
                         <a class="nav-link" href="about-us/about-us.html">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about-us/contact-us.html">Contact Us</a>
+                        <a class="nav-link" href="about-us/contact-us.php">Contact Us</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
