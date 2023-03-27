@@ -26,15 +26,10 @@ include_once "functions/functions.php";
                     <li class="nav-item">
                         <a class="nav-link" href="about-us/contact-us.php">Contact Us</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
                             Logins
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="administrator/admin_login.php">Admin</a></li>
-                            <li><a class="dropdown-item" href="lecturer/lecturer_login.php">Lecturer</a></li>
-                            <li><a class="dropdown-item" href="student/student_login.php">Student</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>
