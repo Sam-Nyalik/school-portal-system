@@ -61,13 +61,14 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css">
+    
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="login.css">
     <script src="login.js" defer></script>
     <title>Login Page</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg  login-nav">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Student Portal System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,7 +119,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             </div>
             </form>
             <?php
-            echo"<form class='forgot-password-form' action='forgotPassword.php' method='post'>";
+            echo"<form class='forgot-password-form' action='forgot-password.php' method='post'>";
             echo"    <input class='forgot-password-btn' type='submit' value='Forgot password?'/>
             </form>"
 

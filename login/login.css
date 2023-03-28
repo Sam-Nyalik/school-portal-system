@@ -1,59 +1,78 @@
 body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-.login-form , .forgot-password-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-}
-
-.login-form-item, .forgot-password-form-item {
-    display: flex;
-    flex-direction: column;
-    width: 170px;
+.login-form,
+.forgot-password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 
-input, .login-button, .forgot-password-form-button {
-    align-self: flex-start;
+.login-form-item,
+.forgot-password-form-item {
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+}
+
+input,
+.login-button,
+.forgot-password-form-button {
+  align-self: flex-start;
+}
+
+.login-nav {
+  background-color: #0072c6;
+}
+.navbar-brand,
+#navbarNavDropdown > ul > li:nth-child(1) > a,
+.nav-link {
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: bold;
 }
 
 .error {
-  padding: 0;  
+  padding: 0;
   font-size: 80%;
   /* color: #900; */
   /* background-color: #900; */
-  border-radius: 0 0 5px 5px;  
+  border-radius: 0 0 5px 5px;
   box-sizing: border-box;
-  color:#D92121
-  }
-  
-  .error.active {
-    padding: 0.3em;
-  
-  }
+  color: #d92121;
+}
 
-  .login-email-input, .login-email-input{
-    display: flex;
-  }
+.error.active {
+  padding: 0.3em;
+}
 
-  .login-main , .forgot-password-main {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 100px;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh - 100px;
+.login-email-input,
+.login-email-input {
+  display: flex;
+}
 
-  }
-  .forgot-password-btn {
-    outline: none;
-    border: none;
-    background-color: white;
-  }
+.login-main,
+.forgot-password-main {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 100px;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh - 100px;
+}
+.forgot-password-btn {
+  outline: none;
+  border: none;
+  background-color: white;
+}
 
-  .forgot-password-form {
-    padding-top: 10px;
-  }
+.forgot-password-form {
+  padding-top: 10px;
+}

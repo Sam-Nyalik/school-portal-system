@@ -101,7 +101,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
       <li><a href="admin-portal.php#admin-student-section">Students</a></li>
       <li><a href="admin-portal.php#admin-lecturers-section">Lecturers</a></li>
       <li><a href="#">Registration Form</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="../home.php">Logout</a></li>
     </ul>
   </nav>
     <div class="container">

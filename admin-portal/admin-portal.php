@@ -23,7 +23,7 @@ include_once("../pdo.php");
       <li><a href="#admin-student-section">Students</a></li>
       <li><a href="#admin-lecturers-section">Lecturers</a></li>
       <li><a href="registration.php">Registration Form</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="../home.php">Logout</a></li>
     </ul>
   </nav>
   <main>

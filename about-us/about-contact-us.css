@@ -4,6 +4,7 @@ body {
     font-family: Arial, sans-serif;
     font-size: 16px;
     line-height: 1.5;
+    
   }
   
   header {
@@ -60,7 +61,7 @@ body {
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 0 10px #222;
+    /* box-shadow: 0 0 10px #222; */
   }
   
   .contact-form h2 {
@@ -87,7 +88,7 @@ body {
   .form-group input,
   .form-group textarea {
     display: block;
-    width: 100%;
+    width: 95%;
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
@@ -113,4 +114,11 @@ body {
   
   .btn:hover {
     background-color: #27ae60;
+  }
+
+  .about-us-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
   }
