@@ -85,9 +85,9 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 		<nav>
 			<ul>
 				<li><a href="#">Home</a></li>
-				<li><a href="#">Units</a></li>
+				<li><a href="#units">Units</a></li>
 				<li><a href="#">Profile</a></li>
-				<li><a href="#">Logout</a></li>
+				<li><a href="../home.php">Logout</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -270,7 +270,7 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 				</tbody>
 			</table>
 		</section>
-		<section id="grades">
+		<!--<section id="grades">
 			<h2>Grades</h2>
 			<table>
 				<thead>
@@ -284,7 +284,7 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 				<tbody id="grades-table">
 				</tbody>
 			</table>
-		</section>
+		</section> -->
 	</main>
 	<footer>
 		<p>&copy; Student Portal 2023</p>

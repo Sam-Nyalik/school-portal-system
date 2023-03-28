@@ -14,8 +14,9 @@ header {
 nav {
 	background-color: #333;
 	color: #fff;
-	border-bottom: 1px solid #ddd;
+	
 	padding: 10px;
+	
 }
 
 nav ul {
@@ -24,6 +25,7 @@ nav ul {
 	list-style: none;
 	display: flex;
 	justify-content: center;
+	
 }
 
 nav li {
