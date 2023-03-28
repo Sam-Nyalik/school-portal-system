@@ -167,7 +167,7 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 				$student_count_serialized = serialize($student_count);
 				echo("<input type='hidden' value='".$student_count_serialized."' name='studentCount' />")
 			?>
-			<button id="viewAttendanceButton">View Attendance</button>
+			<button id="viewAttendanceButton" type='submit'>View Attendance</button>
 			</form>
 			
 			<div id="attendanceTable">
