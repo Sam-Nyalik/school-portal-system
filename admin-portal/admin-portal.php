@@ -1,5 +1,64 @@
 <?php
 include_once("../pdo.php");
+
+if(isset($_POST['deleteLec'])){
+  try{
+    $sql = "DELETE FROM LECTURERS          
+            WHERE USERID = :userID";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(
+      ":userID" => $_POST['deleteLec']
+    ));
+    $sql = "DELETE FROM USERS          
+            WHERE USERID = :userID";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(
+      ":userID" => $_POST['deleteLec']
+    ));
+  } catch(Exception $e){
+    echo $e->getMessage();
+  }
+  
+}
+
+if(isset($_POST['deleteStudent'])){
+  try{
+    $sql = "DELETE UNIT_REGISTRATION FROM UNIT_REGISTRATION
+            INNER JOIN STUDENTS ON UNIT_REGISTRATION.STUDENTID = STUDENTS.STUDENTID          
+            INNER JOIN USERS ON USERS.USERID = STUDENTS.USERID
+            WHERE USERS.USERID = :userID";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(
+      ":userID" => $_POST['deleteStudent']
+    ));
+    $sql = "DELETE ATTENDED_LECTURE FROM ATTENDED_LECTURE
+            INNER JOIN STUDENTS ON ATTENDED_LECTURE.STUDENTID = STUDENTS.STUDENTID          
+            INNER JOIN USERS ON USERS.USERID = STUDENTS.USERID
+            WHERE USERS.USERID = :userID";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(
+      ":userID" => $_POST['deleteStudent']
+    ));
+    $sql = "DELETE FROM STUDENTS          
+            WHERE USERID = :userID";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(
+      ":userID" => $_POST['deleteStudent']
+    ));
+    $sql = "DELETE FROM USERS          
+            WHERE USERID = :userID";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(
+      ":userID" => $_POST['deleteStudent']
+    ));
+  } catch(Exception $e){
+    echo $e->getMessage();
+  }
+} 
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -60,11 +119,11 @@ include_once("../pdo.php");
             echo ('<td>' . ucfirst($row['gender']) . '</td>');
             echo ("<td class='edit-btns'>
             <form method='post' action='edit-profile.php'>
-              <input type='hidden' value='".$row['userID']."' name='studentID'/>
+              <input type='hidden' value='".$row['userID']."' name='studentID' />
               <button type='submit'>Edit</button>
             </form>
             <form method='post' action='#'>
-              <input type='hidden' value='".$row['userID']."'/>
+              <input type='hidden' value='".$row['userID']."' name= 'deleteStudent'/>
               <button type='submit'>Delete</button>
             </form>
               </td>
@@ -109,7 +168,7 @@ include_once("../pdo.php");
                 <button type='submit'>Edit</button>
               </form>
               <form method='post' action='#'>
-              <input type='hidden' value='".$row['userID']."'/>
+              <input type='hidden' value='".$row['userID']."' name='deleteLec'/>
               <button type='submit'>Delete</button>
               </form>
             </td>
