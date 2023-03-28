@@ -1,6 +1,6 @@
 <?php
 // Importing data  =from the functions page
-require_once "functions/functions.php";
+require_once "../functions/functions.php";
 
 // Database connection
 $pdo = db_connect();
@@ -75,12 +75,36 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
 
 ?>
 
-<!-- Header Template -->
-<?= header_template('USER REGISTRATION'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="registration.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+  <link rel="stylesheet" type="text/css" href="../lecturer-portal/lecturer-portal.css">
+  <link rel="stylesheet" type="text/css" href="admin-portal.css">
+    <script src="registration.js" defer></script>
+    <title>Registration Page</title>
+</head>
 
 <body>
+<header>
+    <h1>School Admin Dashboard</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="admin-portal.php">Dashboard</a></li>
+      <li><a href="admin-portal.php#admin-student-section">Students</a></li>
+      <li><a href="admin-portal.php#admin-lecturers-section">Lecturers</a></li>
+      <li><a href="#">Registration Form</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </nav>
     <div class="container">
-        <h1><u>User Registration</u></h1>
+        <h2>User Registration</h2>
         <form class="registration-form" id="registration-form" method="post" action="#" novalidate>
             <div class="registration-form-item">
                 <label for="firstName" class="registration-form-label">First Name:</label>
