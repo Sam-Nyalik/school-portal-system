@@ -50,7 +50,7 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 				<li><a href="#">Home</a></li>
 				<li><a href="#My Units">My Units</a></li>
 				<li><a href="#Attendance">Attendance</a></li>				
-				<li><a href="#">Logout</a></li>
+				<li><a href="../home.php">Logout</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -88,7 +88,7 @@ if(isset($_POST['attendance']) && isset($_POST['studentCount'])){
 						<?php
 						echo" <input type='hidden' value='".$lec_id."' name='lecID'/>";
 						?>
-						<button>Edit Profile</button>
+						<button type='submit'>Edit Profile</button>
 					</form>
 					</td>
 				</tr>

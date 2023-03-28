@@ -230,7 +230,7 @@ if(isset($_POST["attendance"]) && isset($_POST["lectureDate"]) && isset($_POST["
 							
 							 if($row['day'] === date("l")){
 								$lectures_today = true;
-							$lectureDate = date("D M j G:i",strtotime("next ".$row['day']. " ".$row['time']));
+							$lectureDate = date("D M j G:i",strtotime($row['day']. " ".$row['time']));
 							
 							echo" 
 							<tr>
