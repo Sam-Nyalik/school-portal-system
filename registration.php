@@ -80,7 +80,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
 
 <body>
     <div class="container">
-        <h1><u>User's registration</u></h1>
+        <h1><u>User Registration</u></h1>
         <form class="registration-form" id="registration-form" method="post" action="#" novalidate>
             <div class="registration-form-item">
                 <label for="firstName" class="registration-form-label">First Name:</label>
@@ -190,21 +190,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
             </div>
 
         </form>
-        <br>
-        <table>
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Gender</th>
-                    <th>Is Admin</th>
-                </tr>
-            </thead>
-            <tbody id="userTableBody">
-            </tbody>
-        </table>
+        
     </div>
 
 </body>
