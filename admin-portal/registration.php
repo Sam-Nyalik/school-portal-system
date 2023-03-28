@@ -106,54 +106,76 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
     <div class="container">
         <h2>User Registration</h2>
         <form class="registration-form" id="registration-form" method="post" action="#" novalidate>
+            <div class="registration-form-names">
             <div class="registration-form-item">
-                <label for="firstName" class="registration-form-label">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required>
-                <span class="errors text-danger" id="firstNameError"><?= $firstName_error; ?></span>
-            </div>
+                    <label for="firstName" class="registration-form-label">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                    <div class= "error-span">
+                        <span class="errors text-danger" id="firstNameError"><?= $firstName_error; ?></span>
+                    </div>
+                    
+                </div>
+
+                <div class="registration-form-item">
+                    <label for="lastName" class="registration-form-label">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                    <div class="error-span">
+                        <span class="errors text-danger" id="lastNameError"><?= $lastName_error; ?></span>
+                    </div>
+                    
+                </div>
+            </div>    
+            
 
             <div class="registration-form-item">
-                <label for="lastName" class="registration-form-label">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required>
-                <span class="errors text-danger" id="lastNameError"><?= $lastName_error; ?></span>
-            </div>
-
-            <div class="registration-form-item">
-                <label for="emailAddress" class="registration-form-label">Email:</label>
+                <label for="emailAddress" class="registration-form-label">Email</label>
                 <input type="email" id="emailAddress" name="emailAddress" required>
-                <span class=" error" id="emailAddressError"></span>
+                <div class="error-span">
+                    <span class="error" id="emailAddressError"></span>
+                </div>
+                
             </div>
 
             <div class="registration-form-item">
-                <label for="phoneNumber" class="registration-form-label">Phone Number:</label>
+                <label for="phoneNumber" class="registration-form-label">Phone Number</label>
                 <input type="tel" id="phoneNumber" name="phoneNumber" required>
-                <span class="errors text-danger" id= "phoneNumberError"><?= $phoneNumber_error; ?></span>
+                <div class="error-span">
+                    <span class="errors text-danger" id= "phoneNumberError"><?= $phoneNumber_error; ?></span>
+                </div>                
             </div>
 
             <div class="registration-form-item">
-                <label for="password" class="registration-form-label">Password:</label>
+                <label for="password" class="registration-form-label">Password</label>
                 <input type="password" id="password" name="password" required>
-                <span class="errors text-danger" id = "passwordError"><?= $password_error; ?></span>
+                <div class="error-span">
+                    <span class="errors text-danger" id = "passwordError"><?= $password_error; ?></span>
+                </div>
+                
             </div>
 
             <div class="registration-form-item">
-                <label for="confirmpassword" class="registration-form-label">Confirm Password:</label>
+                <label for="confirmpassword" class="registration-form-label">Confirm Password</label>
                 <input type="password" name="confirmPassword" id="confirmPassword" required>
-                <span class="errors text-danger" id="confirmPasswordError"><?= $confirmPassword_error; ?></span>
+                <div class="error-span">
+                    <span class="errors text-danger" id="confirmPasswordError"><?= $confirmPassword_error; ?></span>
+                </div>                
             </div>
 
             <div class="registration-form-item">
-                <label for="gender" class="registration-form-label" name="gender">Gender:</label>
+                <label for="gender" class="registration-form-label" name="gender">Gender</label>
                 <select id="gender" name="gender">
                     <option value="" disabled>--Select--</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
+                <div class="error-span">
                 <span class="errors text-danger" id ="genderError"><?= $gender_error; ?></span>
+                </div>
+                
             </div>
 
             <div class="registration-form-item">
-                <label for="role" class="registration-form-label" name="role">Role:</label>
+                <label for="role" class="registration-form-label" name="role">Role</label>
                 <select name="role" id="role">
                     <option value="" disabled>--Select--</option>
                     <?php
@@ -166,15 +188,20 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
             </div>
 
             <div class="registration-form-item hide studentsInputs">
-                <label for="dob" class="registration-form-label" >Date of Birth:</label>
+                <label for="dob" class="registration-form-label" >Date of Birth</label>
                 <input type="date" id="dob" name="dob" required>
-                <span class="errors text-danger" id="dobError"><?= $dateOfBirth_error; ?></span>
+                <div class="error-span">
+                    <span class="errors text-danger" id="dobError"><?= $dateOfBirth_error; ?></span>
+                </div>
+                
             </div>
 
             <div class="registration-form-item hide studentsInputs">
                 <label for="yearOfStudy" class="registration-form-label">Year of study</label>
                 <input type="number" max="3" min="1" id="yearOfStudy" name="yearOfStudy" required>
-                <span class="errors text-danger" id="yearOfStudyError"><?= $yearOfStudy_error; ?></span>
+                <div class="error-span">
+                    <span class="errors text-danger" id="yearOfStudyError"><?= $yearOfStudy_error; ?></span>
+                </div>                
             </div>
 
             <div class="registration-form-item hide studentsInputs">
@@ -189,7 +216,10 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
                     ?>  
                     
                 </select>
+                <div class="error-span">
                 <span class="errors text-danger" id= "courseError"><?= $course_error; ?></span>
+                </div>
+                
             </div>
 
             <div class="registration-form-item hide lecturerInput">
@@ -203,7 +233,10 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
                     }                    
                     ?>
                 </select>
+                <div class="error-span">
                 <span class="errors text-danger" id="departmentError"><?=$department_error; ?></span>
+                </div>
+                
             </div>
             
             <div class="registration-form-item">

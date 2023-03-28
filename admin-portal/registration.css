@@ -1,7 +1,7 @@
 .container {
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
+ /*  text-align: center; */
 }
 
 /*  form {
@@ -42,7 +42,8 @@ tr:hover {
 .registration-form-item {
   display: flex;
   gap: 5px;
-  /* justify-content: space-between; */
+  justify-content: flex-start; 
+  flex-direction: column;
 }
 
 .registration-form-btn {
@@ -51,6 +52,8 @@ tr:hover {
 
 .registration-form-label {
   width: 110px;
+  font-weight: bold;
+  margin-left: 0;
 }
 
 .hide {
@@ -64,10 +67,28 @@ tr:hover {
   /* color: #900; */
   /* background-color: #900; */
   border-radius: 0 0 5px 5px;  
-  box-sizing: border-box;
+  box-sizing: border-box;  
 }
 
 .error.active {
   padding: 0.3em;
   width: fit-content;
+}
+
+.registration-form-names {
+  display: flex;
+  gap: 10px;
+
+}
+
+.error-span{
+  position:relative
+}
+
+.error{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
