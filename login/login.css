@@ -21,22 +21,17 @@ input, .login-button, .forgot-password-form-button {
 }
 
 .error {
-  padding: 0;  
-  font-size: 80%;
-  /* color: #900; */
-  /* background-color: #900; */
-  border-radius: 0 0 5px 5px;  
-  box-sizing: border-box;
-  color:#D92121
+    width: 100%;
+    padding: 0;  
+    font-size: 80%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;  
+    box-sizing: border-box;
   }
   
   .error.active {
     padding: 0.3em;
-  
-  }
-
-  .login-email-input, .login-email-input{
-    display: flex;
   }
 
   .login-main , .forgot-password-main {
