@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2023 at 11:47 AM
+-- Generation Time: Mar 28, 2023 at 10:17 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -40,9 +40,10 @@ CREATE TABLE `attended_lecture` (
 --
 
 INSERT INTO `attended_lecture` (`attendanceID`, `studentID`, `attended`, `lectureID`, `lectureDate`) VALUES
-(2, 17, 1, 4, 'Thu'),
-(3, 17, 1, 4, 'Thu'),
-(4, 17, 0, 4, 'Thu Mar 23 8:00');
+(4, 17, 1, 4, 'Thu Mar 23 8:00'),
+(5, 17, 1, 2, 'Tue Apr 4 8:00'),
+(9, 17, 1, 2, 'Tue Apr 4 8:00'),
+(10, 17, 1, 2, 'Tue Apr 4 8:00');
 
 -- --------------------------------------------------------
 
@@ -104,6 +105,26 @@ INSERT INTO `course` (`courseID`, `departmentID`, `course_length`, `course_name`
 (13, 4, 4, '	BSc. In Biology'),
 (14, 4, 4, '	BSc. In Chemistry'),
 (15, 4, 4, '	BSc. In Physics');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_contacts`
+--
+
+CREATE TABLE `customer_contacts` (
+  `contactID` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer_contacts`
+--
+
+INSERT INTO `customer_contacts` (`contactID`, `name`, `email`, `message`) VALUES
+(1, 'Customer', 'customer@gmail.com', 'Test');
 
 -- --------------------------------------------------------
 
@@ -390,7 +411,7 @@ INSERT INTO `users` (`userID`, `first_name`, `last_name`, `email`, `phone_number
 (12, 'Dennis', 'Ian', 'dian@gmail.com', '234567123', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'male', 2),
 (37, 'Admin', 'admin', 'admin@gmail.com', '722733456', '$2y$10$8hfHc.9W8AMvNl3/LjKtX.PQbCi9oY7dI/d/GPyS3RQSTkUeCMsTq', 'male', 1),
 (38, 'Student', 'Student', 'student@gmail.com', '702926976', '$2y$10$qvEDeizbVlR/.3pMBwYQL.kigfbcMtr5WGkdMYbkBkAppYQ/hThFC', 'male', 2),
-(39, 'Lec', 'Lec', 'lec@gmail.com', '745637465', '$2y$10$j.Unry0e4LnPjGLUaxnEE.Ixp2l7.2PRA.2jgx.PZJYZJTXK94fsq', 'male', 3);
+(39, 'Lec', 'Lec', 'lec@gmail.com', '075698741', '$2y$10$j.Unry0e4LnPjGLUaxnEE.Ixp2l7.2PRA.2jgx.PZJYZJTXK94fsq', 'male', 3);
 
 --
 -- Indexes for dumped tables
@@ -416,6 +437,12 @@ ALTER TABLE `classroom`
 ALTER TABLE `course`
   ADD PRIMARY KEY (`courseID`),
   ADD KEY `departmentID` (`departmentID`);
+
+--
+-- Indexes for table `customer_contacts`
+--
+ALTER TABLE `customer_contacts`
+  ADD PRIMARY KEY (`contactID`);
 
 --
 -- Indexes for table `department`
@@ -485,13 +512,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attended_lecture`
 --
 ALTER TABLE `attended_lecture`
-  MODIFY `attendanceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `attendanceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
   MODIFY `courseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `customer_contacts`
+--
+ALTER TABLE `customer_contacts`
+  MODIFY `contactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `department`
