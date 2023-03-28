@@ -20,15 +20,15 @@ include_once("../pdo.php");
   <nav>
     <ul>
       <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Students</a></li>
-      <li><a href="#">Lecturers</a></li>
-      <li><a href="registration.html">Registration Form</a></li>
+      <li><a href="#admin-student-section">Students</a></li>
+      <li><a href="#admin-lecturers-section">Lecturers</a></li>
+      <li><a href="registration.php">Registration Form</a></li>
       <li><a href="#">Logout</a></li>
     </ul>
   </nav>
   <main>
     <section>
-      <h2>Students</h2>
+      <h2 id="admin-student-section">Students</h2>
       <table>
         <thead>
           <tr>
@@ -71,7 +71,7 @@ include_once("../pdo.php");
       </table>
     </section>
     <section>
-      <h2>Lecturers</h2>
+      <h2 id="admin-lecturers-section">Lecturers</h2>
       <table>
         <thead>
           <tr>
