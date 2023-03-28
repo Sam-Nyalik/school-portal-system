@@ -74,15 +74,26 @@ $nameErr = $emailErr = $phoneErr = $departmentErr = "";
 $name = $email = $phone  =  $department ="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["name"])) {
-        $nameErr = "Name is required";
+    if (empty($_POST["firstName"])) {
+        $nameErr = "First name is required";
     } else {
-        $name = test_input($_POST["name"]);
+        $name = test_input($_POST["firstName"]);
         // check if name only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
             $nameErr = "Only letters and white space allowed";
         }
     }
+
+    if (empty($_POST["lastName"])) {
+        $nameErr = "Last name is required";
+    } else {
+        $name = test_input($_POST["lastName"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+            $nameErr = "Only letters and white space allowed";
+        }
+    }
+
 
     if (empty($_POST["email"])) {
         $emailErr = "Email is required";
