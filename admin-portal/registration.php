@@ -82,10 +82,11 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="registration.css">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../style.css">
+    
+    
   <link rel="stylesheet" type="text/css" href="../lecturer-portal/lecturer-portal.css">
   <link rel="stylesheet" type="text/css" href="admin-portal.css">
+  <link rel="stylesheet" type="text/css" href="../style.css">
     <script src="registration.js" defer></script>
     <title>Registration Page</title>
 </head>
@@ -106,7 +107,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
     <div class="container">
         <h2>User Registration</h2>
         <form class="registration-form" id="registration-form" method="post" action="#" novalidate>
-            <div class="registration-form-names">
+            <div class="registration-form-item-container">
             <div class="registration-form-item">
                     <label for="firstName" class="registration-form-label">First Name</label>
                     <input type="text" id="firstName" name="firstName" required>
@@ -144,6 +145,7 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
                 </div>                
             </div>
 
+            <div class="registration-form-item-container">
             <div class="registration-form-item">
                 <label for="password" class="registration-form-label">Password</label>
                 <input type="password" id="password" name="password" required>
@@ -160,6 +162,8 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['ema
                     <span class="errors text-danger" id="confirmPasswordError"><?= $confirmPassword_error; ?></span>
                 </div>                
             </div>
+            </div>
+            
 
             <div class="registration-form-item">
                 <label for="gender" class="registration-form-label" name="gender">Gender</label>
