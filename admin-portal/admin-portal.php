@@ -60,12 +60,12 @@ include_once("../pdo.php");
             echo ('<td>' . ucfirst($row['gender']) . '</td>');
             echo ("<td class='edit-btns'>
             <form method='post' action='edit-profile.php'>
-            <input type='hidden' value='".$row['userID']."' name='userID'/>
-            <button type='submit'>Edit</button>
+              <input type='hidden' value='".$row['userID']."' name='studentID'/>
+              <button type='submit'>Edit</button>
             </form>
             <form method='post' action='#'>
-            <input type='hidden' value='".$row['userID']."'/>
-            <button type='submit'>Delete</button>
+              <input type='hidden' value='".$row['userID']."'/>
+              <button type='submit'>Delete</button>
             </form>
               </td>
             </tr>");
@@ -104,8 +104,8 @@ include_once("../pdo.php");
             echo ('<td>' . $row['department_name'] . '</td>');
             echo("
             <td class='edit-btns'>
-              <form method='post' action='edit-profile.php'>
-                <input type='hidden' value='".$row['userID']."' name='userID'/>
+              <form method='post' action='../lecturer-portal/lecturer-profile.php'>
+                <input type='hidden' value='".$row['userID']."' name='lecID'/>
                 <button type='submit'>Edit</button>
               </form>
               <form method='post' action='#'>

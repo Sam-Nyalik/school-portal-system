@@ -2,7 +2,7 @@
 
 include_once("../pdo.php");
 
-if(isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['userID'])){
+if(isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['studentID'])){
     try{
         $sql = "UPDATE USERS
                 SET FIRST_NAME = :firstName, LAST_NAME = :lastName, EMAIL = :email, PHONE_NUMBER = :phone
@@ -12,7 +12,7 @@ if(isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['firstName']
             ":firstName" => $_POST['firstName'],
             ":lastName" => $_POST['lastName'],
             ":email" => $_POST['email'],
-            ":userID" => $_POST['lecID'],
+            ":userID" => $_POST['studentID'],
             ":phone" => $_POST['phone']
         ));
 
@@ -21,19 +21,18 @@ if(isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['firstName']
     }
 }
 
-if(isset($_POST['userID'])){    
+if(isset($_POST['studentID'])){    
     
     try{
-        $sql = "SELECT LECTURERS.* , USERS.*, DEPARTMENT.*
+        $sql = "SELECT STUDENTS.* , USERS.*
                 FROM USERS 
-                INNER JOIN LECTURERS ON LECTURERS.USERID = USERS.USERID
-                INNER JOIN DEPARTMENT ON DEPARTMENT.DEPARTMENTID = LECTURERS.DEPARTMENTID
+                INNER JOIN STUDENTS ON STUDENTS.USERID = USERS.USERID                
                 WHERE USERS.USERID = :userID";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
-            ":userID" => $_POST['lecID']
+            ":userID" => $_POST['studentID']
         ));
-        $lecturer_row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
     }catch(Exception $e){
 
@@ -52,7 +51,7 @@ if(isset($_POST['userID'])){
     <meta charset="UTF-8">
     <title>Profile</title>
     <title>Lecturer Portal</title>
-    <link rel="stylesheet" type="text/css" href="lecturer-profile.css">
+    <link rel="stylesheet" type="text/css" href="../lecturer-portal/lecturer-profile.css">
     <script src="lecturer-portal.js"></script>
     <style>
         .error {color: #FF0000;}
@@ -150,18 +149,18 @@ function test_input($data) {
     </form> -->
     <form action='#' method='post'>
         <label for="name-input">First Name:</label>
-        <input type="text" id="name-input" name="firstName" value=<?= $lecturer_row['first_name'] ?>>
+        <input type="text" id="name-input" name="firstName" value=<?= $row['first_name'] ?>>
         <span class="error">* <?php echo $nameErr;?></span>
         <label for="name-input">Last Name:</label>
-        <input type="text" id="name-input" name="lastName" value=<?= $lecturer_row['last_name'] ?>>
+        <input type="text" id="name-input" name="lastName" value=<?= $row['last_name'] ?>>
         <span class="error">* <?php echo $nameErr;?></span>
         <label for="email-input">Email:</label>
-        <input type="email" id="email-input" name="email" value=<?= $lecturer_row['email'] ?>>
+        <input type="email" id="email-input" name="email" value=<?= $row['email'] ?>>
         <span class="error">* <?php echo $emailErr;?></span>
         <label for="phone-input">Phone:</label>
-        <input type="tel" id="phone-input" name="phone" value=<?= $lecturer_row['phone_number'] ?>>
+        <input type="tel" id="phone-input" name="phone" value=<?= $row['phone_number'] ?>>
         <span class="error">* <?php echo $phoneErr;?></span>        
-        
+        <input type="hidden" value="<?= $_POST['studentID']?>" name='studentID'>
         
         <button type="submit">Save Changes</button>
     </form>

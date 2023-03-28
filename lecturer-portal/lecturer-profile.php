@@ -24,10 +24,9 @@ if(isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['firstName']
 if(isset($_POST['lecID'])){    
     
     try{
-        $sql = "SELECT LECTURERS.* , USERS.*, DEPARTMENT.*
+        $sql = "SELECT LECTURERS.* , USERS.*
                 FROM USERS 
-                INNER JOIN LECTURERS ON LECTURERS.USERID = USERS.USERID
-                INNER JOIN DEPARTMENT ON DEPARTMENT.DEPARTMENTID = LECTURERS.DEPARTMENTID
+                INNER JOIN LECTURERS ON LECTURERS.USERID = USERS.USERID                
                 WHERE USERS.USERID = :userID";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(array(
@@ -160,9 +159,7 @@ function test_input($data) {
         <span class="error">* <?php echo $emailErr;?></span>
         <label for="phone-input">Phone:</label>
         <input type="tel" id="phone-input" name="phone" value=<?= $lecturer_row['phone_number'] ?>>
-        <span class="error">* <?php echo $phoneErr;?></span>
-        <label for="department-input">Department:</label>
-        <input type="text" id="department-input" name="department" value=<?= $lecturer_row['department_name'] ?> disabled>
+        <span class="error">* <?php echo $phoneErr;?></span>        
         <input type="hidden" value=<?= $_POST['lecID']?> name='lecID'>
         
         
