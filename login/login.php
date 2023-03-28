@@ -1,5 +1,7 @@
 <?php
 include_once("../pdo.php");
+include_once "../functions/functions.php";
+
 $successfulLogin = true;
 $welcomeMessage = "";
 $loginErrorMessage = "Invalid login, please try again";
@@ -60,10 +62,37 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script src="login.js" defer></script>
     <title>Login Page</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Student Portal System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../home.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about-us/about-us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about-us/contact-us.php">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./login/login.php">
+                            Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <main class="login-main">
         <h1>Login Page</h1>
         <form method="post" class="login-form" action="login.php" novalidate>

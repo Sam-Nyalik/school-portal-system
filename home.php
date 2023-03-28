@@ -28,7 +28,7 @@ include_once "functions/functions.php";
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./login/login.php">
-                            Logins
+                            Login
                         </a>
                     </li>
                 </ul>
