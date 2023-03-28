@@ -1,8 +1,8 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 0 20px;
+    /* max-width: 800px; */
+    margin: 0;
+    
 }
 header {
     background-color: #0072c6;
@@ -13,8 +13,7 @@ header {
 
 nav {
     background-color: #333;
-    color: #fff;
-    border-bottom: 1px solid #ddd;
+    color: #fff;    
     padding: 10px;
 }
 
@@ -75,4 +74,22 @@ footer {
     color: #fff;
     padding: 20px;
     text-align: center;
+}
+
+.edit-profile-body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-profile-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

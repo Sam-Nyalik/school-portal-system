@@ -32,7 +32,7 @@ if(isset($_POST['lecID'])){
         $stmt->execute(array(
             ":userID" => $_POST['lecID']
         ));
-        $lecturer_row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
     }catch(Exception $e){
 
@@ -57,12 +57,12 @@ if(isset($_POST['lecID'])){
         .error {color: #FF0000;}
     </style>
 </head>
-<body>
+<body class="edit-profile-body">
 <header>
-    <h1>Profile</h1>
+    <h1>Edit Profile</h1>
     <nav>
         <ul>
-                       <li><a href="lecturer-portal.php">Dashboard</a></li>
+            <li><a href=<?= "lecturer-portal.php?id=".$_POST['lecID']."" ?>>Dashboard</a></li>
         </ul>
     </nav>
 </header>
@@ -125,7 +125,7 @@ function test_input($data) {
 ?>
 
 <br>
-<section>
+<section class='edit-profile-section'>
     <!-- <p><span class="error">* required field</span></p>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
     <label for="name-input">Name:</label>
@@ -147,19 +147,23 @@ function test_input($data) {
 
     <button type="submit">Save Changes</button>
     </form> -->
-    <form action='#' method='post'>
-        <label for="name-input">First Name:</label>
-        <input type="text" id="name-input" name="firstName" value=<?= $lecturer_row['first_name'] ?>>
-        <span class="error">* <?php echo $nameErr;?></span>
+    <form action='#' method='post' class="edit-form">
+        <div class='edit-form-item'>
+            <label for="name-input">First Name:</label>
+            <input type="text" id="name-input" name="firstName" value=<?= $row['first_name'] ?>>
+        </div>
+        <div class='edit-form-item'>
         <label for="name-input">Last Name:</label>
-        <input type="text" id="name-input" name="lastName" value=<?= $lecturer_row['last_name'] ?>>
-        <span class="error">* <?php echo $nameErr;?></span>
+        <input type="text" id="name-input" name="lastName" value=<?= $row['last_name'] ?>>
+        </div>
+        <div class='edit-form-item'>
         <label for="email-input">Email:</label>
-        <input type="email" id="email-input" name="email" value=<?= $lecturer_row['email'] ?>>
-        <span class="error">* <?php echo $emailErr;?></span>
+        <input type="email" id="email-input" name="email" value=<?= $row['email'] ?>>
+        </div>
+        <div class='edit-form-item'>
         <label for="phone-input">Phone:</label>
-        <input type="tel" id="phone-input" name="phone" value=<?= $lecturer_row['phone_number'] ?>>
-        <span class="error">* <?php echo $phoneErr;?></span>        
+        <input type="tel" id="phone-input" name="phone" value=<?= $row['phone_number'] ?>>
+        </div>         
         <input type="hidden" value=<?= $_POST['lecID']?> name='lecID'>
         
         

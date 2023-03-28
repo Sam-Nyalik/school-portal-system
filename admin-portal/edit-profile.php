@@ -49,7 +49,7 @@ if(isset($_POST['studentID'])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Edit Profile</title>
     <title>Lecturer Portal</title>
     <link rel="stylesheet" type="text/css" href="../lecturer-portal/lecturer-profile.css">
     <script src="lecturer-portal.js"></script>
@@ -57,12 +57,12 @@ if(isset($_POST['studentID'])){
         .error {color: #FF0000;}
     </style>
 </head>
-<body>
+<body class="edit-profile-body">
 <header>
-    <h1>Profile</h1>
+    <h1>Edit Profile</h1>
     <nav>
         <ul>
-                       <li><a href="lecturer-portal.php">Dashboard</a></li>
+            <li><a href=<? "lecturer-portal.php?id=".$_POST['studentID'] ?>>Dashboard</a></li>
         </ul>
     </nav>
 </header>
@@ -125,7 +125,7 @@ function test_input($data) {
 ?>
 
 <br>
-<section>
+<section class='edit-profile-section'>
     <!-- <p><span class="error">* required field</span></p>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
     <label for="name-input">Name:</label>
@@ -147,19 +147,23 @@ function test_input($data) {
 
     <button type="submit">Save Changes</button>
     </form> -->
-    <form action='#' method='post'>
-        <label for="name-input">First Name:</label>
-        <input type="text" id="name-input" name="firstName" value=<?= $row['first_name'] ?>>
-        <span class="error">* <?php echo $nameErr;?></span>
+    <form action='#' method='post' class="edit-form">
+        <div class='edit-form-item'>
+            <label for="name-input">First Name:</label>
+            <input type="text" id="name-input" name="firstName" value=<?= $row['first_name'] ?>>
+        </div>
+        <div class='edit-form-item'>
         <label for="name-input">Last Name:</label>
         <input type="text" id="name-input" name="lastName" value=<?= $row['last_name'] ?>>
-        <span class="error">* <?php echo $nameErr;?></span>
+        </div>
+        <div class='edit-form-item'>
         <label for="email-input">Email:</label>
         <input type="email" id="email-input" name="email" value=<?= $row['email'] ?>>
-        <span class="error">* <?php echo $emailErr;?></span>
+        </div>
+        <div class='edit-form-item'>
         <label for="phone-input">Phone:</label>
         <input type="tel" id="phone-input" name="phone" value=<?= $row['phone_number'] ?>>
-        <span class="error">* <?php echo $phoneErr;?></span>        
+        </div>               
         <input type="hidden" value="<?= $_POST['studentID']?>" name='studentID'>
         
         <button type="submit">Save Changes</button>
