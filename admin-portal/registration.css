@@ -1,0 +1,73 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/*  form {
+    text-align: left;
+    
+    margin-right: 50px;
+  } */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 50px;
+}
+
+thead {
+  background-color: #ccc;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #df1a1a;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.registration-form-item {
+  display: flex;
+  gap: 5px;
+  /* justify-content: space-between; */
+}
+
+.registration-form-btn {
+  align-self: center;
+}
+
+.registration-form-label {
+  width: 110px;
+}
+
+.hide {
+  display: none;
+}
+
+.error {
+  
+  padding: 0;  
+  font-size: 80%;
+  /* color: #900; */
+  /* background-color: #900; */
+  border-radius: 0 0 5px 5px;  
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+  width: fit-content;
+}
