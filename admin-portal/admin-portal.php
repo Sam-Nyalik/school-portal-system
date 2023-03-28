@@ -58,9 +58,15 @@ include_once("../pdo.php");
             echo ('<td>' . $row['course_name'] . '</td>');
             echo ('<td>' . $row['phone_number'] . '</td>');
             echo ('<td>' . ucfirst($row['gender']) . '</td>');
-            echo ("<td>
-                <button>Edit</button>
-                <button>Delete</button>
+            echo ("<td class='edit-btns'>
+            <form method='post' action='edit-profile.php'>
+            <input type='hidden' value='".$row['userID']."' name='userID'/>
+            <button type='submit'>Edit</button>
+            </form>
+            <form method='post' action='#'>
+            <input type='hidden' value='".$row['userID']."'/>
+            <button type='submit'>Delete</button>
+            </form>
               </td>
             </tr>");
           }
@@ -97,9 +103,15 @@ include_once("../pdo.php");
             echo ('<td>' . $row['email'] . '</td>');
             echo ('<td>' . $row['department_name'] . '</td>');
             echo("
-            <td>
-              <button>Edit</button>
-              <button>Delete</button>
+            <td class='edit-btns'>
+              <form method='post' action='edit-profile.php'>
+                <input type='hidden' value='".$row['userID']."' name='userID'/>
+                <button type='submit'>Edit</button>
+              </form>
+              <form method='post' action='#'>
+              <input type='hidden' value='".$row['userID']."'/>
+              <button type='submit'>Delete</button>
+              </form>
             </td>
           </tr>");
           };

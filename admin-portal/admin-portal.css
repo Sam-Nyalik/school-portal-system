@@ -48,3 +48,9 @@ footer {
   padding: 20px;
   text-align: center;
 }
+
+.edit-btns {
+  display: flex;
+  gap: 5px;
+  border: none;
+}
