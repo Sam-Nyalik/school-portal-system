@@ -148,24 +148,26 @@ function test_input($data) {
 
     <button type="submit">Save Changes</button>
     </form> -->
-    <form action='#' method='post'>
+    <p><span class="error">* required field</span></p>
+    <?php $current_page = htmlspecialchars($_SERVER["PHP_SELF"]); ?>
+    <form action="<?= ($current_page === '#' ? $current_page : $current_page . '#') ?>" method="post">
         <label for="name-input">First Name:</label>
-        <input type="text" id="name-input" name="firstName" value=<?= $lecturer_row['first_name'] ?>>
+        <input type="text" id="name-input" name="firstName" value="<?= $lecturer_row['first_name'] . ' ' . $name ?>" >
         <span class="error">* <?php echo $nameErr;?></span>
         <label for="name-input">Last Name:</label>
-        <input type="text" id="name-input" name="lastName" value=<?= $lecturer_row['last_name'] ?>>
+        <input type="text" id="name-input" name="lastName" value="<?= $lecturer_row['last_name'] . '' . $name?>">
         <span class="error">* <?php echo $nameErr;?></span>
         <label for="email-input">Email:</label>
-        <input type="email" id="email-input" name="email" value=<?= $lecturer_row['email'] ?>>
+        <input type="email" id="email-input" name="email" value="<?= $lecturer_row['email'] . '' . $email?>">
         <span class="error">* <?php echo $emailErr;?></span>
         <label for="phone-input">Phone:</label>
-        <input type="tel" id="phone-input" name="phone" value=<?= $lecturer_row['phone_number'] ?>>
+        <input type="tel" id="phone-input" name="phone" value="<?= $lecturer_row['phone_number'] . '' . $phone?>">
         <span class="error">* <?php echo $phoneErr;?></span>
         <label for="department-input">Department:</label>
-        <input type="text" id="department-input" name="department" value=<?= $lecturer_row['department_name'] ?> disabled>
-        <input type="hidden" value=<?= $_POST['lecID']?> name='lecID'>
-        
-        
+        <input type="text" id="department-input" name="department" value="<?= $lecturer_row['department_name'] . '' . $department ?> disabled">
+        <input type="hidden" value="<?= $_POST['lecID']?>" name='lecID'>
+
+
         <button type="submit">Save Changes</button>
     </form>
 
